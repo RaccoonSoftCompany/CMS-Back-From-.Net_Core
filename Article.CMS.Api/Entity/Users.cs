@@ -12,13 +12,10 @@ namespace Article.CMS.Api.Entity
         public string Upassword { get; set; }
 
         //权限id
-        public int PowerId { get; set; }
-
-        public virtual Powers Powers { get; set; }
+        public virtual Powers Power { get; set; }
 
         //问题id
-        public int MatterId { get; set; }
-        public virtual Matters Matters { get; set; }
+        public virtual Matters Matter { get; set; }
 
     }
 }
