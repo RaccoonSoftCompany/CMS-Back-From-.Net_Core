@@ -1,1 +1,6 @@
 GET http://localhost:5000/WeatherForecast  HTTP/1.1
+
+###
+
+GET http://localhost:5000/User  HTTP/1.1
+
