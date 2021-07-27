@@ -19,6 +19,10 @@ namespace Article.CMS.Api.Database
             options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
         }
 
+        /// <summary>
+        /// 种子数据
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users> ().HasData(
@@ -36,6 +40,39 @@ namespace Article.CMS.Api.Database
                 new Users(){
                     Id=2,
                     UName="User",
+                    UEmail="112358@qq.com",
+                    Upassword="113",
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                },  
+                new Users(){
+                    Id=3,
+                    UName="Active",
+                    UEmail="112358@qq.com",
+                    Upassword="113",
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                }, 
+                new Users(){
+                    Id=4,
+                    UName="God",
+                    UEmail="112358@qq.com",
+                    Upassword="113",
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                },   
+                new Users(){
+                    Id=5,
+                    UName="Wooz",
                     UEmail="112358@qq.com",
                     Upassword="113",
                     IsActived=true,

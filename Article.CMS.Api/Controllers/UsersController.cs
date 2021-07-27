@@ -25,6 +25,10 @@ namespace Article.CMS.Api.Controllers
             _usersRepository = usersRepository;
         }
         [HttpGet]
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <returns></returns>
         public dynamic Get()
         {
 
@@ -38,6 +42,11 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
         public dynamic Post(CreateUser newUser)
         {
             var UName = newUser.UName.Trim();
@@ -73,6 +82,12 @@ namespace Article.CMS.Api.Controllers
             });
         }
 
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateUser"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public dynamic Put(int id, CreateUser updateUser)
         {
@@ -119,6 +134,11 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public dynamic Delete(int id)
         {
             _usersRepository.Delete(id);
