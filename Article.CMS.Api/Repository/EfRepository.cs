@@ -1,55 +1,145 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Article.CMS.Api.Database;
+using Article.CMS.Api.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Article.CMS.Api.Repository
 {
-    public class EfRepository<T> : IRepository<T>
+    public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        public IQueryable<T> Table => throw new System.NotImplementedException();
+        private ArticleCmsdb _db;
 
-        public void Delete(object id)
+        public EfRepository(ArticleCmsdb db)
         {
-            throw new System.NotImplementedException();
+            _db=db;
         }
 
-        public void DeleteBulk(object ids)
+        private DbSet<T> _entity;
+
+        protected DbSet<T> Entity
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                if (_entity == null)
+                {
+                    _entity = _db.Set<T>();
+                }
+                return _entity;
+            }
         }
 
-        public T GetId(object id)
+
+        public IQueryable<T> Table
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return Entity.AsQueryable<T>();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var delete = Entity.Where(x => x.Id == id).FirstOrDefault();
+            _db.Remove(delete);
+            _db.SaveChanges();
+        }
+
+        public void DeleteBulk(IEnumerable<int> ids)
+        {
+            var arr = new List<int>();
+            foreach (var item in ids)
+            {
+                arr.Add(item);
+            }
+            var deleteBulk = Entity.Where(x => arr.Contains(x.Id)).ToList();
+            _db.RemoveRange(deleteBulk);
+            _db.SaveChanges();
+        }
+
+        public T GetId(int id)
+        {
+            return Entity.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void Insert(T entity)
         {
-            throw new System.NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
+            entity.IsActived = true;
+            entity.IsDeleted = false;
+            entity.CreatedTime = DateTime.Now;
+            entity.UpdatedTime = DateTime.Now;
+
+            Entity.Add(entity);
+            _db.SaveChanges();
         }
 
-        public void InsertBulk(T entities)
+        public void InsertBulk(IEnumerable<T> entities)
         {
-            throw new System.NotImplementedException();
+            foreach (var entity in entities)
+            {
+                entity.IsActived = true;
+                entity.IsDeleted = false;
+                entity.CreatedTime = DateTime.Now;
+                entity.UpdatedTime = DateTime.Now;
+            }
+            Entity.AddRange(entities);
+            _db.SaveChanges();
         }
 
-        public Task InsertBulkSync(T entities)
+        public async Task InsertBulkSync(IEnumerable<T> entities)
         {
-            throw new System.NotImplementedException();
+            foreach (var entity in entities)
+            {
+                entity.IsActived = true;
+                entity.IsDeleted = false;
+                entity.CreatedTime = DateTime.Now;
+                entity.UpdatedTime = DateTime.Now;
+            }
+            await Entity.AddRangeAsync(entities);
+            await _db.SaveChangesAsync();
         }
 
-        public Task InsertSync(T entity)
+        public async Task InsertSync(T entity)
         {
-            throw new System.NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
+            entity.IsActived = true;
+            entity.IsDeleted = false;
+            entity.CreatedTime = DateTime.Now;
+            entity.UpdatedTime = DateTime.Now;
+
+            await Entity.AddAsync(entity);
+            await _db.SaveChangesAsync();
         }
 
         public void Update(T entity)
         {
-            throw new System.NotImplementedException();
+            if (entity==null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            entity.UpdatedTime=DateTime.Now;
+            _db.SaveChanges();
         }
 
-        public void UpdateBulk(T entities)
+        public void UpdateBulk(IEnumerable<T> entities)
         {
-            throw new System.NotImplementedException();
-        }
+            foreach (var entity in entities)
+            {
+                entity.UpdatedTime=DateTime.Now;
+            }
+
+            Entity.UpdateRange(entities);
+            _db.SaveChangesAsync();
+        }       
     }
 }
