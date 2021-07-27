@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 namespace Article.CMS.Api.Entity
 {
     /// <summary>
@@ -8,14 +9,23 @@ namespace Article.CMS.Api.Entity
         //用户名
         public string UName { get; set; }
 
+        //用户邮箱
+        public string UEmail { get; set; }
+
         //密码
         public string Upassword { get; set; }
+
+        //问题id
+        public virtual Matters Matter { get; set; }
+
+        //问题答案
+        public string MKey { get; set; }
 
         //权限id
         public virtual Powers Power { get; set; }
 
-        //问题id
-        public virtual Matters Matter { get; set; }
+        public virtual IEnumerable<UserInfos> UserInfos { get; set; }
+
 
     }
 }

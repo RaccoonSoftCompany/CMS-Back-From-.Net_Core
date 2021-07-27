@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Article.CMS.Api.Database;
 using Microsoft.EntityFrameworkCore;
+using Article.CMS.Api.Repository;
 //using Article.CMS.Api.Repository;
 
 namespace Article.CMS.Api
@@ -34,8 +35,8 @@ namespace Article.CMS.Api
             services.AddCors(m => m.AddPolicy("Any", a => a.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
 
             // 注入 IRepository接口及其实现类
-            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            //services.AddControllers();
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +45,8 @@ namespace Article.CMS.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Article.CMS.Api v1"));
+                // app.UseSwagger();
+                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Article.CMS.Api v1"));
             }
 
             app.UseRouting();

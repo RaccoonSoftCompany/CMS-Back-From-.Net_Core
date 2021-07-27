@@ -12,6 +12,7 @@ namespace Article.CMS.Api.Database
         public DbSet<Users> Users { get; set; } //要生成的数据表
         public DbSet<Matters> Matters { get; set; } //要生成的数据表
         public DbSet<Powers> Powers { get; set; } //要生成的数据表
+        public DbSet<UserInfos> UserInfos { get; set; } //要生成的数据表
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
         {
