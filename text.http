@@ -10,17 +10,25 @@ POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    
+   "UName":"Action",
+   "Upassword":"123", 
+   "UEmail":"112358@qq.com",
+   "MKey" : "春天"
 }
 
 ### 
-PUT http://localhost:5000/users HTTP/1.1
+PUT http://localhost:5000/users/5 HTTP/1.1
 Content-Type: application/json
 
 {
-    
+   "UName":"Action",
+   "Upassword":"556", 
+   "UEmail":"112358@qq.com",
+   "MKey" : "秋天"
 }
 
 ### 
-DELETE http://localhost:5000/users HTTP/1.1
+DELETE http://localhost:5000/users/2 HTTP/1.1
+
+
 

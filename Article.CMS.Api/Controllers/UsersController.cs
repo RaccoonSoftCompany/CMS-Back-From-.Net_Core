@@ -38,36 +38,96 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
-        public dynamic Post()
+        public dynamic Post(CreateUser newUser)
         {
+            var UName = newUser.UName.Trim();
+            var Upassword = newUser.Upassword.Trim();
+            var UEmail = newUser.UEmail.Trim();
+            var MKey = newUser.MKey.Trim();
 
-            return new
+            if (string.IsNullOrEmpty(UName) || string.IsNullOrEmpty(Upassword) || string.IsNullOrEmpty(UEmail) || string.IsNullOrEmpty(MKey))
+            {
+                return new
+                {
+                    Code = 1000,
+                    Data = "",
+                    Msg = "插入失败"
+                };
+            }
+
+            var user = new Users
+            {
+                UName = newUser.UName,
+                Upassword = newUser.Upassword,
+                UEmail = newUser.UEmail,
+                MKey = newUser.MKey
+            };
+
+            _usersRepository.Insert(user);
+
+            return JsonHelper.Serialize(new
             {
                 Code = 1000,
-                Data = "",
+                Data = user,
                 Msg = "添加成功"
-            };
+            });
         }
 
-        [HttpPut]
-        public dynamic Put()
+        [HttpPut("{id}")]
+        public dynamic Put(int id, CreateUser updateUser)
         {
+            var UName = updateUser.UName.Trim();
+            var Upassword = updateUser.Upassword.Trim();
+            var UEmail = updateUser.UEmail.Trim();
+            var MKey = updateUser.MKey.Trim();
+
+            if (string.IsNullOrEmpty(UName) || string.IsNullOrEmpty(Upassword) || string.IsNullOrEmpty(UEmail) || string.IsNullOrEmpty(MKey))
+            {
+                return new
+                {
+                    Code = 1000,
+                    Data = "",
+                    Msg = "更新失败"
+                };
+            }
+
+            var user = _usersRepository.GetId(id);
+
+            if(user==null)
+            {
+                return new
+                {
+                    Code=1000,
+                    Data="",
+                    Msg="更新的内容不能为空"
+                };
+            }
+
+            user.UName=updateUser.UName;
+            user.Upassword=updateUser.Upassword;
+            user.UEmail=updateUser.UEmail;
+            user.MKey=updateUser.MKey;
+
+            _usersRepository.Update(user);
+
             return new
             {
                 Code = 1000,
-                Data = "",
+                Data = user,
                 Msg = "更新成功"
             };
         }
 
-        [HttpDelete]
-        public dynamic Delete()
+        [HttpDelete("{id}")]
+        public dynamic Delete(int id)
         {
-            return new 
+            _usersRepository.Delete(id);
+
+            return new
             {
-                Code=1000,
-                Data="",
-                Msg="删除成功"
+                Code = 1000,
+                Data = id,
+                Msg = "删除成功"
             };
         }
     }

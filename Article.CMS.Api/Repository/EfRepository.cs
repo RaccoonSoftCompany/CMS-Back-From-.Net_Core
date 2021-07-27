@@ -8,8 +8,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Article.CMS.Api.Repository
 {
+    /// <summary>
+    /// 实现CURD接口
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
+        /// <summary>
+        /// ArticleCmsdb实例
+        /// </summary>
         private ArticleCmsdb _db;
 
         public EfRepository(ArticleCmsdb db)
@@ -17,6 +24,9 @@ namespace Article.CMS.Api.Repository
             _db=db;
         }
 
+        /// <summary>
+        /// 表实例
+        /// </summary>
         private DbSet<T> _entity;
 
         protected DbSet<T> Entity
@@ -30,8 +40,7 @@ namespace Article.CMS.Api.Repository
                 return _entity;
             }
         }
-
-
+        
         public IQueryable<T> Table
         {
             get
