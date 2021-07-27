@@ -19,19 +19,33 @@ namespace Article.CMS.Api.Database
             options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
         }
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     modelBuilder.Entity<Users> ().HasData(
-        //         new Users{
-        //             Id=1,
-        //             IsActived=true,
-        //             IsDeleted=false,
-        //             CreatedTime=DateTime.Now,
-        //             UpdatedTime=DateTime.Now,
-        //             Remarks=null
-        //         }                
-        //     );
-        //     base.OnModelCreating(modelBuilder);
-        // }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Users> ().HasData(
+                new Users(){
+                    Id=1,
+                    UName="Admin",
+                    UEmail="112358@qq.com",
+                    Upassword="113",
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                },           
+                new Users(){
+                    Id=2,
+                    UName="User",
+                    UEmail="112358@qq.com",
+                    Upassword="113",
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                }   
+            );
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
