@@ -4,14 +4,16 @@ using Article.CMS.Api.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Article.CMS.Api.Migrations
 {
     [DbContext(typeof(ArticleCmsdb))]
-    partial class ArticleCmsdbModelSnapshot : ModelSnapshot
+    [Migration("20210727071635_测试种子数据")]
+    partial class 测试种子数据
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

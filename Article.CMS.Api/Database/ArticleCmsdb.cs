@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore; //引入EF
 using Article.CMS.Api.Entity; //引入数据表类
+using System;
 
 namespace Article.CMS.Api.Database
 {
@@ -14,9 +15,24 @@ namespace Article.CMS.Api.Database
         public DbSet<Powers> Powers { get; set; } //要生成的数据表
         public DbSet<UserInfos> UserInfos { get; set; } //要生成的数据表
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
+        // protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
+        // {
+        //     options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
+        // }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
+            modelBuilder.Entity<Users> ().HasData(
+                new Users{
+                    Id=1,
+                    IsActived=true,
+                    IsDeleted=false,
+                    CreatedTime=DateTime.Now,
+                    UpdatedTime=DateTime.Now,
+                    Remarks=null
+                }                
+            );
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
