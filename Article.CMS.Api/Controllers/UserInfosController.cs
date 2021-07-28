@@ -25,6 +25,11 @@ namespace Article.CMS.Api.Controllers
         {
             _UserInfosRepository = UserInfosRepository;
         }
+
+        /// <summary>
+        /// 获取用户信息表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public dynamic Get()
         {
