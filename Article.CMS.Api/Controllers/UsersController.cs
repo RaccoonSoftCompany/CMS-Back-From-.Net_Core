@@ -44,14 +44,14 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Post(UsersParams newUser)
         {
-            var UName = newUser.UName.Trim();
-            var Upassword = newUser.Upassword.Trim();
-            var UEmail = newUser.UEmail.Trim();
-            var MKey = newUser.MKey.Trim();
+            var uName = newUser.UName.Trim();
+            var uPassword = newUser.Upassword.Trim();
+            var uEmail = newUser.UEmail.Trim();
+            var mKey = newUser.MKey.Trim();
             var powerId = newUser.PowerId;
             var matterId = newUser.MatterId;
 
-            if (string.IsNullOrEmpty(UName) || string.IsNullOrEmpty(Upassword) || string.IsNullOrEmpty(UEmail) || string.IsNullOrEmpty(MKey))
+            if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(uPassword) || string.IsNullOrEmpty(uEmail) || string.IsNullOrEmpty(mKey))
             {
                 return new DataStatus().DataError();
             }
@@ -101,6 +101,8 @@ namespace Article.CMS.Api.Controllers
             users.Upassword=updateUser.Upassword;
             users.UEmail=updateUser.UEmail;
             users.MKey=updateUser.MKey;
+            users.PowerId=updateUser.PowerId;
+            users.MatterId=updateUser.MatterId;
 
             _usersRepository.Update(users);
 
