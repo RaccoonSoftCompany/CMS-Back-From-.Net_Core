@@ -37,7 +37,7 @@ namespace Article.CMS.Api.Repository
         /// <param name="entity"></param>
         /// <returns></returns>  
         Task InsertSync(T entity);
-
+        
         /// <summary>
         /// 批量添加数据
         /// </summary>
