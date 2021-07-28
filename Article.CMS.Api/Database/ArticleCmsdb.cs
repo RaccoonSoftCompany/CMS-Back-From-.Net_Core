@@ -154,7 +154,7 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 1,
-                    PName="修改",                    
+                    PName="超级管理员",                    
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -164,7 +164,7 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 2,
-                    PName="添加",                    
+                    PName="管理员",                    
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -174,17 +174,7 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 3,
-                    PName="删除",                    
-                    IsActived = true,
-                    IsDeleted = false,
-                    CreatedTime = DateTime.Now,
-                    UpdatedTime = DateTime.Now,
-                    Remarks = null
-                },
-                new Powers()
-                {
-                    Id = 4,
-                    PName="查询",                    
+                    PName="用户",                    
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
