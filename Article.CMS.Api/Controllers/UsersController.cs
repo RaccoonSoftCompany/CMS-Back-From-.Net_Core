@@ -37,12 +37,13 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
+        [Route("register")]
         /// <summary>
         /// 添加数据
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
-        public dynamic Post(UsersParams newUser)
+        public dynamic Register(UsersParams newUser)
         {
             var uName = newUser.UName.Trim();
             var uPassword = newUser.Upassword.Trim();
@@ -120,6 +121,26 @@ namespace Article.CMS.Api.Controllers
             _usersRepository.Delete(id);
 
             return JsonHelper.Serialize(new DataStatus().DataSuccess(id));
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public dynamic Login(LoginParams loginData)
+        {
+            var username = loginData.UName.Trim();
+            var password = loginData.Upassword.Trim();
+
+            var users = _usersRepository.Table.ToList();
+
+            foreach (var user in users)
+            {
+                if(user.UName==username && user.Upassword==password)
+                {
+                    return JsonHelper.Serialize(new DataStatus().DataSuccess(user));
+                }
+            }
+
+            return JsonHelper.Serialize(new DataStatus().DataError());   
         }
     }
 }
