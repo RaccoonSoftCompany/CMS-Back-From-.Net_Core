@@ -7,7 +7,6 @@ namespace Article.CMS.Api.Entity
     {
         //用户id
         public int UserId { get; set; }
-        public Users user { get; set; }
 
         //文章id
         public int ArticleId { get; set; }
