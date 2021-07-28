@@ -10,10 +10,16 @@ namespace Article.CMS.Api.Database
         {
 
         }
-        public DbSet<Users> Users { get; set; } //要生成的数据表
-        public DbSet<Matters> Matters { get; set; } //要生成的数据表
-        public DbSet<Powers> Powers { get; set; } //要生成的数据表
-        public DbSet<UserInfos> UserInfos { get; set; } //要生成的数据表
+        public DbSet<Users> Users { get; set; } //要生成的用户数据表
+        public DbSet<Matters> Matters { get; set; } //要生成的问题数据表
+        public DbSet<Powers> Powers { get; set; } //要生成的权限数据表
+        public DbSet<UserInfos> UserInfos { get; set; } //要生成的用户信息数据表
+        public DbSet<Articles> Articles { get; set; } //要生成的文章数据表
+        public DbSet<ArticleTexts> ArticleTexts { get; set; } //要生成的文章内容数据表
+        public DbSet<ArticleTextImages> ArticleTextImages { get; set; } //要生成的文章内容图片数据表
+        public DbSet<ArticleTalks> ArticleTalks { get; set; } //要生成的文章评论数据表
+        public DbSet<ArticleReads> ArticleReads { get; set; } //要生成的文章访问数据表
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
         {
             options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
@@ -102,7 +108,7 @@ namespace Article.CMS.Api.Database
                 new Matters()
                 {
                     Id = 1,
-                    MName="你最喜欢的动物",                    
+                    MName = "你最喜欢的动物",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -112,7 +118,7 @@ namespace Article.CMS.Api.Database
                 new Matters()
                 {
                     Id = 2,
-                    MName="你最喜欢的人",                    
+                    MName = "你最喜欢的人",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -122,7 +128,7 @@ namespace Article.CMS.Api.Database
                 new Matters()
                 {
                     Id = 3,
-                    MName="你的童年阴影",                    
+                    MName = "你的童年阴影",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -132,7 +138,7 @@ namespace Article.CMS.Api.Database
                 new Matters()
                 {
                     Id = 4,
-                    MName="最想去的地方",                    
+                    MName = "最想去的地方",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -142,7 +148,7 @@ namespace Article.CMS.Api.Database
                 new Matters()
                 {
                     Id = 5,
-                    MName="最喜欢的东西",                    
+                    MName = "最喜欢的东西",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -154,7 +160,9 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 1,
+
                     PName="超级管理员",                    
+
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -164,7 +172,9 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 2,
+
                     PName="管理员",                    
+
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,

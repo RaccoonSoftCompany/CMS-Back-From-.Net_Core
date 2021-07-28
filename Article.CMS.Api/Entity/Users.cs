@@ -30,8 +30,5 @@ namespace Article.CMS.Api.Entity
 
         public virtual IEnumerable<UserInfos> UserInfos { get; set; }
         public virtual IEnumerable<Articles> Articles { get; set; }
-        public virtual IEnumerable<ArticleReads> ArticleReads { get; set; }
-        public virtual IEnumerable<ArticleTalks> ArticleTalks { get; set; }
-
     }
 }
