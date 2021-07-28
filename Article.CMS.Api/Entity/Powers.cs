@@ -9,6 +9,8 @@ namespace Article.CMS.Api.Entity
         //权限名称
         public string PName { get; set; }
 
+        
+
         public virtual IEnumerable<Users> Users { get; set; }
     }
 }
