@@ -37,6 +37,7 @@ namespace Article.CMS.Api.Database
                     Id = 1,
                     UName = "Admin",
                     UEmail = "112358@qq",
+                    Upassword="113",
                     PowerId = 1,
                     MatterId = 1,
                     IsActived = true,

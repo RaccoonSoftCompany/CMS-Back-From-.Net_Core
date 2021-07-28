@@ -6,9 +6,19 @@ GET http://localhost:5000/UserInfos HTTP/1.1
 ###查询
 GET http://localhost:5000/users HTTP/1.1
 
+###
+
+POST  http://localhost:5000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+   "UName" : "User",
+   "Upassword" : "113"
+}
+
 
 ### 添加
-POST http://localhost:5000/users HTTP/1.1
+POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
