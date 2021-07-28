@@ -14,12 +14,12 @@ namespace Article.CMS.Api.Repository
             };
         }
 
-        public dynamic DataSuccess(dynamic user)
+        public dynamic DataSuccess(dynamic data)
         {
             return new
             {
                 Code=1000,
-                Data=user,
+                Data=data,
                 Msg="执行成功"
             };
         }
