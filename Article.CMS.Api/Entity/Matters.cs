@@ -10,6 +10,8 @@ namespace Article.CMS.Api.Entity
         //问题名称
         public string MName { get; set; }
 
+        
+
         public virtual IEnumerable<Users> Users { get; set; }
 
     }

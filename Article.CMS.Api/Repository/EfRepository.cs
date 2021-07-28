@@ -14,19 +14,14 @@ namespace Article.CMS.Api.Repository
     /// <typeparam name="T"></typeparam>
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        /// <summary>
-        /// ArticleCmsdb实例
-        /// </summary>
+        
         private ArticleCmsdb _db;
 
         public EfRepository(ArticleCmsdb db)
         {
             _db=db;
         }
-
-        /// <summary>
-        /// 表实例
-        /// </summary>
+        
         private DbSet<T> _entity;
 
         protected DbSet<T> Entity

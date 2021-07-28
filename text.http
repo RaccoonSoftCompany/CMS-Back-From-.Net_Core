@@ -1,7 +1,9 @@
-GET http://localhost:5000/WeatherForecast  HTTP/1.1
 
+###
 
-### 查询
+GET http://localhost:5000/UserInfos HTTP/1.1
+
+###查询
 GET http://localhost:5000/users HTTP/1.1
 
 
@@ -11,7 +13,9 @@ Content-Type: application/json
 
 {
    "UName":"Action",
-   "Upassword":"123", 
+   "Upassword":"123",
+   "PowerId" : "1",
+   "MatterId" : "2",
    "UEmail":"112358@qq.com",
    "MKey" : "春天"
 }
@@ -28,7 +32,7 @@ Content-Type: application/json
 }
 
 ### 删除
-DELETE http://localhost:5000/users/2 HTTP/1.1
+DELETE http://localhost:5000/users/3 HTTP/1.1
 
 
 

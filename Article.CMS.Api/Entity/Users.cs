@@ -16,16 +16,20 @@ namespace Article.CMS.Api.Entity
         public string Upassword { get; set; }
 
         //问题id
+        public int MatterId { get; set; }
         public virtual Matters Matter { get; set; }
 
         //问题答案
         public string MKey { get; set; }
 
         //权限id
+        public int PowerId { get; set; }
+
         public virtual Powers Power { get; set; }
 
+
+        
+
         public virtual IEnumerable<UserInfos> UserInfos { get; set; }
-
-
     }
 }

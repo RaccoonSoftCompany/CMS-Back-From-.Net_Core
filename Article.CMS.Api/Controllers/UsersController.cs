@@ -26,19 +26,14 @@ namespace Article.CMS.Api.Controllers
         }
         [HttpGet]
         /// <summary>
-        /// 获取数据
+        /// 获取数据请求
         /// </summary>
         /// <returns></returns>
         public dynamic Get()
         {
 
             var users = _usersRepository.Table.ToList();
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = users,
-                Msg = "获取用户表成功！"
-            });
+            return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
         }
 
         [HttpPost]
@@ -47,39 +42,33 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
-        public dynamic Post(CreateUser newUser)
+        public dynamic Post(UsersParams newUser)
         {
             var UName = newUser.UName.Trim();
             var Upassword = newUser.Upassword.Trim();
             var UEmail = newUser.UEmail.Trim();
             var MKey = newUser.MKey.Trim();
+            var powerId = newUser.PowerId;
+            var matterId = newUser.MatterId;
 
             if (string.IsNullOrEmpty(UName) || string.IsNullOrEmpty(Upassword) || string.IsNullOrEmpty(UEmail) || string.IsNullOrEmpty(MKey))
             {
-                return new
-                {
-                    Code = 1000,
-                    Data = "",
-                    Msg = "插入失败"
-                };
+                return new DataStatus().DataError();
             }
 
-            var user = new Users
+            var users = new Users
             {
                 UName = newUser.UName,
                 Upassword = newUser.Upassword,
                 UEmail = newUser.UEmail,
-                MKey = newUser.MKey
+                MKey = newUser.MKey,
+                PowerId=powerId,
+                MatterId=matterId
             };
 
-            _usersRepository.Insert(user);
+            _usersRepository.Insert(users);
 
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = user,
-                Msg = "添加成功"
-            });
+            return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
         }
 
         /// <summary>
@@ -89,7 +78,7 @@ namespace Article.CMS.Api.Controllers
         /// <param name="updateUser"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public dynamic Put(int id, CreateUser updateUser)
+        public dynamic Put(int id, UsersParams updateUser)
         {
             var UName = updateUser.UName.Trim();
             var Upassword = updateUser.Upassword.Trim();
@@ -98,39 +87,24 @@ namespace Article.CMS.Api.Controllers
 
             if (string.IsNullOrEmpty(UName) || string.IsNullOrEmpty(Upassword) || string.IsNullOrEmpty(UEmail) || string.IsNullOrEmpty(MKey))
             {
-                return new
-                {
-                    Code = 1000,
-                    Data = "",
-                    Msg = "更新失败"
-                };
+                return new DataStatus().DataError();
             }
 
-            var user = _usersRepository.GetId(id);
+            var users = _usersRepository.GetId(id);
 
-            if(user==null)
+            if(users==null)
             {
-                return new
-                {
-                    Code=1000,
-                    Data="",
-                    Msg="更新的内容不能为空"
-                };
+                return new DataStatus().DataError();
             }
 
-            user.UName=updateUser.UName;
-            user.Upassword=updateUser.Upassword;
-            user.UEmail=updateUser.UEmail;
-            user.MKey=updateUser.MKey;
+            users.UName=updateUser.UName;
+            users.Upassword=updateUser.Upassword;
+            users.UEmail=updateUser.UEmail;
+            users.MKey=updateUser.MKey;
 
-            _usersRepository.Update(user);
+            _usersRepository.Update(users);
 
-            return new
-            {
-                Code = 1000,
-                Data = user,
-                Msg = "更新成功"
-            };
+            return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
         }
 
         [HttpDelete("{id}")]
@@ -143,12 +117,7 @@ namespace Article.CMS.Api.Controllers
         {
             _usersRepository.Delete(id);
 
-            return new
-            {
-                Code = 1000,
-                Data = id,
-                Msg = "删除成功"
-            };
+            return JsonHelper.Serialize(new DataStatus().DataSuccess(id));
         }
     }
 }
