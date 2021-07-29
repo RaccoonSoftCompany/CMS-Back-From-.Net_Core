@@ -5,6 +5,7 @@ using Article.CMS.Api.Entity;
 using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -133,6 +134,11 @@ namespace Article.CMS.Api.Controllers
             return JsonHelper.Serialize(new DataStatus().DataSuccess(id));
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="loginData"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("login")]
         public dynamic Login(LoginParams loginData)
@@ -152,5 +158,6 @@ namespace Article.CMS.Api.Controllers
 
             return JsonHelper.Serialize(new DataStatus().DataError());   
         }
+
     }
 }
