@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
 using Article.CMS.Api.Repository;
 using Article.CMS.Api.Entity;
-// using Article.CMS.Api.Params;
 using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
@@ -32,12 +30,24 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
+            var pageIndex = Request.Query["pageIndex"];
+            var pageSize = Request.Query["pageSize"];
 
-            var users = _usersRepository.Table.ToList();
-            return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
+            var users = _usersRepository.Table;
+
+            var u = users.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return JsonHelper.Serialize(
+                new {
+                    Code = 1000,
+                    Data = new { Data = u, Pager = new { pageIndex, pageSize, rowsTotal = users.Count() } },
+                    Msg = "获取用户列表成功^_^"
+                }
+            );
         }
 
         [HttpPost]
+        [Route("register")]
         /// <summary>
         /// 注册
         /// </summary>
