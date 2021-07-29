@@ -1,6 +1,6 @@
 
 
-namespace Article.CMS.Api
+namespace Article.CMS.Api.Params
 {
     public class UsersParams
     {

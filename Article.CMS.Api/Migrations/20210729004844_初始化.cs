@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Article.CMS.Api.Migrations
 {
-    public partial class 测试 : Migration
+    public partial class 初始化 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -240,11 +240,11 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "MName", "Remarks", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6556), true, false, "你最喜欢的动物", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6581) },
-                    { 2, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6587), true, false, "你最喜欢的人", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6588) },
-                    { 3, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6590), true, false, "你的童年阴影", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6591) },
-                    { 4, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6593), true, false, "最想去的地方", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6594) },
-                    { 5, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6596), true, false, "最喜欢的东西", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(6597) }
+                    { 1, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3947), true, false, "你最喜欢的动物", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3954) },
+                    { 2, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3957), true, false, "你最喜欢的人", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3958) },
+                    { 3, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3960), true, false, "你的童年阴影", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3961) },
+                    { 4, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3962), true, false, "最想去的地方", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3963) },
+                    { 5, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3964), true, false, "最喜欢的东西", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(3965) }
                 });
 
             migrationBuilder.InsertData(
@@ -252,10 +252,9 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "PName", "Remarks", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7612), true, false, "修改", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7617) },
-                    { 2, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7620), true, false, "添加", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7621) },
-                    { 3, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7623), true, false, "删除", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7624) },
-                    { 4, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7626), true, false, "查询", null, new DateTime(2021, 7, 28, 15, 2, 23, 306, DateTimeKind.Local).AddTicks(7627) }
+                    { 1, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4691), true, false, "超级管理员", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4695) },
+                    { 2, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4698), true, false, "管理员", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4699) },
+                    { 3, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4701), true, false, "用户", null, new DateTime(2021, 7, 29, 8, 48, 43, 633, DateTimeKind.Local).AddTicks(4702) }
                 });
 
             migrationBuilder.InsertData(
@@ -263,11 +262,11 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "MKey", "MatterId", "PowerId", "Remarks", "UEmail", "UName", "Upassword", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 28, 15, 2, 23, 302, DateTimeKind.Local).AddTicks(9854), true, false, null, 1, 1, null, "112358@qq", "Admin", null, new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(8176) },
-                    { 2, new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9363), true, false, null, 1, 1, null, "112358@qq.com", "User", "113", new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9369) },
-                    { 3, new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9373), true, false, null, 1, 1, null, "112358@qq.com", "Active", "113", new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9374) },
-                    { 4, new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9450), true, false, null, 1, 1, null, "112358@qq.com", "God", "113", new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9451) },
-                    { 5, new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9453), true, false, null, 1, 1, null, "112358@qq.com", "Wooz", "113", new DateTime(2021, 7, 28, 15, 2, 23, 304, DateTimeKind.Local).AddTicks(9454) }
+                    { 1, new DateTime(2021, 7, 29, 8, 48, 43, 631, DateTimeKind.Local).AddTicks(5725), true, false, null, 1, 1, null, "112358@qq", "Admin", "113", new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(2814) },
+                    { 2, new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3462), true, false, null, 1, 1, null, "112358@qq.com", "User", "113", new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3467) },
+                    { 3, new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3469), true, false, null, 1, 1, null, "112358@qq.com", "Active", "113", new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3470) },
+                    { 4, new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3472), true, false, null, 1, 1, null, "112358@qq.com", "God", "113", new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3473) },
+                    { 5, new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3475), true, false, null, 1, 1, null, "112358@qq.com", "Wooz", "113", new DateTime(2021, 7, 29, 8, 48, 43, 632, DateTimeKind.Local).AddTicks(3476) }
                 });
 
             migrationBuilder.CreateIndex(

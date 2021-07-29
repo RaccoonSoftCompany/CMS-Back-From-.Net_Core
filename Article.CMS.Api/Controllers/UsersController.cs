@@ -6,6 +6,7 @@ using Article.CMS.Api.Entity;
 // using Article.CMS.Api.Params;
 using Article.CMS.Api.Utils;
 using System.Linq;
+using Article.CMS.Api.Params;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -37,9 +38,8 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
-        [Route("register")]
         /// <summary>
-        /// 添加数据
+        /// 注册
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Article.CMS.Api.Controllers
         /// <param name="updateUser"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public dynamic Put(int id, UsersParams updateUser)
+        public dynamic UpdatePower(int id, UsersParams updateUser)
         {
             var UName = updateUser.UName.Trim();
             var Upassword = updateUser.Upassword.Trim();
@@ -116,7 +116,7 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public dynamic Delete(int id)
+        public dynamic DeleteUser(int id)
         {
             _usersRepository.Delete(id);
 

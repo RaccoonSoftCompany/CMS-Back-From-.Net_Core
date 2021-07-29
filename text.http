@@ -3,10 +3,14 @@
 
 GET http://localhost:5000/UserInfos HTTP/1.1
 
-###查询
+
+
+### Users
+
+### 查询
 GET http://localhost:5000/users HTTP/1.1
 
-###
+### 登录
 
 POST  http://localhost:5000/users/login HTTP/1.1
 Content-Type: application/json
@@ -17,7 +21,7 @@ Content-Type: application/json
 }
 
 
-### 添加
+### 注册
 POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
@@ -46,3 +50,55 @@ DELETE http://localhost:5000/users/3 HTTP/1.1
 
 
 
+### Powers
+
+
+### 查询
+GET http://localhost:5000/powers HTTP/1.1
+
+### 添加权限
+POST http://localhost:5000/powers HTTP/1.1
+Content-Type: application/json
+
+{
+   "PName" : "用户"
+}
+
+### 修改权限
+PUT http://localhost:5000/powers/3 HTTP/1.1
+Content-Type: application/json
+
+{
+   "PName" : "超级用户"
+}
+
+### 删除权限
+DELETE  http://localhost:5000/powers/3 HTTP/1.1
+
+
+
+
+### Matters
+
+
+### 查询所有问题
+GET http://localhost:5000/matters HTTP/1.1
+
+### 添加问题
+POST http://localhost:5000/matters HTTP/1.1
+Content-Type: application/json
+
+{
+   "MName" : "你喜欢去游泳吗"
+}
+
+### 修改问题
+PUT http://localhost:5000/matters/3 HTTP/1.1
+Content-Type: application/json
+
+{
+   "MName" : "你喜欢吃饭吗"
+}
+
+### 删除问题
+DELETE  http://localhost:5000/matters/3 HTTP/1.1d
