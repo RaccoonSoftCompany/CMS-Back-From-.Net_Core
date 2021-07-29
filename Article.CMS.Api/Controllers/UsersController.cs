@@ -30,8 +30,8 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-            var pageIndex = Request.Query["pageIndex"];
-            var pageSize = Request.Query["pageSize"];
+            var pageIndex = int.Parse(Request.Query["pageIndex"][0]);
+            var pageSize = int.Parse(Request.Query["pageSize"][0]);
 
             var users = _usersRepository.Table;
 
