@@ -36,7 +36,7 @@ namespace Article.CMS.Api.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>  
-        Task InsertSync(T entity);
+        Task InsertAsync(T entity);
         
         /// <summary>
         /// 批量添加数据
@@ -49,7 +49,7 @@ namespace Article.CMS.Api.Repository
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        Task InsertBulkSync(IEnumerable<T> entities);
+        Task InsertBulkAsync(IEnumerable<T> entities);
 
         //删除数据
         void Delete(int id);

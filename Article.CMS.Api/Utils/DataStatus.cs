@@ -24,12 +24,13 @@ namespace Article.CMS.Api.Repository
         /// <returns></returns>
         public static dynamic DataSuccess(int code, dynamic data, string msg)
         {
-            return new
+            return JsonHelper.Serialize(new
             {
                 Code = code,
-                Data =  JsonHelper.Serialize(data),
+                Data = data,
                 Msg = msg
-            };
+            });
+
         }
     }
 }
