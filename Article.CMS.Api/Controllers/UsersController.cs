@@ -55,7 +55,7 @@ namespace Article.CMS.Api.Controllers
             var dbUname=users.Where(x=>x.UName.Equals(uName)).ToList();//获取用户名
             if (dbUname.Count!=0)
             {
-                return DataStatus.DataSuccess(1112, dbUname,"用户名已存在请更改！");
+                return DataStatus.DataError(1112,"用户名已存在请更改！");
             }
 
             if (uPassword != reUpassword)
