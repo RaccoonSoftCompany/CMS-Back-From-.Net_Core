@@ -50,12 +50,12 @@ namespace Article.CMS.Api.Controllers
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
-            
+
             var users = _usersRepository.Table.ToList();
-            var dbUname=users.Where(x=>x.UName.Equals(uName)).ToList();//获取用户名
-            if (dbUname.Count!=0)
+            var dbUname = users.Where(x => x.UName.Equals(uName)).ToList();//获取用户名
+            if (dbUname.Count != 0)
             {
-                return DataStatus.DataSuccess(1112, dbUname,"用户名已存在请更改！");
+                return DataStatus.DataError(1112, "用户名已存在请更改！");
             }
 
             if (uPassword != reUpassword)
@@ -84,8 +84,7 @@ namespace Article.CMS.Api.Controllers
         /// <param name="id">用户id</param>
         /// <param name="PasswordInfo">传入前端数据实体</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
-        [Route("changePwd")]
+        [Route("changePwd/{id}")]
         public dynamic ChangePassword(int id, UsersParams PasswordInfo)
         {
             var inPwd = PasswordInfo.inUpassword.Trim();
@@ -96,27 +95,30 @@ namespace Article.CMS.Api.Controllers
 
             if (user == null)
             {
-                return DataStatus.DataError(1113, "该用户不存在无法执行修改密码操作！");
+                return DataStatus.DataError(1114, "该用户不存在无法执行修改密码操作！");
             }
 
             if (string.IsNullOrEmpty(inPwd) || string.IsNullOrEmpty(NewPwd) || string.IsNullOrEmpty(reNewPwd))
             {
-                return DataStatus.DataError(1114, "请检查必填项目是否填写！");
+                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
 
-            if ()
+            var dbpwd = user.Upassword.ToString();
+
+            if (!dbpwd.Equals(inPwd))
             {
-
+                return DataStatus.DataError(1115, "原密码不正确！");
             }
-            user.Upassword = PasswordInfo.newPassword;
+
+            if (NewPwd != reNewPwd)
+            {
+                return DataStatus.DataError(1113, "两次密码不一致！");
+            }
+
+            user.Upassword = reNewPwd;
             _usersRepository.Update(user);
 
-            return new
-            {
-                Code = 1000,
-                Data = user,
-                Msg = "修改密码成功!"
-            };
+            return DataStatus.DataSuccess(1000, user, "密码修改成功！");
         }
 
         // [HttpDelete("{id}")]
