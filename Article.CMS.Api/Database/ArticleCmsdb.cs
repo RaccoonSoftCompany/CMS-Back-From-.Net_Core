@@ -6,6 +6,10 @@ namespace Article.CMS.Api.Database
 {
     public class ArticleCmsdb : DbContext   //这里要记得继承EF的接口
     {
+        public ArticleCmsdb()
+        {
+
+        }
         public ArticleCmsdb(DbContextOptions options) : base(options)
         {
 

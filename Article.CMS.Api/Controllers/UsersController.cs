@@ -41,7 +41,7 @@ namespace Article.CMS.Api.Controllers
         /// <summary>
         /// 注册
         /// </summary>
-        /// <param name="newUser"></param>
+        /// <param name="newUser">传入前端数据实体</param>
         /// <returns></returns>
         public dynamic Register(UsersParams newUser)
         {
@@ -49,10 +49,10 @@ namespace Article.CMS.Api.Controllers
             var uPassword = newUser.Upassword.Trim();
             var uEmail = newUser.UEmail.Trim();
             var mKey = newUser.MKey.Trim();
-            var powerId = newUser.PowerId;
+            var powerId = newUser.PowerId==0? 3 : newUser.PowerId;
             var matterId = newUser.MatterId;
 
-            if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(uPassword) || string.IsNullOrEmpty(uEmail) || string.IsNullOrEmpty(mKey))
+            if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(uPassword) || string.IsNullOrEmpty(mKey) || matterId==0)
             {
                 return new DataStatus().DataError();
             }
