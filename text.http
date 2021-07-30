@@ -15,3 +15,6 @@ Content-Type: application/json
    "MKey" : "测试"
 }
 
+### 测试审计日志
+GET http://localhost:5000/AutidInfo/2 HTTP/1.1
+
