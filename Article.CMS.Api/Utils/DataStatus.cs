@@ -1,20 +1,20 @@
-
+using Article.CMS.Api.Utils;
 
 namespace Article.CMS.Api.Repository
 {
-    public class DataStatus 
+    public class DataStatus
     {
         /// <summary>
         /// 接口操作提示返回值（操作异常）
         /// </summary>
         /// <returns></returns>
-        public dynamic DataError()
+        public static dynamic DataError(int code, string msg)
         {
             return new
             {
-                Code=200,
-                Data="",
-                Msg="该操作出错啦"
+                Code = code,
+                Data = "",
+                Msg = msg
             };
         }
 
@@ -22,13 +22,13 @@ namespace Article.CMS.Api.Repository
         /// 接口操作提示返回值（操作成功）
         /// </summary>
         /// <returns></returns>
-        public dynamic DataSuccess(dynamic data)
+        public static dynamic DataSuccess(int code, dynamic data, string msg)
         {
             return new
             {
-                Code=1000,
-                Data=data,
-                Msg="执行成功"
+                Code = code,
+                Data =  JsonHelper.Serialize(data),
+                Msg = msg
             };
         }
     }

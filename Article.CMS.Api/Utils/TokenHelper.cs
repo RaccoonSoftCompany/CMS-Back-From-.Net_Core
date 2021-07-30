@@ -6,7 +6,7 @@ using Article.CMS.Api.Entity;
 using Article.CMS.Api.Params;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Admin3000.Backend.Api.Utils
+namespace Article.CMS.Api.Utils
 {
     public class TokenHelper
     {
