@@ -78,46 +78,46 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "新用户注册成功！");
         }
 
-        // /// <summary>
-        // /// 修改密码
-        // /// </summary>
-        // /// <param name="id">用户id</param>
-        // /// <param name="PasswordInfo">传入前端数据实体</param>
-        // /// <returns></returns>
-        // [HttpPut("{id}")]
-        // [Route("changePwd")]
-        // public dynamic ChangePassword(int id, UsersParams PasswordInfo)
-        // {
-        //     var OldPwd = PasswordInfo.inUpassword.Trim();
-        //     var NewPwd = PasswordInfo.Upassword.Trim();
-        //     var reNewPwd = PasswordInfo.reUpassword.Trim();
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="id">用户id</param>
+        /// <param name="PasswordInfo">传入前端数据实体</param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        [Route("changePwd")]
+        public dynamic ChangePassword(int id, UsersParams PasswordInfo)
+        {
+            var inPwd = PasswordInfo.inUpassword.Trim();
+            var NewPwd = PasswordInfo.Upassword.Trim();
+            var reNewPwd = PasswordInfo.reUpassword.Trim();
 
-        //     var user = _usersRepository.GetId(id);
+            var user = _usersRepository.GetId(id);
 
-        //     if (user == null)
-        //     {
-        //         return DataStatus.DataError(1113, "该用户不存在无法执行修改密码操作！");
-        //     }
+            if (user == null)
+            {
+                return DataStatus.DataError(1113, "该用户不存在无法执行修改密码操作！");
+            }
 
-        //     if (string.IsNullOrEmpty(OldPwd) || string.IsNullOrEmpty(NewPwd) || string.IsNullOrEmpty(reNewPwd))
-        //     {
-        //         return DataStatus.DataError(1114, "请检查必填项目是否填写！");
-        //     }
+            if (string.IsNullOrEmpty(inPwd) || string.IsNullOrEmpty(NewPwd) || string.IsNullOrEmpty(reNewPwd))
+            {
+                return DataStatus.DataError(1114, "请检查必填项目是否填写！");
+            }
 
-        //     if ()
-        //     {
+            if ()
+            {
 
-        //     }
-        //     user.Upassword = PasswordInfo.newPassword;
-        //     _usersRepository.Update(user);
+            }
+            user.Upassword = PasswordInfo.newPassword;
+            _usersRepository.Update(user);
 
-        //     return new
-        //     {
-        //         Code = 1000,
-        //         Data = user,
-        //         Msg = "修改密码成功!"
-        //     };
-        // }
+            return new
+            {
+                Code = 1000,
+                Data = user,
+                Msg = "修改密码成功!"
+            };
+        }
 
         // [HttpDelete("{id}")]
         // /// <summary>
