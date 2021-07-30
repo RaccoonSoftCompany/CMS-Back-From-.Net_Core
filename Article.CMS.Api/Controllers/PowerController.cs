@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 
 using Article.CMS.Api.Repository;
 using Article.CMS.Api.Entity;
-// using Article.CMS.Api.Params;
 using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
@@ -15,9 +14,9 @@ namespace Article.CMS.Api.Controllers
     public class PowersController : ControllerBase
     {
         /// <summary>
-        /// 创建用户存储仓库
+        /// 创建权限存储仓库
         /// </summary>
-        /// <typeparam name="Users">用户实体</typeparam>
+        /// <typeparam name="Powers">权限实体</typeparam>
         /// <returns></returns>
         private IRepository<Powers> _powersRepository;
 

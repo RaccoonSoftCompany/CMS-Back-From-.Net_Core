@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
 using Article.CMS.Api.Repository;
 using Article.CMS.Api.Entity;
-// using Article.CMS.Api.Params;
 using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -32,12 +31,25 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
+            var pageIndex = int.Parse(Request.Query["pageIndex"][0]);
+            var pageSize = int.Parse(Request.Query["pageSize"][0]);
 
-            var users = _usersRepository.Table.ToList();
-            return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
+            var users = _usersRepository.Table;
+
+            var u = users.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return JsonHelper.Serialize(
+                new
+                {
+                    Code = 1000,
+                    Data = new { Data = u, Pager = new { pageIndex, pageSize, rowsTotal = users.Count() } },
+                    Msg = "获取用户列表成功^_^"
+                }
+            );
         }
 
         [HttpPost]
+        [Route("register")]
         /// <summary>
         /// 注册
         /// </summary>
@@ -63,8 +75,8 @@ namespace Article.CMS.Api.Controllers
                 Upassword = newUser.Upassword,
                 UEmail = newUser.UEmail,
                 MKey = newUser.MKey,
-                PowerId=powerId,
-                MatterId=matterId
+                PowerId = powerId,
+                MatterId = matterId
             };
 
             _usersRepository.Insert(users);
@@ -93,21 +105,59 @@ namespace Article.CMS.Api.Controllers
 
             var users = _usersRepository.GetId(id);
 
-            if(users==null)
+            if (users == null)
             {
                 return new DataStatus().DataError();
             }
 
-            users.UName=updateUser.UName;
-            users.Upassword=updateUser.Upassword;
-            users.UEmail=updateUser.UEmail;
-            users.MKey=updateUser.MKey;
-            users.PowerId=updateUser.PowerId;
-            users.MatterId=updateUser.MatterId;
+            users.UName = updateUser.UName;
+            users.Upassword = updateUser.Upassword;
+            users.UEmail = updateUser.UEmail;
+            users.MKey = updateUser.MKey;
+            users.PowerId = updateUser.PowerId;
+            users.MatterId = updateUser.MatterId;
 
             _usersRepository.Update(users);
 
             return JsonHelper.Serialize(new DataStatus().DataSuccess(users));
+        }
+
+        [HttpPut("{id}")]
+        [Route("changePwd")]
+        public dynamic ChangePassword(int id, PasswordInfo PasswordInfo)
+        {
+            var OldPwd = PasswordInfo.oldPassword.Trim();
+            var NewPwd = PasswordInfo.newPassword.Trim();
+            var user = _usersRepository.GetId(id);
+            if (string.IsNullOrEmpty(OldPwd) || string.IsNullOrEmpty(NewPwd))
+            {
+                return new
+                {
+                    Code = 200,
+                    Data = "",
+                    Msg = "原密码与新密码不能为空,请确认后重试！"
+                };
+            }
+            // else if (user.Upassword != OldPwd)
+            // {
+            //     return new
+            //     {
+            //         Code = 200,
+            //         Data = "",
+            //         Msg = "原密码错误,请确认后重试!"
+            //     };
+            // }
+            if (user != null)
+            {
+                user.Upassword = PasswordInfo.newPassword;
+                _usersRepository.Update(user);
+            }
+            return new
+            {
+                Code = 1000,
+                Data = user,
+                Msg = "修改密码成功!"
+            };
         }
 
         [HttpDelete("{id}")]
@@ -123,6 +173,11 @@ namespace Article.CMS.Api.Controllers
             return JsonHelper.Serialize(new DataStatus().DataSuccess(id));
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="loginData"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("login")]
         public dynamic Login(LoginParams loginData)
@@ -134,13 +189,14 @@ namespace Article.CMS.Api.Controllers
 
             foreach (var user in users)
             {
-                if(user.UName==username && user.Upassword==password)
+                if (user.UName == username && user.Upassword == password)
                 {
                     return JsonHelper.Serialize(new DataStatus().DataSuccess(user));
                 }
             }
 
-            return JsonHelper.Serialize(new DataStatus().DataError());   
+            return JsonHelper.Serialize(new DataStatus().DataError());
         }
+
     }
 }

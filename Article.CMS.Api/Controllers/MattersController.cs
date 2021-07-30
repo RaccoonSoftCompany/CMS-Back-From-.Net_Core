@@ -14,9 +14,9 @@ namespace Article.CMS.Api.Controllers
     public class MattersController : ControllerBase
     {
         /// <summary>
-        /// 创建用户存储仓库
+        /// 创建问题存储仓库
         /// </summary>
-        /// <typeparam name="Users">用户实体</typeparam>
+        /// <typeparam name="Matters">问题实体</typeparam>
         /// <returns></returns>
         private IRepository<Matters> _mattersRepository;
 
