@@ -12,7 +12,7 @@ namespace Article.CMS.Api.Repository
         {
             return new
             {
-                Code=200,
+                Code=1000,
                 Data="",
                 Msg="该操作出错啦"
             };
@@ -26,7 +26,7 @@ namespace Article.CMS.Api.Repository
         {
             return new
             {
-                Code=1000,
+                Code=200,
                 Data=data,
                 Msg="执行成功"
             };

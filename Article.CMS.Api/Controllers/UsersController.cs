@@ -124,7 +124,7 @@ namespace Article.CMS.Api.Controllers
 
         [HttpPut("{id}")]
         [Route("changePwd")]
-        public dynamic ChangePassword(int id, PasswordInfo PasswordInfo)
+        public dynamic ChangePassword(int id, PasswordInfoParams PasswordInfo)
         {
             var OldPwd = PasswordInfo.oldPassword.Trim();
             var NewPwd = PasswordInfo.newPassword.Trim();

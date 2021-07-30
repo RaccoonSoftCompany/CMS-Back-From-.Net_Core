@@ -108,3 +108,159 @@ DELETE  http://localhost:5000/matters/3 HTTP/1.1d
 
 ### 获取文章
 GET http://localhost:5000/articles HTTP/1.1
+
+
+
+
+### Articles数据表的操作测试
+
+
+### 查询所有文章内容
+GET http://localhost:5000/article HTTP/1.1
+
+### 添加文章内容
+POST http://localhost:5000/article HTTP/1.1
+Content-Type: application/json
+
+{
+   "ATitle" : "震惊！奥运会竟然发生这种事情",
+   "UserId" : "1"
+}
+
+### 修改文章内容
+PUT http://localhost:5000/article/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "ATitle" : "震惊！今天你吃饭了吗",
+   "UserId" : "2"
+}
+
+### 删除文章内容
+DELETE  http://localhost:5000/article/3 HTTP/1.1d
+
+
+
+
+
+
+### ArticleReads数据表的操作测试
+
+
+### 查询所有文章内容
+GET http://localhost:5000/articlereads HTTP/1.1
+
+### 添加文章内容
+POST http://localhost:5000/articlereads HTTP/1.1
+Content-Type: application/json
+
+{
+   "UserId" : "1",
+   "ArticleId" : "1",
+   "count" : "0"
+}
+
+### 修改文章内容
+PUT http://localhost:5000/articlereads/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "count" : "1"
+}
+
+### 删除文章内容
+DELETE  http://localhost:5000/articlereads/3 HTTP/1.1d
+
+
+
+
+
+### ArticleTexts数据表的操作测试
+
+
+### 查询所有文章内容
+GET http://localhost:5000/articletexts HTTP/1.1
+
+### 添加文章内容
+POST http://localhost:5000/articletexts HTTP/1.1
+Content-Type: application/json
+
+{
+   "ArticleId" : "1",
+   "AText" : "测试内容"
+}
+
+### 修改文章内容
+PUT http://localhost:5000/articletexts/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "AText" : "测试修改内容"
+}
+
+### 删除文章内容
+DELETE  http://localhost:5000/articletexts/3 HTTP/1.1d
+
+
+
+
+
+
+### ArticleTalks数据表的操作测试
+
+
+### 查询所有文章内容
+GET http://localhost:5000/articletalks HTTP/1.1
+
+### 添加文章内容
+POST http://localhost:5000/articletalks HTTP/1.1
+Content-Type: application/json
+
+{
+   "UserId" : "1",
+   "ArticleId" : "1",
+   "ATText" : "测试内容"
+}
+
+### 修改文章内容
+PUT http://localhost:5000/articletalks/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "ATText" : "测试修改内容"
+}
+
+### 删除文章内容
+DELETE  http://localhost:5000/articletalks/3 HTTP/1.1d
+
+
+
+
+
+
+### ArticleTextImages数据表的操作测试
+
+
+### 查询所有文章内容
+GET http://localhost:5000/articletextimages HTTP/1.1
+
+### 添加文章内容
+POST http://localhost:5000/articletextimages HTTP/1.1
+Content-Type: application/json
+
+{
+   "ArticleTextId" : "1",
+   "ATImage" : "测试内容",
+   "ATImageRank" : "1"
+}
+
+### 修改文章内容
+PUT http://localhost:5000/articletextimages/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "ATImage" : "测试修改内容"
+}
+
+### 删除文章内容
+DELETE  http://localhost:5000/articletextimages/3 HTTP/1.1d
