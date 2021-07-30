@@ -39,10 +39,10 @@ namespace Article.CMS.Api
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddControllers();
         
-            services.AddControllers(options=>
-            {
-                options.Filters.Add(typeof(AuditLogActionFilter));
-            });
+            // services.AddControllers(options=>
+            // {
+            //     options.Filters.Add(typeof(AuditLogActionFilter));
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
