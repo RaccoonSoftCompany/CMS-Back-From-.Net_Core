@@ -23,6 +23,7 @@ namespace Article.CMS.Api.Database
         public DbSet<ArticleTextImages> ArticleTextImages { get; set; } //要生成的文章内容图片数据表
         public DbSet<ArticleTalks> ArticleTalks { get; set; } //要生成的文章评论数据表
         public DbSet<ArticleReads> ArticleReads { get; set; } //要生成的文章访问数据表
+        public DbSet<AuditInfo> AuditInfo { get; set; } //要生成的审计日志数据表
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
         {
@@ -41,7 +42,7 @@ namespace Article.CMS.Api.Database
                     Id = 1,
                     UName = "Admin",
                     UEmail = "112358@qq",
-                    Upassword="113",
+                    Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
                     IsActived = true,
@@ -165,7 +166,7 @@ namespace Article.CMS.Api.Database
                 {
                     Id = 1,
 
-                    PName="超级管理员",                    
+                    PName = "超级管理员",
 
                     IsActived = true,
                     IsDeleted = false,
@@ -177,7 +178,7 @@ namespace Article.CMS.Api.Database
                 {
                     Id = 2,
 
-                    PName="管理员",                    
+                    PName = "管理员",
 
                     IsActived = true,
                     IsDeleted = false,
@@ -188,7 +189,7 @@ namespace Article.CMS.Api.Database
                 new Powers()
                 {
                     Id = 3,
-                    PName="用户",                    
+                    PName = "用户",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,

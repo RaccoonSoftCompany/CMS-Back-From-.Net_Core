@@ -40,7 +40,7 @@ namespace Article.CMS.Api.Controllers
             var uName = newUser.UName.Trim();
             var uPassword = newUser.Upassword.Trim();
             var reUpassword = newUser.reUpassword.Trim();
-            var uEmail = newUser.UEmail.Trim();
+            var uEmail = newUser.UEmail;
             var matterId = newUser.MatterId;
             var mKey = newUser.MKey.Trim();
             var powerId = 3;
@@ -52,10 +52,10 @@ namespace Article.CMS.Api.Controllers
             }
             
             var users = _usersRepository.Table.ToList();
-            var dbUname=users.Where(x=>x.UName.Equals(uName));//获取用户名
-            if (dbUname!=null)
+            var dbUname=users.Where(x=>x.UName.Equals(uName)).ToList();//获取用户名
+            if (dbUname.Count!=0)
             {
-                return DataStatus.DataError(1112, "用户名已存在请更改！");
+                return DataStatus.DataSuccess(1112, dbUname,"用户名已存在请更改！");
             }
 
             if (uPassword != reUpassword)

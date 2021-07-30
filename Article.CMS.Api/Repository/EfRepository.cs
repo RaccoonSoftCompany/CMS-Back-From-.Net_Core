@@ -96,7 +96,7 @@ namespace Article.CMS.Api.Repository
             _db.SaveChanges();
         }
 
-        public async Task InsertBulkSync(IEnumerable<T> entities)
+        public async Task InsertBulkAsync(IEnumerable<T> entities)
         {
             foreach (var entity in entities)
             {
@@ -109,7 +109,7 @@ namespace Article.CMS.Api.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task InsertSync(T entity)
+        public async Task InsertAsync(T entity)
         {
             if (entity == null)
             {
