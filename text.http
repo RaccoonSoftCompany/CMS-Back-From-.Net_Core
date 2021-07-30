@@ -14,6 +14,7 @@ Content-Type: application/json
    "MKey" : "测试"
 }
 
+<<<<<<< HEAD
 
 ### 修改密码
 put http://localhost:5000/users/changePwd/6 HTTP/1.1
@@ -24,4 +25,8 @@ Content-Type: application/json
    "Upassword" : "111",
    "reUpassword" : "111"
 }
+=======
+### 测试审计日志
+GET http://localhost:5000/AutidInfo/2 HTTP/1.1
+>>>>>>> 2c4348ac00350ed7e9b5ae5409d444abeb3a9a7f
 
