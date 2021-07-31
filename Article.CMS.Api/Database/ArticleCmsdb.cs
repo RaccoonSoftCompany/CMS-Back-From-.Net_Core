@@ -41,71 +41,71 @@ namespace Article.CMS.Api.Database
                 {
                     Id = 1,
                     UName = "Admin",
-                    UEmail = "112358@qq",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
+                    MKey = "没有答案",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Users()
                 {
                     Id = 2,
                     UName = "User",
-                    UEmail = "112358@qq.com",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
+                    MKey = "没有答案",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Users()
                 {
                     Id = 3,
                     UName = "Active",
-                    UEmail = "112358@qq.com",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
+                    MKey = "没有答案",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Users()
                 {
                     Id = 4,
                     UName = "God",
-                    UEmail = "112358@qq.com",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
+                    MKey = "没有答案",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Users()
                 {
                     Id = 5,
                     UName = "Wooz",
-                    UEmail = "112358@qq.com",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
+                    MKey = "没有答案",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 }
             );
 
@@ -118,7 +118,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Matters()
                 {
@@ -128,7 +128,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Matters()
                 {
@@ -148,7 +148,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Matters()
                 {
@@ -172,7 +172,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Powers()
                 {
@@ -184,7 +184,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Powers()
                 {
@@ -194,7 +194,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 }
             );
             base.OnModelCreating(modelBuilder);

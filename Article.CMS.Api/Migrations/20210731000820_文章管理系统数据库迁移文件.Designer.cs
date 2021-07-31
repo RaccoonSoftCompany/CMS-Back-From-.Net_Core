@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Article.CMS.Api.Migrations
 {
     [DbContext(typeof(ArticleCmsdb))]
-    [Migration("20210730142002_数据库初始化")]
-    partial class 数据库初始化
+    [Migration("20210731000820_文章管理系统数据库迁移文件")]
+    partial class 文章管理系统数据库迁移文件
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -307,47 +307,50 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4287),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2447),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你最喜欢的动物",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4294)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2466)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4298),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2471),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你最喜欢的人",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4299)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2472)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4301),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2474),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你的童年阴影",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4302)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2475)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4304),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2476),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "最想去的地方",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4305)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2478)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4306),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2480),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "最喜欢的东西",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(4307)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2481)
                         });
                 });
 
@@ -384,29 +387,32 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5407),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3512),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "超级管理员",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5415)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3518)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5420),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3522),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "管理员",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5421)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3523)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5423),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3525),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "用户",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 516, DateTimeKind.Local).AddTicks(5425)
+                            Remarks = "种子数据",
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3526)
                         });
                 });
 
@@ -503,67 +509,72 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 513, DateTimeKind.Local).AddTicks(6835),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 738, DateTimeKind.Local).AddTicks(8813),
                             IsActived = true,
                             IsDeleted = false,
+                            MKey = "没有答案",
                             MatterId = 1,
                             PowerId = 1,
-                            UEmail = "112358@qq",
+                            Remarks = "种子数据",
                             UName = "Admin",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(1609)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(4988)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2318),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5844),
                             IsActived = true,
                             IsDeleted = false,
+                            MKey = "没有答案",
                             MatterId = 1,
                             PowerId = 1,
-                            UEmail = "112358@qq.com",
+                            Remarks = "种子数据",
                             UName = "User",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2324)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5851)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2327),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5855),
                             IsActived = true,
                             IsDeleted = false,
+                            MKey = "没有答案",
                             MatterId = 1,
                             PowerId = 1,
-                            UEmail = "112358@qq.com",
+                            Remarks = "种子数据",
                             UName = "Active",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2328)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5856)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2331),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5858),
                             IsActived = true,
                             IsDeleted = false,
+                            MKey = "没有答案",
                             MatterId = 1,
                             PowerId = 1,
-                            UEmail = "112358@qq.com",
+                            Remarks = "种子数据",
                             UName = "God",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2332)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5859)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2333),
+                            CreatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5864),
                             IsActived = true,
                             IsDeleted = false,
+                            MKey = "没有答案",
                             MatterId = 1,
                             PowerId = 1,
-                            UEmail = "112358@qq.com",
+                            Remarks = "种子数据",
                             UName = "Wooz",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 7, 30, 22, 20, 2, 515, DateTimeKind.Local).AddTicks(2334)
+                            UpdatedTime = new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5865)
                         });
                 });
 
