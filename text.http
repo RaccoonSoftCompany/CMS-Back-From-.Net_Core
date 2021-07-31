@@ -53,32 +53,33 @@ Content-Type: application/json
 
 ### 获取密保问题
 GET http://localhost:5000/matters HTTP/1.1
-<<<<<<< HEAD
-=======
 
 ### 刷新重新获取token
 POST http://localhost:5000/users/refreshtoken HTTP/1.1
 Content-Type: application/json
 
+### 获取当前用户信息
+GET http://localhost:5000/UserInfos/6 HTTP/1.1
+
 ### 创建用户信息
-POST http://localhost:5000/UserInfos/newUserInfo/5 HTTP/1.1
+POST http://localhost:5000/UserInfos/newUserInfo/6 HTTP/1.1
 Content-Type: application/json
 
 {
-   "NickName":"小小",
-   "Sex":"男"
+   "NickName":null,
+   "Sex":null
 }
->>>>>>> e1057bd7709e49f14b6d914411fd874e3a3def9d
 
 ### 修改用户信息
-PUT http://localhost:5000/UserInfos/ChangeUserInfo/1 HTTP/1.1
+PUT http://localhost:5000/UserInfos/ChangeUserInfo/6 HTTP/1.1
 Content-Type: application/json
 
 {
-   "NickName":"小小",
+   "NickName":"666",
    "Sex":"男"
 }
 
+###
 {
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTA1NCwiaXNzIjoiV29vWiJ9.8UNhkugcqN1L0Lx-qrgvtvi3yrYmEef3OJiL6hDYtrs",
     "refreshtoken":"113"

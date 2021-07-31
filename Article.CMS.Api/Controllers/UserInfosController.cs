@@ -26,6 +26,18 @@ namespace Article.CMS.Api.Controllers
             _UserInfosRepository = UserInfosRepository;
         }
 
+        [HttpGet("{id}")]
+        public dynamic Get(int id)
+        {
+            var UserInfos = _UserInfosRepository.Table.ToList();
+            var userInfo=UserInfos.Where(x=>x.UserId==id).SingleOrDefault();
+            if(userInfo==null){
+                return DataStatus.DataError(1221, "该用户不存在！");
+            }
+            return DataStatus.DataSuccess(1000, userInfo, "获取当前用户信息成功！");
+        }
+
+
         /// <summary>
         /// 创建新的用户信息
         /// </summary>
@@ -40,14 +52,14 @@ namespace Article.CMS.Api.Controllers
             var userInfo = userInfos.Where(x => x.UserId == id).SingleOrDefault();
             if (userInfo != null)
             {
-                return DataStatus.DataError(1221, "该用户不是新用户！");
+                return DataStatus.DataError(1223, "该用户不是新用户！");
             }
 
             var newNickName = newUserInfos.NickName == null ? "newU-" + id : newUserInfos.NickName.Trim();
             var newSex = newUserInfos.Sex == null ? null : newUserInfos.Sex.Trim();
             if (newSex != null && !(newSex == "男" | newSex == "女"))
             {
-                    return DataStatus.DataError(1222, "用户性别不正确请检查！");
+                return DataStatus.DataError(1222, "用户性别不正确请检查！");
             }
 
             var newUserInfo = new UserInfos
@@ -77,18 +89,18 @@ namespace Article.CMS.Api.Controllers
             {
                 return DataStatus.DataError(1221, "该用户不存在！");
             }
-            var dbuserInfoNickName=userInfo.NickName;
-            var dbsex=userInfo.Sex;
+            var dbuserInfoNickName = userInfo.NickName;
+            var dbsex = userInfo.Sex;
 
             var UpNickName = UpUserInfo.NickName == null ? dbuserInfoNickName : UpUserInfo.NickName.Trim();
             var UpSex = UpUserInfo.Sex == null ? dbsex : UpUserInfo.Sex.Trim();
             if (UpSex != null && !(UpSex == "男" | UpSex == "女"))
             {
-                    return DataStatus.DataError(1222, "用户性别不正确请检查！");
+                return DataStatus.DataError(1222, "用户性别不正确请检查！");
             }
 
-            userInfo.NickName=UpNickName;
-            userInfo.Sex=UpSex;
+            userInfo.NickName = UpNickName;
+            userInfo.Sex = UpSex;
 
             _UserInfosRepository.Update(userInfo);
             return DataStatus.DataSuccess(1000, userInfo, "用户信息修改成功！");
