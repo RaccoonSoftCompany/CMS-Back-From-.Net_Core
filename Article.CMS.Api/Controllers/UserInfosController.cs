@@ -43,8 +43,8 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1221, "该用户不是新用户！");
             }
 
-            var newNickName = newUserInfos.NickName == "" ? "newU-" + id : newUserInfos.NickName.Trim();
-            var newSex = newUserInfos.Sex == "" ? null : newUserInfos.Sex.Trim();
+            var newNickName = newUserInfos.NickName == null ? "newU-" + id : newUserInfos.NickName.Trim();
+            var newSex = newUserInfos.Sex == null ? null : newUserInfos.Sex.Trim();
             if (newSex != null && !(newSex == "男" | newSex == "女"))
             {
                     return DataStatus.DataError(1222, "用户性别不正确请检查！");
