@@ -8,7 +8,7 @@
 * dotnet run
 # 接口测试
 * 可在text.http文件中进行测试
-# 错误状态码
-* 1000
-# 成功状态码
-* 200
+# token验证
+* 在需要验证的地方加上[Authorize]即可使用token
+
+

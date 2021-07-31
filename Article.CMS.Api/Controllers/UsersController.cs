@@ -13,6 +13,7 @@ namespace Article.CMS.Api.Controllers
     /// <summary>
     /// 用户控制器
     /// </summary>
+    
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
@@ -23,6 +24,8 @@ namespace Article.CMS.Api.Controllers
         /// <typeparam name="Users">用户实体</typeparam>
         /// <returns></returns>
         private IRepository<Users> _usersRepository;
+        private IConfiguration _configuration;
+        private TokenParameter _tokenParameter;
         /// <summary>
         /// 所有数据库
         /// </summary>
@@ -32,6 +35,11 @@ namespace Article.CMS.Api.Controllers
         public UsersController(IConfiguration configuration, IRepository<Users> usersRepository)
         {
             _usersRepository = usersRepository;
+            _configuration = configuration;
+            _tokenParameter =
+                _configuration
+                    .GetSection("TokenParameter")
+                    .Get<TokenParameter>();
         }
 
         /// <summary>
@@ -219,6 +227,74 @@ namespace Article.CMS.Api.Controllers
             _usersRepository.Update(user);
 
             return DataStatus.DataSuccess(1000, user, "密码修改成功！");
+        }
+
+        /// <summary>
+        /// 创建token验证
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpPost, Route("token")]
+        public dynamic GetToken(UsersParams newUser)
+        {
+            var username = newUser.UName.Trim();
+            var password = newUser.Upassword.Trim();
+
+            var user =
+                _usersRepository
+                    .Table
+                    .Where(x =>
+                        x.UName == username && x.Upassword == password)
+                    .FirstOrDefault();
+
+            if (user == null)
+            {
+                return new
+                {
+                    Code = 104,
+                    Data = "",
+                    Msg = "用户名或密码不正确，请确认后重试"
+                };
+            }
+
+            var token =
+                TokenHelper.GenerateToekn(_tokenParameter, user.UName);
+            var refreshToken = "112358";
+
+            return new
+            {
+                Code = 1000,
+                Data = new { Token = token, refreshToken = refreshToken },
+                Msg = "用户登录成功^_^"
+            };
+        }
+        
+        /// <summary>
+        /// 刷新token验证
+        /// </summary>
+        /// <param name="refresh"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpPost, Route("refreshtoken")]
+        public dynamic RefreshToken(RefreshTokenDTO refresh)
+        {
+            var username = TokenHelper.ValidateToken(_tokenParameter, refresh);
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return new { Code = 1002, Data = "", Msg = "token验证失败" };
+            }
+
+            var token = TokenHelper.GenerateToekn(_tokenParameter, username);
+            var refreshToken = "112358";
+
+            return new
+            {
+                Code = 1000,
+                Data = new { Token = token, refreshToken = refreshToken },
+                Msg = "刷新token成功^_^"
+            };
         }
 
     }
