@@ -57,9 +57,6 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "登录成功！");
         }
 
-
-
-
         /// <summary>
         /// 注册用户
         /// </summary>
