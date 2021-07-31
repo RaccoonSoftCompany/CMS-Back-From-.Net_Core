@@ -45,7 +45,8 @@ Content-Type: application/json
    "reUpassword" : "1877"
 }
 
-
+### 获取密保问题
+GET http://localhost:5000/matters HTTP/1.1
 
 
 ### 测试审计日志
