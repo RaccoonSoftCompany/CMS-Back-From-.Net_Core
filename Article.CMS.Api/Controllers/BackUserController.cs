@@ -113,6 +113,36 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "密码修改成功！");
         }
 
+        [HttpGet]
+        /// <summary>
+        /// 获取数据请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Get()
+        {
+            //获取用户表
+            var articles = _usersRepository.Table.ToList();
+            //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
+            var UserInfoViewParams=_Context.UserInfos.Join(_Context.Users,Pet=>Pet.UserId,per=>per.Id,(pet,per)=>new UserInfoViewParams{
+                UName=per.UName,
+                Upassword=per.Upassword,
+                PowerId=per.PowerId,
+                PName=_Context.Powers.Where(x=>x.Id==per.PowerId).SingleOrDefault().PName,
+                MatterId=per.MatterId,
+                MName=_Context.Matters.Where(x=>x.Id==per.MatterId).SingleOrDefault().MName,
+                MKey=per.MKey,
+                NickName=pet.NickName,
+                Sex=pet.Sex,
+                IsActived=per.IsActived,
+                IsDeleted=per.IsDeleted,
+                CreatedTime=per.CreatedTime,
+                UpdatedTime=per.UpdatedTime>pet.UpdatedTime?per.UpdatedTime:pet.UpdatedTime,
+                Remarks=pet.Remarks
+            });
+
+            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取文章模块成功");
+        }
+
 
         /// <summary>
         /// 创建token验证
