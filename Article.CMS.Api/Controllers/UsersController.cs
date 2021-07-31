@@ -39,7 +39,7 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="loginData"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
         public dynamic Login(UsersParams loginData)
         {
