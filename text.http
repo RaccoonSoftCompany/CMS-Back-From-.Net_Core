@@ -1,13 +1,8 @@
 ###
-GET http://localhost:5000/UserInfos HTTP/1.1
+GET http://localhost:5000/Articles HTTP/1.1
 
 ### 登录
-<<<<<<< HEAD
-GET http://localhost:5000/users/login HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTI1NywiaXNzIjoiV29vWiJ9.FiVGx8Ci3OZuIAYlaCuByjKgl3nwk3kv0Q4uhi7xGk4
-=======
 POST http://localhost:5000/users/login HTTP/1.1
->>>>>>> e1057bd7709e49f14b6d914411fd874e3a3def9d
 Content-Type: application/json
 
 {

@@ -27,6 +27,12 @@ namespace Article.CMS.Api.Params
         public DateTime CreatedTime { get; set; }
         //更新时间
         public DateTime UpdatedTime { get; set; }
+        //阅读量
+        public int AReadCount { get; set; }
+        //评论量
+        public int ATalkCount{get;set;}
+        //点赞量
+        public int APraiseCount { get; set; }
         //备注
         public string Remarks { get; set; }    }    
 }
