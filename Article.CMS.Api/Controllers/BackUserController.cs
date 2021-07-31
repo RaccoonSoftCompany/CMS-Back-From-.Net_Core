@@ -11,11 +11,11 @@ using Article.CMS.Api.Database;
 namespace Article.CMS.Api.Controllers
 {
     /// <summary>
-    /// 用户控制器
+    /// 管理员用户控制器
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class BackUserController : ControllerBase
     {
         /// <summary>
         /// 创建用户存储仓库
@@ -31,7 +31,7 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         ArticleCmsdb _Context = new ArticleCmsdb();
 
-        public UsersController(IConfiguration configuration, IRepository<Users> usersRepository)
+        public BackUserController(IConfiguration configuration, IRepository<Users> usersRepository)
         {
             _usersRepository = usersRepository;
             _configuration = configuration;
@@ -55,12 +55,18 @@ namespace Article.CMS.Api.Controllers
 
             var users = _usersRepository.Table.ToList();
 
-            var user=users.Where(x=>x.UName.Equals(username) && x.Upassword.Equals(password)).SingleOrDefault();
+            var user = users.Where(x => x.UName.Equals(username) && x.Upassword.Equals(password)).SingleOrDefault();
 
-            if(user==null){
+            if (user == null)
+            {
                 return DataStatus.DataError(1117, "账号或密码不正确！");
             }
-            
+            else if (!(user.PowerId == 1 || user.PowerId == 2))
+            {
+                return DataStatus.DataError(1118, "该用户权限不足！");
+            }
+
+
             return DataStatus.DataSuccess(1000, user, "登录成功！");
         }
 
@@ -263,7 +269,7 @@ namespace Article.CMS.Api.Controllers
                 Msg = "用户登录成功^_^"
             };
         }
-        
+
         /// <summary>
         /// 刷新token验证
         /// </summary>

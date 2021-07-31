@@ -37,7 +37,7 @@ namespace Article.CMS.Api.Controllers
 
             var articles = _ArticlesRepository.Table.ToList();//获取文章表            
 
-            var ss = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleParams
+            var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleParams
             {
                 Id = per.Id,
                 UserId = per.UserId,
@@ -50,7 +50,7 @@ namespace Article.CMS.Api.Controllers
                 ATalkCount=_Context.ArticleTalks.Where(x=>x.ArticleId==per.Id).Count()
             });
 
-            return DataStatus.DataSuccess(1000, ss, "获取文章模块成功");
+            return DataStatus.DataSuccess(1000, ArticleParams, "获取文章模块成功");
         }
     }
 }
