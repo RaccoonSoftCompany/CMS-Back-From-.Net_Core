@@ -10,13 +10,12 @@ Content-Type: application/json
    "Upassword" : "1134"
 }
 
-
 ### 注册
 POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-   "UName" : "1",
+   "UName" : "8",
    "Upassword" : "1",
    "reUpassword" : "1",
    "MatterId" : "1",
@@ -55,15 +54,6 @@ Content-Type: application/json
 
 ### 获取当前用户信息
 GET http://localhost:5000/UserInfos/6 HTTP/1.1
-
-### 创建用户信息
-POST http://localhost:5000/UserInfos/newUserInfo/6 HTTP/1.1
-Content-Type: application/json
-
-{
-   "NickName":null,
-   "Sex":null
-}
 
 ### 修改用户信息
 PUT http://localhost:5000/UserInfos/ChangeUserInfo/6 HTTP/1.1

@@ -7,7 +7,7 @@ using System.Linq;
 using Article.CMS.Api.Params;
 using Microsoft.AspNetCore.Authorization;
 using Article.CMS.Api.Database;
-
+using System;
 namespace Article.CMS.Api.Controllers
 {
     /// <summary>
@@ -111,6 +111,22 @@ namespace Article.CMS.Api.Controllers
             };
 
             _usersRepository.Insert(user);
+
+            var Isuser = _usersRepository.Table.Where(x => x.UName.Equals(uName)).SingleOrDefault();
+            var UserInfo=new UserInfos
+            {
+                UserId=Isuser.Id,
+                NickName="newU-" + Isuser.Id,
+                Sex=null,
+                IsActived=true,
+                IsDeleted=false,
+                CreatedTime=DateTime.Now,
+                UpdatedTime=DateTime.Now,
+                Remarks=null
+            };
+            _Context.UserInfos.Add(UserInfo);
+            _Context.SaveChanges();
+
             return DataStatus.DataSuccess(1000, user, "新用户注册成功！");
         }
 
