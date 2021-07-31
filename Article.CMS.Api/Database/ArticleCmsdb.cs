@@ -277,6 +277,61 @@ namespace Article.CMS.Api.Database
                     Remarks = "种子数据"
                 }
             );
+
+            modelBuilder.Entity<ArticleTexts>().HasData(
+                new ArticleTexts(){
+                    Id = 1,
+                    ArticleId = 1,
+                    AText = "测试数据",
+                    isATimage=false,
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTexts(){
+                    Id = 2,
+                    ArticleId = 2,
+                    AText = "测试数据",
+                    isATimage=false,
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new ArticleTexts(){
+                    Id = 3,
+                    ArticleId = 3,
+                    AText = "测试数据",
+                    isATimage=false,
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new ArticleTexts(){
+                    Id = 4,
+                    ArticleId = 4,
+                    AText = "测试数据",
+                    isATimage=false,
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new ArticleTexts(){
+                    Id = 5,
+                    ArticleId = 5,
+                    AText = "测试数据",
+                    isATimage=false,
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                }
+            );
             base.OnModelCreating(modelBuilder);
         }
     }
