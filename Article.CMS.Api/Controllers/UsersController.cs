@@ -61,7 +61,9 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1117, "账号或密码不正确！");
             }
             
-            return DataStatus.DataSuccess(1000, user, "登录成功！");
+            var userInfos=_Context.UserInfos.Where(x=>x.UserId==user.Id).SingleOrDefault();
+            var nickName=userInfos==null?user.UName:userInfos.NickName;
+            return DataStatus.DataSuccess(1000, new {ID=user.Id,UName=user.UName,NickName=nickName}, "登录成功！");
         }
 
         /// <summary>
