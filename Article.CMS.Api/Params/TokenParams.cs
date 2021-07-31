@@ -1,5 +1,8 @@
 namespace Article.CMS.Api.Params
 {
+    /// <summary>
+    /// token获取实体
+    /// </summary>
     public class TokenParameter
     {
         //生成token的所需要的密钥，一定不能泄漏
