@@ -36,6 +36,12 @@ namespace Article.CMS.Api.Database
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /// <summary>
+            /// 用户表的种子数据
+            /// </summary>
+            /// <param name="Users("></param>
+            /// <typeparam name="Users"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Users>().HasData(
                 new Users()
                 {
@@ -109,6 +115,12 @@ namespace Article.CMS.Api.Database
                 }
             );
 
+            /// <summary>
+            /// 问题表的种子数据
+            /// </summary>
+            /// <param name="Matters("></param>
+            /// <typeparam name="Matters"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Matters>().HasData(
                 new Matters()
                 {
@@ -161,6 +173,13 @@ namespace Article.CMS.Api.Database
                     Remarks = "种子数据"
                 }
             );
+
+            /// <summary>
+            /// 权限表的种子数据
+            /// </summary>
+            /// <param name="Powers("></param>
+            /// <typeparam name="Powers"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Powers>().HasData(
                 new Powers()
                 {
@@ -190,6 +209,67 @@ namespace Article.CMS.Api.Database
                 {
                     Id = 3,
                     PName = "用户",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                }
+            );
+
+            /// <summary>
+            /// 文章表的种子数据
+            /// </summary>
+            /// <param name="Articles("></param>
+            /// <typeparam name="Articles"></typeparam>
+            /// <returns></returns>
+            modelBuilder.Entity<Articles>().HasData(
+                new Articles()
+                {
+                    Id = 1,
+                    UserId = 1,
+                    ATitle = "震惊！一男子从天桥上面路过",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new Articles()
+                {
+                    Id = 2,
+                    UserId = 1,
+                    ATitle = "震惊！东京奥运会竟然出现这种裁判",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new Articles()
+                {
+                    Id = 3,
+                    UserId = 1,
+                    ATitle = "震惊！日本选手竟然是这样的人",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new Articles()
+                {
+                    Id = 4,
+                    UserId = 1,
+                    ATitle = "震惊！台风进入真的靠近福建了",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },new Articles()
+                {
+                    Id = 5,
+                    UserId = 1,
+                    ATitle = "歌单",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
