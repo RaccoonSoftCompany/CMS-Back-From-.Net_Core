@@ -66,58 +66,7 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1118, "该用户权限不足！");
             }
 
-
             return DataStatus.DataSuccess(1000, user, "登录成功！");
-        }
-
-        /// <summary>
-        /// 注册用户
-        /// </summary>
-        /// <param name="newUser">传入前端数据实体</param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("register")]
-        public dynamic Register(UsersParams newUser)
-        {
-            var uName = newUser.UName.Trim();
-            var uPassword = newUser.Upassword.Trim();
-            var reUpassword = newUser.reUpassword.Trim();
-            var uEmail = newUser.UEmail;
-            var matterId = newUser.MatterId;
-            var mKey = newUser.MKey.Trim();
-            var powerId = 3;
-            var remarks = "普通注册";
-
-            if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(uPassword) || string.IsNullOrEmpty(reUpassword) || matterId == 0 || string.IsNullOrEmpty(mKey))
-            {
-                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
-            }
-
-            var users = _usersRepository.Table.ToList();
-            var dbUname = users.Where(x => x.UName.Equals(uName)).ToList();//获取用户名
-            if (dbUname.Count != 0)
-            {
-                return DataStatus.DataError(1112, "用户名已存在请更改！");
-            }
-
-            if (uPassword != reUpassword)
-            {
-                return DataStatus.DataError(1113, "两次密码不一致！");
-            }
-
-            var user = new Users
-            {
-                UName = uName,
-                Upassword = uPassword,
-                UEmail = newUser.UEmail,
-                MatterId = matterId,
-                MKey = mKey,
-                PowerId = powerId,
-                Remarks = remarks
-            };
-
-            _usersRepository.Insert(user);
-            return DataStatus.DataSuccess(1000, user, "新用户注册成功！");
         }
 
         /// <summary>
@@ -164,75 +113,6 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "密码修改成功！");
         }
 
-        /// <summary>
-        /// 忘记密码/获取问题
-        /// </summary>
-        /// <param name="uName">用户名</param>
-        /// <returns>对应问题</returns>
-        [HttpGet]
-        [Route("ForgetPwdMatters/{uname}")]
-        public dynamic ForgetPasswordMatters(string uName)
-        {
-            //获取用户表
-            var users = _usersRepository.Table.ToList();
-            //查找用户是否存在
-            var dbUser = users.Where(x => x.UName.Equals(uName)).SingleOrDefault();//获取用户名
-            if (dbUser == null)
-            {
-                return DataStatus.DataError(1114, "该用户不存在无法执行忘记密码操作！");
-            }
-
-            var matterId = dbUser.MatterId;
-            var matter = _Context.Matters.Where(x => x.Id == matterId).SingleOrDefault();//获取问题
-            var matterName = matter.MName.ToString();
-            var uId = dbUser.Id;
-
-            return DataStatus.DataSuccess(1000, new { UId = uId, MName = matterName }, "该用户的问题获取成功！");
-        }
-
-        /// <summary>
-        /// 忘记密码/答案判断
-        /// </summary>
-        /// <param name="id">用户id</param>
-        /// <param name="PasswordInfo">传入前端数据实体</param>
-        /// <returns>是否成功</returns>
-        [HttpPut]
-        [Route("ForgetPwd/{id}")]
-        public dynamic ForgetPwd(int id, UsersParams PasswordInfo)
-        {
-            var mKey = PasswordInfo.MKey.Trim();
-            var NewPwd = PasswordInfo.Upassword.Trim();
-            var reNewPwd = PasswordInfo.reUpassword.Trim();
-
-            var user = _usersRepository.GetId(id);
-
-            if (user == null)
-            {
-                return DataStatus.DataError(1114, "该用户不存在无法执行忘记密码操作！");
-            }
-
-            if (string.IsNullOrEmpty(mKey) || string.IsNullOrEmpty(NewPwd) || string.IsNullOrEmpty(reNewPwd))
-            {
-                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
-            }
-
-            var dbMKey = user.MKey.ToString();
-
-            if (!dbMKey.Equals(mKey))
-            {
-                return DataStatus.DataError(1116, "密保答案不正确！");
-            }
-
-            if (NewPwd != reNewPwd)
-            {
-                return DataStatus.DataError(1113, "两次密码不一致！");
-            }
-
-            user.Upassword = reNewPwd;
-            _usersRepository.Update(user);
-
-            return DataStatus.DataSuccess(1000, user, "密码修改成功！");
-        }
 
         /// <summary>
         /// 创建token验证
@@ -262,12 +142,7 @@ namespace Article.CMS.Api.Controllers
                 TokenHelper.GenerateToekn(_tokenParameter, user.UName);
             var refreshToken = "112358";
 
-            return new
-            {
-                Code = 1000,
-                Data = new { Token = token, refreshToken = refreshToken },
-                Msg = "用户登录成功^_^"
-            };
+            return DataStatus.DataSuccess(1000, new { Token = token, refreshToken = refreshToken }, "登录成功！");
         }
 
         /// <summary>
@@ -289,12 +164,7 @@ namespace Article.CMS.Api.Controllers
             var token = TokenHelper.GenerateToekn(_tokenParameter, username);
             var refreshToken = "112358";
 
-            return new
-            {
-                Code = 1000,
-                Data = new { Token = token, refreshToken = refreshToken },
-                Msg = "刷新token成功^_^"
-            };
+            return DataStatus.DataSuccess(1000, new { Token = token, refreshToken = refreshToken }, "刷新token成功");
         }
 
     }
