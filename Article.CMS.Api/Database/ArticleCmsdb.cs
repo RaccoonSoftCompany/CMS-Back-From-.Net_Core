@@ -138,7 +138,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 },
                 new Matters()
                 {
@@ -158,7 +158,7 @@ namespace Article.CMS.Api.Database
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
-                    Remarks = null
+                    Remarks = "种子数据"
                 }
             );
             modelBuilder.Entity<Powers>().HasData(

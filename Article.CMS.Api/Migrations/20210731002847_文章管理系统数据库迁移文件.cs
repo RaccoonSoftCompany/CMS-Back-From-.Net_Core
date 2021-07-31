@@ -269,11 +269,11 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "MName", "Remarks", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2447), true, false, "你最喜欢的动物", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2466) },
-                    { 2, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2471), true, false, "你最喜欢的人", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2472) },
-                    { 3, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2474), true, false, "你的童年阴影", null, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2475) },
-                    { 4, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2476), true, false, "最想去的地方", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2478) },
-                    { 5, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2480), true, false, "最喜欢的东西", null, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(2481) }
+                    { 1, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5762), true, false, "你最喜欢的动物", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5797) },
+                    { 2, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5802), true, false, "你最喜欢的人", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5803) },
+                    { 3, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5805), true, false, "你的童年阴影", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5806) },
+                    { 4, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5807), true, false, "最想去的地方", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5809) },
+                    { 5, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5810), true, false, "最喜欢的东西", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(5811) }
                 });
 
             migrationBuilder.InsertData(
@@ -281,9 +281,9 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "PName", "Remarks", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3512), true, false, "超级管理员", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3518) },
-                    { 2, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3522), true, false, "管理员", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3523) },
-                    { 3, new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3525), true, false, "用户", "种子数据", new DateTime(2021, 7, 31, 8, 8, 19, 742, DateTimeKind.Local).AddTicks(3526) }
+                    { 1, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6785), true, false, "超级管理员", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6791) },
+                    { 2, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6795), true, false, "管理员", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6796) },
+                    { 3, new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6798), true, false, "用户", "种子数据", new DateTime(2021, 7, 31, 8, 28, 47, 291, DateTimeKind.Local).AddTicks(6799) }
                 });
 
             migrationBuilder.InsertData(
@@ -291,11 +291,11 @@ namespace Article.CMS.Api.Migrations
                 columns: new[] { "Id", "CreatedTime", "IsActived", "IsDeleted", "MKey", "MatterId", "PowerId", "Remarks", "UEmail", "UName", "Upassword", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 7, 31, 8, 8, 19, 738, DateTimeKind.Local).AddTicks(8813), true, false, "没有答案", 1, 1, "种子数据", null, "Admin", "113", new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(4988) },
-                    { 2, new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5844), true, false, "没有答案", 1, 1, "种子数据", null, "User", "113", new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5851) },
-                    { 3, new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5855), true, false, "没有答案", 1, 1, "种子数据", null, "Active", "113", new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5856) },
-                    { 4, new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5858), true, false, "没有答案", 1, 1, "种子数据", null, "God", "113", new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5859) },
-                    { 5, new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5864), true, false, "没有答案", 1, 1, "种子数据", null, "Wooz", "113", new DateTime(2021, 7, 31, 8, 8, 19, 740, DateTimeKind.Local).AddTicks(5865) }
+                    { 1, new DateTime(2021, 7, 31, 8, 28, 47, 284, DateTimeKind.Local).AddTicks(3605), true, false, "没有答案", 1, 1, "种子数据", null, "Admin", "113", new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(88) },
+                    { 2, new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(905), true, false, "没有答案", 1, 1, "种子数据", null, "User", "113", new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(913) },
+                    { 3, new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(916), true, false, "没有答案", 1, 1, "种子数据", null, "Active", "113", new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(917) },
+                    { 4, new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(919), true, false, "没有答案", 1, 1, "种子数据", null, "God", "113", new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(920) },
+                    { 5, new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(922), true, false, "没有答案", 1, 1, "种子数据", null, "Wooz", "113", new DateTime(2021, 7, 31, 8, 28, 47, 290, DateTimeKind.Local).AddTicks(923) }
                 });
 
             migrationBuilder.CreateIndex(
