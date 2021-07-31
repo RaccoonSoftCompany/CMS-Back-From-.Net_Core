@@ -250,12 +250,7 @@ namespace Article.CMS.Api.Controllers
 
             if (user == null)
             {
-                return new
-                {
-                    Code = 104,
-                    Data = "",
-                    Msg = "用户名或密码不正确，请确认后重试"
-                };
+                return DataStatus.DataError(1117, "账号或密码不正确！");
             }
 
             var token =

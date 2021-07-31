@@ -36,6 +36,12 @@ namespace Article.CMS.Api.Database
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /// <summary>
+            /// 用户表的种子数据
+            /// </summary>
+            /// <param name="Users("></param>
+            /// <typeparam name="Users"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Users>().HasData(
                 new Users()
                 {
@@ -109,6 +115,12 @@ namespace Article.CMS.Api.Database
                 }
             );
 
+            /// <summary>
+            /// 问题表的种子数据
+            /// </summary>
+            /// <param name="Matters("></param>
+            /// <typeparam name="Matters"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Matters>().HasData(
                 new Matters()
                 {
@@ -161,6 +173,13 @@ namespace Article.CMS.Api.Database
                     Remarks = "种子数据"
                 }
             );
+
+            /// <summary>
+            /// 权限表的种子数据
+            /// </summary>
+            /// <param name="Powers("></param>
+            /// <typeparam name="Powers"></typeparam>
+            /// <returns></returns>
             modelBuilder.Entity<Powers>().HasData(
                 new Powers()
                 {
@@ -196,6 +215,10 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 }
+            );
+
+            modelBuilder.Entity<Matters>().HasData(
+
             );
             base.OnModelCreating(modelBuilder);
         }

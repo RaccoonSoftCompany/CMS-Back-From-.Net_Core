@@ -2,12 +2,8 @@
 GET http://localhost:5000/UserInfos HTTP/1.1
 
 ### 登录
-<<<<<<< HEAD
 GET http://localhost:5000/users/login HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTI1NywiaXNzIjoiV29vWiJ9.FiVGx8Ci3OZuIAYlaCuByjKgl3nwk3kv0Q4uhi7xGk4
-=======
-POST http://localhost:5000/users/login HTTP/1.1
->>>>>>> 4b0a5d2fa636bf358b69537075d792392195b7d9
 Content-Type: application/json
 
 {
@@ -51,20 +47,8 @@ Content-Type: application/json
    "reUpassword" : "1877"
 }
 
-<<<<<<< HEAD
-
-### 登录获取token
-POST http://localhost:5000/users/token HTTP/1.1
-Content-Type: application/json
-
-{
-    "UName":"Admin",
-    "Upassword":"113"
-}
-=======
 ### 获取密保问题
 GET http://localhost:5000/matters HTTP/1.1
->>>>>>> 4b0a5d2fa636bf358b69537075d792392195b7d9
 
 ### 刷新重新获取token
 POST http://localhost:5000/users/refreshtoken HTTP/1.1
