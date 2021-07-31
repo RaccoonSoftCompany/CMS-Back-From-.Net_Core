@@ -2,8 +2,12 @@
 GET http://localhost:5000/UserInfos HTTP/1.1
 
 ### 登录
+<<<<<<< HEAD
 GET http://localhost:5000/users/login HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTI1NywiaXNzIjoiV29vWiJ9.FiVGx8Ci3OZuIAYlaCuByjKgl3nwk3kv0Q4uhi7xGk4
+=======
+POST http://localhost:5000/users/login HTTP/1.1
+>>>>>>> e1057bd7709e49f14b6d914411fd874e3a3def9d
 Content-Type: application/json
 
 {
@@ -49,10 +53,31 @@ Content-Type: application/json
 
 ### 获取密保问题
 GET http://localhost:5000/matters HTTP/1.1
+<<<<<<< HEAD
+=======
 
 ### 刷新重新获取token
 POST http://localhost:5000/users/refreshtoken HTTP/1.1
 Content-Type: application/json
+
+### 创建用户信息
+POST http://localhost:5000/UserInfos/newUserInfo/5 HTTP/1.1
+Content-Type: application/json
+
+{
+   "NickName":"小小",
+   "Sex":"男"
+}
+>>>>>>> e1057bd7709e49f14b6d914411fd874e3a3def9d
+
+### 修改用户信息
+PUT http://localhost:5000/UserInfos/ChangeUserInfo/1 HTTP/1.1
+Content-Type: application/json
+
+{
+   "NickName":"小小",
+   "Sex":"男"
+}
 
 {
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTA1NCwiaXNzIjoiV29vWiJ9.8UNhkugcqN1L0Lx-qrgvtvi3yrYmEef3OJiL6hDYtrs",

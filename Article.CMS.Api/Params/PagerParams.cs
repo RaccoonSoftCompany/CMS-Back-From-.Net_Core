@@ -2,6 +2,9 @@
 
 namespace Article.CMS.Api.Params
 {
+    /// <summary>
+    /// 数据分页
+    /// </summary>
     public class PagerParams
     {  
         // 页码（当前第几页）

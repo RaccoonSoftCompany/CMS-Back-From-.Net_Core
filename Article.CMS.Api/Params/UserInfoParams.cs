@@ -1,7 +1,7 @@
 namespace Article.CMS.Api.Params
 {
     /// <summary>
-    /// 用户信息操作
+    /// 前端用户信息实体
     /// </summary>
     public class UserInfoParams
     {
