@@ -47,7 +47,7 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="loginData"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
         public dynamic Login(UsersParams loginData)
         {
@@ -64,9 +64,6 @@ namespace Article.CMS.Api.Controllers
             
             return DataStatus.DataSuccess(1000, user, "登录成功！");
         }
-
-
-
 
         /// <summary>
         /// 注册用户
