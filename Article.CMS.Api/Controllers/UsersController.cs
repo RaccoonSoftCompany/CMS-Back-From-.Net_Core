@@ -232,6 +232,11 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "密码修改成功！");
         }
 
+        /// <summary>
+        /// 创建token验证
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost, Route("token")]
         public dynamic GetToken(UsersParams newUser)
@@ -267,7 +272,12 @@ namespace Article.CMS.Api.Controllers
                 Msg = "用户登录成功^_^"
             };
         }
-
+        
+        /// <summary>
+        /// 刷新token验证
+        /// </summary>
+        /// <param name="refresh"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost, Route("refreshtoken")]
         public dynamic RefreshToken(RefreshTokenDTO refresh)
