@@ -5,7 +5,7 @@ namespace Article.CMS.Api.Params
     /// <summary>
     /// 前端文章信息
     /// </summary>
-    public class ArticleParams
+    public class ArticleViewParams
     {
         //主键
         public int Id { get; set; }
