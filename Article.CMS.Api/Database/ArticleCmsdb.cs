@@ -116,6 +116,75 @@ namespace Article.CMS.Api.Database
             );
 
             /// <summary>
+            /// 用户信息种子数据
+            /// </summary>
+            /// <param name="UserInfos("></param>
+            /// <typeparam name="UserInfos"></typeparam>
+            /// <returns></returns>
+            modelBuilder.Entity<UserInfos>().HasData(
+                new UserInfos()
+                {
+                    Id = 1,
+                    UserId = 1,
+                    NickName = "超管测试",
+                    Sex = "男",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new UserInfos()
+                {
+                    Id = 2,
+                    UserId = 2,
+                    NickName = "管理员测试",
+                    Sex = "女",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new UserInfos()
+                {
+                    Id = 3,
+                    UserId = 3,
+                    NickName = "用户测试",
+                    Sex = "男",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new UserInfos()
+                {
+                    Id = 4,
+                    UserId = 4,
+                    NickName = "用户测试",
+                    Sex = "女",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new UserInfos()
+                {
+                    Id = 5,
+                    UserId = 5,
+                    NickName = "用户测试",
+                    Sex = "男",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                }
+            );
+
+            /// <summary>
             /// 问题表的种子数据
             /// </summary>
             /// <param name="Matters("></param>
@@ -245,7 +314,7 @@ namespace Article.CMS.Api.Database
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new Articles()
+                }, new Articles()
                 {
                     Id = 3,
                     UserId = 1,
@@ -255,7 +324,7 @@ namespace Article.CMS.Api.Database
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new Articles()
+                }, new Articles()
                 {
                     Id = 4,
                     UserId = 1,
@@ -265,7 +334,7 @@ namespace Article.CMS.Api.Database
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new Articles()
+                }, new Articles()
                 {
                     Id = 5,
                     UserId = 1,
@@ -279,52 +348,57 @@ namespace Article.CMS.Api.Database
             );
 
             modelBuilder.Entity<ArticleTexts>().HasData(
-                new ArticleTexts(){
+                new ArticleTexts()
+                {
                     Id = 1,
                     ArticleId = 1,
                     AText = "测试数据",
-                    isATimage=false,
+                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTexts(){
+                new ArticleTexts()
+                {
                     Id = 2,
                     ArticleId = 2,
                     AText = "测试数据",
-                    isATimage=false,
+                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new ArticleTexts(){
+                }, new ArticleTexts()
+                {
                     Id = 3,
                     ArticleId = 3,
                     AText = "测试数据",
-                    isATimage=false,
+                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new ArticleTexts(){
+                }, new ArticleTexts()
+                {
                     Id = 4,
                     ArticleId = 4,
                     AText = "测试数据",
-                    isATimage=false,
+                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                },new ArticleTexts(){
+                }, new ArticleTexts()
+                {
                     Id = 5,
                     ArticleId = 5,
                     AText = "测试数据",
-                    isATimage=false,
+                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
