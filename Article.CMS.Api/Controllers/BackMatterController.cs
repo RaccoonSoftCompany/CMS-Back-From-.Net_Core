@@ -40,7 +40,7 @@ namespace Article.CMS.Api.Controllers
         public dynamic AddMatter(MatterParams newMatter)
         {
             var mName = newMatter.MName.Trim();
-            var remarks = newMatter.Remarks == null ? "" : newMatter.Remarks.Trim();
+            var remarks = newMatter.Remarks == null ? null : newMatter.Remarks.Trim();
             if (string.IsNullOrEmpty(mName))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");

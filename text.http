@@ -84,7 +84,7 @@ POST http://localhost:5000/BackMatter/AddMatter HTTP/1.1
 Content-Type: application/json
 
 {
-   "MName" : "我的喜欢？"
+   "MName" : "我的喜欢11012？"
 }
 
 ### 后台修改问题
@@ -93,6 +93,7 @@ Content-Type: application/json
 
 {
    "MName" : "666"
+   
 }
 
 ### 删除问题
