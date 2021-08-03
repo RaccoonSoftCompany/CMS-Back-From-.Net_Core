@@ -142,18 +142,18 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
         }
 
-        // /// <summary>
-        // /// 模糊查询问题
-        // /// </summary>
-        // /// <param name="mName"></param>
-        // /// <returns></returns>
-        // [HttpGet]
-        // [Route("likeMname/{mName}")]
-        // public dynamic likeMname(string mName)
-        // {
-        //     var dbLikeMName = _mattersRepository.Table.Where(x => x.MName.Contains(mName)).ToList();
-        //     return DataStatus.DataSuccess(1000, dbLikeMName, "查询成功！");
+        /// <summary>
+        /// 模糊查询权限
+        /// </summary>
+        /// <param name="mName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("likePower/{pName}")]
+        public dynamic likePower(string pName)
+        {
+            var dbLikepName = _PowersRepository.Table.Where(x => x.PName.Contains(pName)).ToList();
+            return DataStatus.DataSuccess(1000, dbLikepName, "查询成功！");
 
-        // }
+        }
     }
 }
