@@ -114,6 +114,7 @@ namespace Article.CMS.Api.Controllers
 
             _usersRepository.Insert(user);
 
+            //注册用户成功后，直接创建该用户信息
             var Isuser = _usersRepository.Table.Where(x => x.UName.Equals(uName)).SingleOrDefault();
             var UserInfo=new UserInfos
             {
