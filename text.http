@@ -87,7 +87,13 @@ Content-Type: application/json
    "MName" : "你的生日？"
 }
 
+### 后台修改问题
+PUT http://localhost:5000/BackMatter/Changematter/6 HTTP/1.1
+Content-Type: application/json
 
+{
+   "MName" : "666"
+}
 
 
 
