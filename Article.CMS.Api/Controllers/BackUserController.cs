@@ -7,6 +7,7 @@ using System.Linq;
 using Article.CMS.Api.Params;
 using Microsoft.AspNetCore.Authorization;
 using Article.CMS.Api.Database;
+using System;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -79,25 +80,109 @@ namespace Article.CMS.Api.Controllers
             //获取用户表
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
-            var UserInfoViewParams=_Context.UserInfos.Join(_Context.Users,Pet=>Pet.UserId,per=>per.Id,(pet,per)=>new UserInfoViewParams{
-                Id=per.Id,
-                UName=per.UName,
-                Upassword=per.Upassword,
-                PowerId=per.PowerId,
-                PName=_Context.Powers.Where(x=>x.Id==per.PowerId).SingleOrDefault().PName,
-                MatterId=per.MatterId,
-                MName=_Context.Matters.Where(x=>x.Id==per.MatterId).SingleOrDefault().MName,
-                MKey=per.MKey,
-                NickName=pet.NickName,
-                Sex=pet.Sex,
-                IsActived=per.IsActived,
-                IsDeleted=per.IsDeleted,
-                CreatedTime=per.CreatedTime,
-                UpdatedTime=per.UpdatedTime>pet.UpdatedTime?per.UpdatedTime:pet.UpdatedTime,
-                Remarks=pet.Remarks
+            var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
+            {
+                Id = per.Id,
+                UName = per.UName,
+                Upassword = per.Upassword,
+                PowerId = per.PowerId,
+                PName = _Context.Powers.Where(x => x.Id == per.PowerId).SingleOrDefault().PName,
+                MatterId = per.MatterId,
+                MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
+                MKey = per.MKey,
+                NickName = pet.NickName,
+                Sex = pet.Sex,
+                IsActived = per.IsActived,
+                IsDeleted = per.IsDeleted,
+                CreatedTime = per.CreatedTime,
+                UpdatedTime = per.UpdatedTime > pet.UpdatedTime ? per.UpdatedTime : pet.UpdatedTime,
+                Remarks = pet.Remarks
             });
 
-            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取文章模块成功");
+            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取用户模块成功");
+        }
+
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="spUserAndInfo"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("ChangeuserInfo/{id}")]
+        public dynamic ChangeuserInfo(int id, UserInfoViewParams upUserAndInfo)
+        {
+            var upUName = upUserAndInfo.UName.Trim();
+            var upUPassword = upUserAndInfo.Upassword.Trim();
+            var upPowerId = upUserAndInfo.PowerId;
+            var upMatterId = upUserAndInfo.MatterId;
+            var upMKey = upUserAndInfo.MKey.Trim();
+            var upRemarks = upUserAndInfo.Remarks == null ? null : upUserAndInfo.Remarks.Trim();
+
+            var dbuserInfo = _Context.UserInfos.Where(x => x.UserId == id).SingleOrDefault();
+            var dbnickName = dbuserInfo.NickName;
+            var dbsex = dbuserInfo.Sex;
+
+            var upNickName = upUserAndInfo.NickName == null ? dbnickName : upUserAndInfo.NickName.Trim();
+            var upSex = upUserAndInfo.Sex == null ? dbsex : upUserAndInfo.Sex.Trim();
+
+            if (string.IsNullOrEmpty(upUName) || string.IsNullOrEmpty(upUPassword) || upPowerId == 0 || upMatterId == 0 || string.IsNullOrEmpty(upMKey))
+            {
+                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
+            }
+
+            if (upSex != null && !(upSex == "男" | upSex == "女"))
+            {
+                return DataStatus.DataError(1222, "用户性别不正确请检查！");
+            }
+
+            //先对用户进行查找确定是否存在
+            var user = _usersRepository.GetId(id);
+            if (user == null)
+            {
+                return DataStatus.DataError(1114, "该用户不存在！");
+            }
+            //用户存在判断修改的用户名是否重复不重复直接执行修改操作
+            var users = _usersRepository.Table.ToList();
+            var dbUname = users.Where(x => x.UName.Equals(upUName) && x.Id != id).ToList();//获取用户名
+            if (dbUname.Count != 0)
+            {
+                return DataStatus.DataError(1112, "用户名已存在请更改！");
+            }
+            user.UName = upUName;
+            user.Upassword = upUPassword;
+            user.PowerId = upPowerId;
+            user.MatterId = upMatterId;
+            user.MKey = upMKey;
+            user.Remarks =upRemarks;
+            _usersRepository.Update(user);
+
+            //利用用户id查找用户信息表对应的用户信息
+            dbuserInfo.NickName = upNickName;
+            dbuserInfo.Sex = upNickName;
+            dbuserInfo.UpdatedTime = DateTime.Now;
+            _Context.SaveChanges();
+            //对用户信息修改
+            var UserInfoViewParams = new UserInfoViewParams
+            {
+                Id = id,
+                UName = upUName,
+                Upassword = upUPassword,
+                PowerId = upPowerId,
+                PName = _Context.Powers.Where(x => x.Id == upPowerId).SingleOrDefault().PName,
+                MatterId = upMatterId,
+                MName = _Context.Matters.Where(x => x.Id == upMatterId).SingleOrDefault().MName,
+                MKey = upMKey,
+                NickName = upNickName,
+                Sex = upSex,
+                IsActived = user.IsActived,
+                IsDeleted = user.IsDeleted,
+                CreatedTime = user.CreatedTime,
+                UpdatedTime = user.UpdatedTime > dbuserInfo.UpdatedTime ? user.UpdatedTime : dbuserInfo.UpdatedTime,
+                Remarks = user.Remarks
+            };
+
+            return DataStatus.DataSuccess(1000, UserInfoViewParams, "修改用户信息成功");
         }
 
 

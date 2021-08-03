@@ -76,9 +76,6 @@ Content-Type: application/json
    "Upassword" : "113"
 }
 
-### 后台获取用户数据
-GET  http://localhost:5000/BackUser HTTP/1.1
-
 ### 后台添加问题
 POST http://localhost:5000/BackMatter/AddMatter HTTP/1.1
 Content-Type: application/json
@@ -128,11 +125,56 @@ DELETE http://localhost:5000/BackPowers/deletePower/4 HTTP/1.1
 ### 权限模糊查询
 GET http://localhost:5000/BackPowers/likePower/用 HTTP/1.1
 
+
+### 后台获取用户数据
+GET  http://localhost:5000/BackUser HTTP/1.1
+
+### 后台修改用户数据
+PUT http://localhost:5000/BackUser/ChangeuserInfo/4 HTTP/1.1
+Content-Type: application/json
+
+{
+   "UName":"ssffyy",
+   "Upassword":"110",
+   "PowerId":"1",
+   "MatterId":"3",
+   "MKey":"我不想报错",
+   "NickName":"无敌啊",
+   "Sex":"女",
+   "Remarks":"见证奇迹"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ###
 {
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTA1NCwiaXNzIjoiV29vWiJ9.8UNhkugcqN1L0Lx-qrgvtvi3yrYmEef3OJiL6hDYtrs",
     "refreshtoken":"113"
 }
+
+
 
 ### 测试审计日志
 GET http://localhost:5000/AutidInfo/2 HTTP/1.1
