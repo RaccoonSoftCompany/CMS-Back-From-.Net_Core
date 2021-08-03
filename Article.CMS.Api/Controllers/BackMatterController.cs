@@ -90,7 +90,7 @@ namespace Article.CMS.Api.Controllers
             }
 
             var matters = _mattersRepository.Table.ToList();
-            var dbmattet = matters.Where(x => x.MName.Equals(mName)).SingleOrDefault();
+            var dbmattet = matters.Where(x => x.MName.Equals(mName) && x.Id!=id).SingleOrDefault();
             if (dbmattet != null)
             {
                 return DataStatus.DataError(1331, "请勿使用相同问题！");
