@@ -85,7 +85,8 @@ namespace Article.CMS.Api.Controllers
         [Route("ChangePowers/{id}")]
         public dynamic ChangePowers(int id, PowerParams upPower)
         {
-            if(id==1 ||id==2 || id==3 ){
+            if (id == 1 || id == 2 || id == 3)
+            {
                 return DataStatus.DataError(1224, "初始化权限无法修改！");
             }
             var Power = _PowersRepository.GetId(id);
@@ -104,37 +105,42 @@ namespace Article.CMS.Api.Controllers
             }
 
             var Powers = _PowersRepository.Table.ToList();
-            var dbPower = Powers.Where(x => x.PName.Equals(pName) && x.Id!=id).SingleOrDefault();
+            var dbPower = Powers.Where(x => x.PName.Equals(pName) && x.Id != id).SingleOrDefault();
             if (dbPower != null)
             {
                 return DataStatus.DataError(1331, "请勿使用相同问题！");
             }
 
             Power.PName = pName;
-            Power.Remarks=remarks;
+            Power.Remarks = remarks;
             _PowersRepository.Update(Power);
 
             return DataStatus.DataSuccess(1000, Power, "修改成功");
         }
 
-        // /// <summary>
-        // /// 删除问题
-        // /// </summary>
-        // /// <param name="id"></param>
-        // /// <returns></returns>
-        // [HttpDelete]
-        // [Route("deleteMatter/{id}")]
-        // public dynamic deleteMatter(int id)
-        // {
-        //     var dbusersmatter = _Context.Users.Where(x => x.MatterId == id).Count();
-        //     if (dbusersmatter != 0)
-        //     {
-        //         return DataStatus.DataError(1332, "删除失败，问题使用中！");
-        //     }
+        /// <summary>
+        /// 删除权限
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deletePower/{id}")]
+        public dynamic deletePower(int id)
+        {
+            if (id == 1 || id == 2 || id == 3)
+            {
+                return DataStatus.DataError(1224, "初始化权限无法删除！");
+            }
 
-        //     _mattersRepository.Delete(id);
-        //     return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
-        // }
+            var dbusersPower = _Context.Users.Where(x => x.PowerId == id).Count();
+            if (dbusersPower != 0)
+            {
+                return DataStatus.DataError(1332, "删除失败，权限使用中！");
+            }
+
+            _PowersRepository.Delete(id);
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
 
         // /// <summary>
         // /// 模糊查询问题
