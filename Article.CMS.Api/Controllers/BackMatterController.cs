@@ -40,6 +40,7 @@ namespace Article.CMS.Api.Controllers
         public dynamic AddMatter(MatterParams newMatter)
         {
             var mName = newMatter.MName.Trim();
+            var remarks = newMatter.Remarks == null ? "" : newMatter.Remarks.Trim();
             if (string.IsNullOrEmpty(mName))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
@@ -54,7 +55,9 @@ namespace Article.CMS.Api.Controllers
 
             var matter = new Matters
             {
-                MName = mName
+                MName = mName,
+                Remarks = remarks
+
             };
 
             _mattersRepository.Insert(matter);
@@ -62,23 +65,25 @@ namespace Article.CMS.Api.Controllers
         }
 
         /// <summary>
-        /// 修改密码
+        /// 修改问题
         /// </summary>
         /// <param name="id">用户id</param>
-        /// <param name="PasswordInfo">传入前端数据实体</param>
+        /// <param name="upMatter">传入前端数据实体</param>
         /// <returns>是否成功</returns>
         [HttpPut]
         [Route("Changematter/{id}")]
-        public dynamic Changematter(int id, MatterParams newMatter)
+        public dynamic Changematter(int id, MatterParams upMatter)
         {
             var matter = _mattersRepository.GetId(id);
+            var remarks = upMatter.Remarks == null ? "" : upMatter.Remarks.Trim();
+
 
             if (matter == null)
             {
                 return DataStatus.DataError(1114, "数据不存在，无法执行修改操作！");
             }
 
-            var mName = newMatter.MName.Trim();
+            var mName = upMatter.MName.Trim();
             if (string.IsNullOrEmpty(mName))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
@@ -92,11 +97,17 @@ namespace Article.CMS.Api.Controllers
             }
 
             matter.MName = mName;
+            matter.Remarks=remarks;
             _mattersRepository.Update(matter);
 
             return DataStatus.DataSuccess(1000, matter, "修改成功");
         }
 
+        /// <summary>
+        /// 删除问题
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("deleteMatter/{id}")]
         public dynamic deleteMatter(int id)
@@ -111,6 +122,11 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
         }
 
+        /// <summary>
+        /// 模糊查询问题
+        /// </summary>
+        /// <param name="mName"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("likeMname/{mName}")]
         public dynamic likeMname(string mName)
