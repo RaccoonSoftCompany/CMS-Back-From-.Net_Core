@@ -102,14 +102,22 @@ namespace Article.CMS.Api.Controllers
         public dynamic deleteMatter(int id)
         {
             var dbusersmatter = _Context.Users.Where(x => x.MatterId == id).Count();
-            if (dbusersmatter!=0)
+            if (dbusersmatter != 0)
             {
-                return DataStatus.DataError(1332,"删除失败，问题使用中！");
+                return DataStatus.DataError(1332, "删除失败，问题使用中！");
             }
 
             _mattersRepository.Delete(id);
-            return DataStatus.DataSuccess(1000, new {id=id}, "删除成功");
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
         }
 
+        [HttpGet]
+        [Route("likeMname/{mName}")]
+        public dynamic likeMname(string mName)
+        {
+            var dbLikeMName = _mattersRepository.Table.Where(x => x.MName.Contains(mName)).ToList();
+            return DataStatus.DataSuccess(1000, dbLikeMName, "查询成功！");
+
+        }
     }
 }

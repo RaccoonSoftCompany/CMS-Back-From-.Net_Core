@@ -84,7 +84,7 @@ POST http://localhost:5000/BackMatter/AddMatter HTTP/1.1
 Content-Type: application/json
 
 {
-   "MName" : "你的生日？"
+   "MName" : "我的喜欢？"
 }
 
 ### 后台修改问题
@@ -96,8 +96,10 @@ Content-Type: application/json
 }
 
 ### 删除问题
-### 后台修改问题
 DELETE http://localhost:5000/BackMatter/deleteMatter/4 HTTP/1.1
+
+### 模糊查询
+GET http://localhost:5000/BackMatter/likeMname/？ HTTP/1.1
 
 
 
