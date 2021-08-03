@@ -76,19 +76,16 @@ Content-Type: application/json
    "Upassword" : "113"
 }
 
-### 后台修改密码
-put http://localhost:5000/BackUser/changePwd/1 HTTP/1.1
-Content-Type: application/json
-
-{
-   "inUpassword":"113",
-   "Upassword" : "111",
-   "reUpassword" : "111"
-}
-
 ### 后台获取用户数据
 GET  http://localhost:5000/BackUser HTTP/1.1
 
+### 后台添加问题
+POST http://localhost:5000/BackMatter/AddMatter HTTP/1.1
+Content-Type: application/json
+
+{
+   "MName" : "你的生日？"
+}
 
 
 

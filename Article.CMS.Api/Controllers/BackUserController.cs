@@ -69,50 +69,6 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, user, "登录成功！");
         }
 
-        /// <summary>
-        /// 修改密码
-        /// </summary>
-        /// <param name="id">用户id</param>
-        /// <param name="PasswordInfo">传入前端数据实体</param>
-        /// <returns>是否成功</returns>
-        [HttpPut]
-        [Route("changePwd/{id}")]
-        public dynamic ChangePassword(int id, UsersParams PasswordInfo)
-        {
-            var inPwd = PasswordInfo.inUpassword.Trim();
-            var NewPwd = PasswordInfo.Upassword.Trim();
-            var reNewPwd = PasswordInfo.reUpassword.Trim();
-
-            var user = _usersRepository.GetId(id);
-
-            if (user == null)
-            {
-                return DataStatus.DataError(1114, "该用户不存在无法执行修改密码操作！");
-            }
-
-            if (string.IsNullOrEmpty(inPwd) || string.IsNullOrEmpty(NewPwd) || string.IsNullOrEmpty(reNewPwd))
-            {
-                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
-            }
-
-            var dbpwd = user.Upassword.ToString();
-
-            if (!dbpwd.Equals(inPwd))
-            {
-                return DataStatus.DataError(1115, "原密码不正确！");
-            }
-
-            if (NewPwd != reNewPwd)
-            {
-                return DataStatus.DataError(1113, "两次密码不一致！");
-            }
-
-            user.Upassword = reNewPwd;
-            _usersRepository.Update(user);
-
-            return DataStatus.DataSuccess(1000, user, "密码修改成功！");
-        }
-
         [HttpGet]
         /// <summary>
         /// 获取数据请求
@@ -124,6 +80,7 @@ namespace Article.CMS.Api.Controllers
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams=_Context.UserInfos.Join(_Context.Users,Pet=>Pet.UserId,per=>per.Id,(pet,per)=>new UserInfoViewParams{
+                Id=per.Id,
                 UName=per.UName,
                 Upassword=per.Upassword,
                 PowerId=per.PowerId,

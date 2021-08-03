@@ -26,7 +26,7 @@ namespace Article.CMS.Api.Controllers
         }
         [HttpGet]
         /// <summary>
-        /// 获取数据请求
+        /// 获取所有问题请求
         /// </summary>
         /// <returns></returns>
         public dynamic Get()
