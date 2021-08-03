@@ -15,7 +15,7 @@ POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-   "UName" : "8",
+   "UName" : "11111",
    "Upassword" : "1",
    "reUpassword" : "1",
    "MatterId" : "1",
@@ -111,6 +111,15 @@ Content-Type: application/json
 
 {
    "PName" : "超级用户"
+}
+
+### 后台修改权限
+PUT http://localhost:5000/BackPowers/ChangePowers/1 HTTP/1.1
+Content-Type: application/json
+
+{
+   "PName" : "超级"
+   
 }
 
 

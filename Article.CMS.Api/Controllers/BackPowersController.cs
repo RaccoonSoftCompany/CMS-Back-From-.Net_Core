@@ -75,44 +75,47 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, Power, "权限添加成功！");
         }
 
-        // /// <summary>
-        // /// 修改问题
-        // /// </summary>
-        // /// <param name="id">用户id</param>
-        // /// <param name="upMatter">传入前端数据实体</param>
-        // /// <returns>是否成功</returns>
-        // [HttpPut]
-        // [Route("Changematter/{id}")]
-        // public dynamic Changematter(int id, MatterParams upMatter)
-        // {
-        //     var matter = _mattersRepository.GetId(id);
-        //     var remarks = upMatter.Remarks == null ? "" : upMatter.Remarks.Trim();
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="id">用户id</param>
+        /// <param name="upMatter">传入前端数据实体</param>
+        /// <returns>是否成功</returns>
+        [HttpPut]
+        [Route("ChangePowers/{id}")]
+        public dynamic ChangePowers(int id, PowerParams upPower)
+        {
+            if(id==1 ||id==2 || id==3 ){
+                return DataStatus.DataError(1224, "初始化权限无法修改！");
+            }
+            var Power = _PowersRepository.GetId(id);
+            var remarks = upPower.Remarks == null ? "" : upPower.Remarks.Trim();
 
 
-        //     if (matter == null)
-        //     {
-        //         return DataStatus.DataError(1114, "数据不存在，无法执行修改操作！");
-        //     }
+            if (Power == null)
+            {
+                return DataStatus.DataError(1224, "数据不存在，无法执行修改操作！");
+            }
 
-        //     var mName = upMatter.MName.Trim();
-        //     if (string.IsNullOrEmpty(mName))
-        //     {
-        //         return DataStatus.DataError(1111, "请检查必填项目是否填写！");
-        //     }
+            var pName = upPower.PName.Trim();
+            if (string.IsNullOrEmpty(pName))
+            {
+                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
+            }
 
-        //     var matters = _mattersRepository.Table.ToList();
-        //     var dbmattet = matters.Where(x => x.MName.Equals(mName) && x.Id!=id).SingleOrDefault();
-        //     if (dbmattet != null)
-        //     {
-        //         return DataStatus.DataError(1331, "请勿使用相同问题！");
-        //     }
+            var Powers = _PowersRepository.Table.ToList();
+            var dbPower = Powers.Where(x => x.PName.Equals(pName) && x.Id!=id).SingleOrDefault();
+            if (dbPower != null)
+            {
+                return DataStatus.DataError(1331, "请勿使用相同问题！");
+            }
 
-        //     matter.MName = mName;
-        //     matter.Remarks=remarks;
-        //     _mattersRepository.Update(matter);
+            Power.PName = pName;
+            Power.Remarks=remarks;
+            _PowersRepository.Update(Power);
 
-        //     return DataStatus.DataSuccess(1000, matter, "修改成功");
-        // }
+            return DataStatus.DataSuccess(1000, Power, "修改成功");
+        }
 
         // /// <summary>
         // /// 删除问题

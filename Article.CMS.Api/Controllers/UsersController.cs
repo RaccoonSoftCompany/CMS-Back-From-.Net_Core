@@ -75,7 +75,7 @@ namespace Article.CMS.Api.Controllers
         [Route("register")]
         public dynamic Register(UsersParams newUser)
         {
-            var uName = newUser.UName.Trim();
+            var uName = newUser.UName.Trim().ToLower();
             var uPassword = newUser.Upassword.Trim();
             var reUpassword = newUser.reUpassword.Trim();
             var uEmail = newUser.UEmail;
