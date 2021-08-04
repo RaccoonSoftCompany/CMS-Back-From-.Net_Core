@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### 删除评论
-
+DELETE http://localhost:5000/ArticleTalks/deleteTalk/11 HTTP/1.1
 
 ### 登录
 POST http://localhost:5000/users/login HTTP/1.1

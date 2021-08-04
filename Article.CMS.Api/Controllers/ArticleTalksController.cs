@@ -82,17 +82,19 @@ namespace Article.CMS.Api.Controllers
 
 
 
-        // [HttpDelete("{id}")]
-        // /// <summary>
-        // /// 删除文章标题
-        // /// </summary>
-        // /// <param name="id"></param>
-        // /// <returns></returns>
-        // public dynamic DeleteUser(int id)
-        // {
-        //     _articleTalkRepository.Delete(id);
+        [HttpDelete]
+        [Route("deleteTalk/{id}")]
+        /// <summary>
+        /// 删除文章评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public dynamic deleteTalk(int id)
+        {
 
-        //     return JsonHelper.Serialize(new DataStatus().DataSuccess(id));
-        // }
+            _articleTalkRepository.Delete(id);
+
+            return DataStatus.DataSuccess(1000, new{id=id}, "评论删除成功！");
+        }
     }
 }
