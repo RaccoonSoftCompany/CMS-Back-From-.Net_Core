@@ -285,6 +285,19 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
         }
 
+        /// <summary>
+        /// 模糊查询用户
+        /// </summary>
+        /// <param name="NickName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("likeNickName/{NickName}")]
+        public dynamic likeNickName(string nickName)
+        {
+            var dbLikeNickName = _Context.UserInfos.Where(x => x.NickName.Contains(nickName)).ToList();
+            return DataStatus.DataSuccess(1000, dbLikeNickName, "查询成功！");
+
+        }
 
         /// <summary>
         /// 创建token验证
