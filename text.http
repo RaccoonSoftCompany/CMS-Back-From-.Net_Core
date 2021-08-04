@@ -144,6 +144,20 @@ Content-Type: application/json
    "Remarks":"见证奇迹"
 }
 
+### 后台添加用户数据
+POST http://localhost:5000/BackUser/adduserInfo HTTP/1.1
+Content-Type: application/json
+
+{
+   "UName":"ssffyys",
+   "Upassword":"110",
+   "PowerId":"1",
+   "MatterId":"3",
+   "MKey":"我不想报错",
+   "NickName":"无敌啊",
+   "Sex":"女",
+   "Remarks":"见证奇迹"
+}
 
 
 
