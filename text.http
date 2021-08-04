@@ -159,7 +159,8 @@ Content-Type: application/json
    "Remarks":"见证奇迹"
 }
 
-
+### 删除用户信息
+DELETE http://localhost:5000/BackUser/deleteuserInfo/7 HTTP/1.1
 
 
 

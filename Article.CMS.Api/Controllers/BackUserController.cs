@@ -225,8 +225,6 @@ namespace Article.CMS.Api.Controllers
 
             _usersRepository.Insert(user);
 
-            // var Isuser = _usersRepository.Table.Where(x => x.UName.Equals(newUName)).SingleOrDefault();
-
             var newNickName = newUserAndInfo.NickName == null ? "newU-" + user.Id : newUserAndInfo.NickName.Trim();
             var newSex = newUserAndInfo.Sex == null ? "男" : newUserAndInfo.Sex.Trim();
 
@@ -235,16 +233,16 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1222, "用户性别不正确请检查！");
             }
 
-            var UserInfo=new UserInfos
+            var UserInfo = new UserInfos
             {
-                UserId=user.Id,
-                NickName="newU-" + user.Id,
-                Sex=newSex,
-                IsActived=true,
-                IsDeleted=false,
-                CreatedTime=DateTime.Now,
-                UpdatedTime=DateTime.Now,
-                Remarks=user.Remarks
+                UserId = user.Id,
+                NickName = "newU-" + user.Id,
+                Sex = newSex,
+                IsActived = true,
+                IsDeleted = false,
+                CreatedTime = DateTime.Now,
+                UpdatedTime = DateTime.Now,
+                Remarks = user.Remarks
             };
             _Context.UserInfos.Add(UserInfo);
             _Context.SaveChanges();
@@ -269,6 +267,22 @@ namespace Article.CMS.Api.Controllers
             };
 
             return DataStatus.DataSuccess(1000, UserInfoViewParams, "添加用户信息成功");
+        }
+
+        /// <summary>
+        /// 删除用户以及用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteuserInfo/{id}")]
+        public dynamic deleteuserInfo(int id)
+        {
+            var UserInfo = _Context.UserInfos.Where(x => x.UserId == id).SingleOrDefault();
+            _Context.Remove(UserInfo);
+            _Context.SaveChanges();
+            _usersRepository.Delete(id);
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
         }
 
 
