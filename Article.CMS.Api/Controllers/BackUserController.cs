@@ -159,7 +159,7 @@ namespace Article.CMS.Api.Controllers
 
             //利用用户id查找用户信息表对应的用户信息
             dbuserInfo.NickName = upNickName;
-            dbuserInfo.Sex = upNickName;
+            dbuserInfo.Sex = upSex;
             dbuserInfo.UpdatedTime = DateTime.Now;
             _Context.SaveChanges();
             //对用户信息修改
