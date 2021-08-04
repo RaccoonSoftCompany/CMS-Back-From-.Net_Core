@@ -2,7 +2,18 @@
 GET http://localhost:5000/Articles HTTP/1.1
 
 ### 前端获取文章评论
-GET http://localhost:5000/ArticleTalks/2 HTTP/1.1
+GET http://localhost:5000/ArticleTalks/5 HTTP/1.1
+
+### 添加评论
+POST http://localhost:5000/ArticleTalks/addTalk HTTP/1.1
+Content-Type: application/json
+
+{
+   "UserId" : "5",
+   "ArticleId" : "5",
+   "ATtext":"这是你大爷"
+}
+
 
 ### 登录
 POST http://localhost:5000/users/login HTTP/1.1
@@ -179,8 +190,6 @@ GET http://localhost:5000/BackUser/likeNickName/管 HTTP/1.1
 
 
 
-<<<<<<< HEAD
-=======
 
 
 ###
@@ -189,9 +198,6 @@ GET http://localhost:5000/BackUser/likeNickName/管 HTTP/1.1
     "refreshtoken":"113"
 }
 
-
-
->>>>>>> ae45f8f474388c85059d57a7c4c172ced9040da7
 ### 测试审计日志
 GET http://localhost:5000/AutidInfo/2 HTTP/1.1
 
