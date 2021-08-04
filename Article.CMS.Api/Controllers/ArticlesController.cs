@@ -41,6 +41,7 @@ namespace Article.CMS.Api.Controllers
             {
                 Id = per.Id,
                 UserId = per.UserId,
+                NickName=_Context.UserInfos.Where(x=>x.UserId==per.UserId).SingleOrDefault().NickName,
                 ATitle = per.ATitle,
                 AText = pet.AText,
                 isATimage = pet.isATimage,
