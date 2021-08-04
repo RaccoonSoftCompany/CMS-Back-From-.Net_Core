@@ -37,7 +37,7 @@ namespace Article.CMS.Api.Controllers
 
             var articles = _ArticlesRepository.Table.ToList();//获取文章表            
 
-            var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleParams
+            var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleViewParams
             {
                 Id = per.Id,
                 UserId = per.UserId,

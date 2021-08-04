@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace Article.CMS.Api.Entity
 {
     /// <summary>
-    /// 前端问题实体
+    /// 前端权限实体
     /// </summary>
-    public class MatterParams
+    public class PowerParams
     {
-        //问题名称
-        public string MName { get; set; }
+        //权限名称
+        public string PName { get; set; }
         //备注
         public string Remarks { get; set; }
 
