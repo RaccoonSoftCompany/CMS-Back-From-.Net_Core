@@ -406,6 +406,137 @@ namespace Article.CMS.Api.Database
                     Remarks = "种子数据"
                 }
             );
+            
+            /// <summary>
+            /// 文章评论的种子数据
+            /// </summary>
+            /// <param name="ArticleTalks("></param>
+            /// <typeparam name="ArticleTexts"></typeparam>
+            /// <returns></returns>
+            modelBuilder.Entity<ArticleTexts>().HasData(
+                new ArticleTalks() {
+                    Id = 1,
+                    UserId = 3,
+                    ArticleId = 2,
+                    ATText = "盲人裁判，太真实了吧",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 2,
+                    UserId = 3,
+                    ArticleId = 1,
+                    ATText = "什么居然有人敢走天桥？？？",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 3,
+                    UserId = 2,
+                    ArticleId = 1,
+                    ATText = "那可是天桥啊，传说走过的人都没了",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 4,
+                    UserId = 1,
+                    ArticleId = 2,
+                    ATText = "中国加油，冲冲冲！！！",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 5,
+                    UserId = 4,
+                    ArticleId = 3,
+                    ATText = "果然如此a",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 6,
+                    UserId = 3,
+                    ArticleId = 3,
+                    ATText = "这没有犯规？这裁判属实有点水准啊",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 7,
+                    UserId = 5,
+                    ArticleId = 4,
+                    ATText = "什么台风要来了？？",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 8,
+                    UserId = 1,
+                    ArticleId = 4,
+                    ATText = "不慌，根本不在沿海",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 9,
+                    UserId = 4,
+                    ArticleId = 5,
+                    ATText = "清明雨上",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 10,
+                    UserId = 5,
+                    ArticleId = 5,
+                    ATText = "不负如来不负卿",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                },
+                new ArticleTalks() {
+                    Id = 11,
+                    UserId = 2,
+                    ArticleId = 5,
+                    ATText = "请君一战",
+                    IsActived = true,
+                    IsDeleted = false,
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    Remarks = "种子数据"
+                }                
+            );
+
             base.OnModelCreating(modelBuilder);
         }
     }
