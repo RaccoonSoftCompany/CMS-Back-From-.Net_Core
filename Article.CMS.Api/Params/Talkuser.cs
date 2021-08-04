@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Article.CMS.Api.Entity
 {
     /// <summary>
-    /// 前端评论用户实体
+    /// 前端评论用户显示实体
     /// </summary>
     public class Talkuser
     {

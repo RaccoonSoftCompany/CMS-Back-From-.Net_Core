@@ -3,7 +3,7 @@
 namespace Article.CMS.Api.Params
 {
     /// <summary>
-    /// 前端用户实体
+    /// 前端添加修改用户实体
     /// </summary>
     public class UsersParams
     {

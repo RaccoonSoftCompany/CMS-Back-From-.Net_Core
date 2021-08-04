@@ -2,7 +2,7 @@ using System;
 namespace Article.CMS.Api.Params
 {
     /// <summary>
-    /// 用户以及用户信息实体
+    /// 用户以及用户信息显示实体
     /// </summary>
     public class UserInfoViewParams
     {
