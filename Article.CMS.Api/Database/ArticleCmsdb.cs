@@ -23,6 +23,7 @@ namespace Article.CMS.Api.Database
         public DbSet<ArticleTextImages> ArticleTextImages { get; set; } //要生成的文章内容图片数据表
         public DbSet<ArticleTalks> ArticleTalks { get; set; } //要生成的文章评论数据表
         public DbSet<ArticleReads> ArticleReads { get; set; } //要生成的文章访问数据表
+        public DbSet<ArticleAPraises> ArticleAPraises { get; set; } //要生成的文章点赞数据表
         public DbSet<AuditInfo> AuditInfo { get; set; } //要生成的审计日志数据表
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库

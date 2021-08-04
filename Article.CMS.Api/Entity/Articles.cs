@@ -19,6 +19,7 @@ namespace Article.CMS.Api.Entity
         public virtual IEnumerable<ArticleTexts> ArticleTexts { get; set; }
         public virtual IEnumerable<ArticleReads> ArticleReads { get; set; }
         public virtual IEnumerable<ArticleTalks> ArticleTalks { get; set; }
+        public virtual IEnumerable<ArticleAPraises> ArticleAPraises { get; set; }
 
     }
 }
