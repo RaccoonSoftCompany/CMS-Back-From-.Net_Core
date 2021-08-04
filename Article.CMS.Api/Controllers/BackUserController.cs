@@ -294,9 +294,28 @@ namespace Article.CMS.Api.Controllers
         [Route("likeNickName/{NickName}")]
         public dynamic likeNickName(string nickName)
         {
-            var dbLikeNickName = _Context.UserInfos.Where(x => x.NickName.Contains(nickName)).ToList();
-            return DataStatus.DataSuccess(1000, dbLikeNickName, "查询成功！");
+            var articles = _usersRepository.Table.ToList();
+            //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
+            var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
+            {
+                Id = per.Id,
+                UName = per.UName,
+                Upassword = per.Upassword,
+                PowerId = per.PowerId,
+                PName = _Context.Powers.Where(x => x.Id == per.PowerId).SingleOrDefault().PName,
+                MatterId = per.MatterId,
+                MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
+                MKey = per.MKey,
+                NickName = pet.NickName,
+                Sex = pet.Sex,
+                IsActived = per.IsActived,
+                IsDeleted = per.IsDeleted,
+                CreatedTime = per.CreatedTime,
+                UpdatedTime = per.UpdatedTime > pet.UpdatedTime ? per.UpdatedTime : pet.UpdatedTime,
+                Remarks = pet.Remarks
+            });
 
+            return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
         }
 
         /// <summary>

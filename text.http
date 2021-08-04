@@ -14,6 +14,8 @@ Content-Type: application/json
    "ATtext":"这是你大爷"
 }
 
+### 删除评论
+
 
 ### 登录
 POST http://localhost:5000/users/login HTTP/1.1
