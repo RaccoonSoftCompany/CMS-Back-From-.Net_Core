@@ -2,12 +2,10 @@ using System;
 namespace Article.CMS.Api.Params
 {
     /// <summary>
-    /// 用户以及用户信息实体
+    /// 用户以及用户信息添加使用实体
     /// </summary>
-    public class text
+    public class adduserAndInfo
     {
-        //用户id
-        public int Id { get; set; }
         //用户名
         public string UName { get; set; }
         //密码

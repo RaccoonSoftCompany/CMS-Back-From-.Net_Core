@@ -191,7 +191,7 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("adduserInfo")]
-        public dynamic adduserInfo(text newUserAndInfo)
+        public dynamic adduserInfo(adduserAndInfo newUserAndInfo)
         {
             var newUName = newUserAndInfo.UName.Trim();
             var newUPassword = newUserAndInfo.Upassword.Trim();
