@@ -411,9 +411,9 @@ namespace Article.CMS.Api.Database
             /// 文章评论的种子数据
             /// </summary>
             /// <param name="ArticleTalks("></param>
-            /// <typeparam name="ArticleTexts"></typeparam>
+            /// <typeparam name="ArticleTalks"></typeparam>
             /// <returns></returns>
-            modelBuilder.Entity<ArticleTexts>().HasData(
+            modelBuilder.Entity<ArticleTalks>().HasData(
                 new ArticleTalks() {
                     Id = 1,
                     UserId = 3,
