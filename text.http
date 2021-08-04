@@ -48,12 +48,8 @@ Content-Type: application/json
 ### 获取密保问题
 GET http://localhost:5000/matters HTTP/1.1
 
-### 刷新重新获取token
-POST http://localhost:5000/users/refreshtoken HTTP/1.1
-Content-Type: application/json
-
 ### 获取当前用户信息
-GET http://localhost:5000/UserInfos/6 HTTP/1.1
+GET http://localhost:5000/UserInfos/1 HTTP/1.1
 
 ### 修改用户信息
 PUT http://localhost:5000/UserInfos/ChangeUserInfo/2 HTTP/1.1
@@ -63,9 +59,6 @@ Content-Type: application/json
    "NickName":"666",
    "Sex":"男"
 }
-
-
-
 
 ### 后台登录
 POST http://localhost:5000/BackUser/login HTTP/1.1
@@ -88,14 +81,6 @@ Content-Type: application/json
 }
 
 
-
-
-
-###
-{
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsImV4cCI6MTYyNzY5OTA1NCwiaXNzIjoiV29vWiJ9.8UNhkugcqN1L0Lx-qrgvtvi3yrYmEef3OJiL6hDYtrs",
-    "refreshtoken":"113"
-}
 
 ### 测试审计日志
 GET http://localhost:5000/AutidInfo/2 HTTP/1.1
