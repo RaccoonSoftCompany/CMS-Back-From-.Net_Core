@@ -30,7 +30,7 @@ namespace Article.CMS.Api.Controllers
         [HttpPost]
         [Route("addPraises")]
         /// <summary>
-        /// 添加文章评论数据
+        /// 添加文章点赞数据
         /// </summary>
         /// <param name="addPraises">传入前端数据实体</param>
         /// <returns></returns>
@@ -55,6 +55,23 @@ namespace Article.CMS.Api.Controllers
 
             _ArticleAPraisesRepository.Insert(ArticleAPraise);
             return DataStatus.DataSuccess(1000, ArticleAPraise, "点赞成功！");
+        }
+
+        [HttpDelete]
+        [Route("deletePraises/{atid}/{uid}")]
+        /// <summary>
+        /// 删除文章评论
+        /// </summary>
+        /// <param name="id">当前用户id</param>
+        /// <returns></returns>
+        public dynamic deletePraises(int atid,int uid)
+        {
+
+            var Praiseid=_ArticleAPraisesRepository.Table.Where(x=>x.UserId==uid && x.ArticleId==atid).SingleOrDefault().Id;
+
+            _ArticleAPraisesRepository.Delete(Praiseid);
+
+            return DataStatus.DataSuccess(1000, new { atid = atid, uid=uid}, "取消点赞成功！");
         }
 
     }
