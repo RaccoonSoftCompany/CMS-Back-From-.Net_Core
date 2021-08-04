@@ -46,7 +46,7 @@ namespace Article.CMS.Api.Database
                 new Users()
                 {
                     Id = 1,
-                    UName = "Admin",
+                    UName = "admin",
                     Upassword = "113",
                     PowerId = 1,
                     MatterId = 1,
@@ -60,7 +60,7 @@ namespace Article.CMS.Api.Database
                 new Users()
                 {
                     Id = 2,
-                    UName = "User",
+                    UName = "user",
                     Upassword = "113",
                     PowerId = 3,
                     MatterId = 1,
@@ -74,7 +74,7 @@ namespace Article.CMS.Api.Database
                 new Users()
                 {
                     Id = 3,
-                    UName = "Active",
+                    UName = "active",
                     Upassword = "113",
                     PowerId = 3,
                     MatterId = 1,
@@ -88,7 +88,7 @@ namespace Article.CMS.Api.Database
                 new Users()
                 {
                     Id = 4,
-                    UName = "God",
+                    UName = "god",
                     Upassword = "113",
                     PowerId = 3,
                     MatterId = 1,
@@ -102,7 +102,7 @@ namespace Article.CMS.Api.Database
                 new Users()
                 {
                     Id = 5,
-                    UName = "Wooz",
+                    UName = "wooz",
                     Upassword = "113",
                     PowerId = 3,
                     MatterId = 1,
