@@ -48,7 +48,9 @@ namespace Article.CMS.Api.Controllers
                 CreatedTime = pet.CreatedTime,
                 UpdatedTime = pet.UpdatedTime > per.UpdatedTime ? pet.UpdatedTime : per.UpdatedTime,
                 AReadCount=_Context.ArticleReads.Where(x=>x.ArticleId==per.Id).Count(),
-                ATalkCount=_Context.ArticleTalks.Where(x=>x.ArticleId==per.Id).Count()
+                ATalkCount=_Context.ArticleTalks.Where(x=>x.ArticleId==per.Id).Count(),
+                APraiseCount=_Context.ArticleAPraises.Where(x=>x.ArticleId==per.Id).Count()
+                
             });
 
             return DataStatus.DataSuccess(1000, ArticleParams, "获取文章模块成功");
