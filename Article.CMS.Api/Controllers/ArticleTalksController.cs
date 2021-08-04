@@ -80,8 +80,6 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, articleTalk, "评论添加成功！");
         }
 
-
-
         [HttpDelete]
         [Route("deleteTalk/{id}")]
         /// <summary>
