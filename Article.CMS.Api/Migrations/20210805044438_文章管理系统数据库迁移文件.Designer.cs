@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Article.CMS.Api.Migrations
 {
     [DbContext(typeof(ArticleCmsdb))]
-    [Migration("20210805023152_文章管理系统数据库迁移文件")]
+    [Migration("20210805044438_文章管理系统数据库迁移文件")]
     partial class 文章管理系统数据库迁移文件
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,11 +137,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 1,
                             ATText = "盲人裁判，太真实了吧",
                             ArticleId = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1650),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3461),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1655),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3467),
                             UserId = 3
                         },
                         new
@@ -149,11 +149,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 2,
                             ATText = "什么居然有人敢走天桥？？？",
                             ArticleId = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1658),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3472),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1659),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3473),
                             UserId = 3
                         },
                         new
@@ -161,11 +161,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 3,
                             ATText = "那可是天桥啊，传说走过的人都没了",
                             ArticleId = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1661),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3475),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1662),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3476),
                             UserId = 2
                         },
                         new
@@ -173,11 +173,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 4,
                             ATText = "中国加油，冲冲冲！！！",
                             ArticleId = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1664),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3478),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1665),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3479),
                             UserId = 1
                         },
                         new
@@ -185,11 +185,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 5,
                             ATText = "果然如此a",
                             ArticleId = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1667),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3481),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1668),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3482),
                             UserId = 4
                         },
                         new
@@ -197,11 +197,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 6,
                             ATText = "这没有犯规？这裁判属实有点水准啊",
                             ArticleId = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1669),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3484),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1671),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3485),
                             UserId = 3
                         },
                         new
@@ -209,11 +209,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 7,
                             ATText = "什么台风要来了？？",
                             ArticleId = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1672),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3486),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1673),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3488),
                             UserId = 5
                         },
                         new
@@ -221,11 +221,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 8,
                             ATText = "不慌，根本不在沿海",
                             ArticleId = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1675),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3489),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1676),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3490),
                             UserId = 1
                         },
                         new
@@ -233,11 +233,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 9,
                             ATText = "清明雨上",
                             ArticleId = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1678),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3492),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1679),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3493),
                             UserId = 4
                         },
                         new
@@ -245,11 +245,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 10,
                             ATText = "不负如来不负卿",
                             ArticleId = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1680),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3495),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1681),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3496),
                             UserId = 5
                         },
                         new
@@ -257,11 +257,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 11,
                             ATText = "请君一战",
                             ArticleId = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1683),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3497),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(1684),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(3499),
                             UserId = 2
                         });
                 });
@@ -347,11 +347,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 1,
                             AText = "测试数据",
                             ArticleId = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(155),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2075),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(159),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2080),
                             isATimage = false
                         },
                         new
@@ -359,11 +359,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 2,
                             AText = "测试数据",
                             ArticleId = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(164),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2084),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(165),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2085),
                             isATimage = false
                         },
                         new
@@ -371,11 +371,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 3,
                             AText = "测试数据",
                             ArticleId = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(167),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2087),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(168),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2088),
                             isATimage = false
                         },
                         new
@@ -383,11 +383,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 4,
                             AText = "测试数据",
                             ArticleId = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(170),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2090),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(171),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2091),
                             isATimage = false
                         },
                         new
@@ -395,11 +395,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 5,
                             AText = "测试数据",
                             ArticleId = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(173),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2094),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 280, DateTimeKind.Local).AddTicks(174),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(2095),
                             isATimage = false
                         });
                 });
@@ -450,11 +450,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 1,
                             AIntro = "这里是简介1",
                             ATitle = "震惊！一男子从天桥上面路过",
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8441),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(561),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8446),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(566),
                             UserId = 1
                         },
                         new
@@ -462,11 +462,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 2,
                             AIntro = "这里是简介2",
                             ATitle = "震惊！东京奥运会竟然出现这种裁判",
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8450),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(570),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8451),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(575),
                             UserId = 1
                         },
                         new
@@ -474,11 +474,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 3,
                             AIntro = "这里是简介3",
                             ATitle = "震惊！日本选手竟然是这样的人",
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8452),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(577),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8454),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(585),
                             UserId = 1
                         },
                         new
@@ -486,11 +486,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 4,
                             AIntro = "这里是简介4",
                             ATitle = "震惊！台风进入真的靠近福建了",
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8455),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(587),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8456),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(588),
                             UserId = 1
                         },
                         new
@@ -498,11 +498,11 @@ namespace Article.CMS.Api.Migrations
                             Id = 5,
                             AIntro = "这里是简介5",
                             ATitle = "歌单",
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8459),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(606),
                             IsActived = true,
                             IsDeleted = false,
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(8460),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 128, DateTimeKind.Local).AddTicks(607),
                             UserId = 1
                         });
                 });
@@ -603,52 +603,52 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5462),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7912),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你最喜欢的动物",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5467)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7919)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5471),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7923),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你最喜欢的人",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5472)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7924)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5474),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7926),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "你的童年阴影",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5475)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7927)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5534),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7929),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "最想去的地方",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5535)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7930)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5538),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7932),
                             IsActived = true,
                             IsDeleted = false,
                             MName = "最喜欢的东西",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(5539)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(7933)
                         });
                 });
 
@@ -685,32 +685,32 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6725),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9015),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "超级管理员",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6730)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9021)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6733),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9024),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "管理员",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6734)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9025)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6736),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9027),
                             IsActived = true,
                             IsDeleted = false,
                             PName = "用户",
                             Remarks = "种子数据",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(6737)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(9028)
                         });
                 });
 
@@ -758,61 +758,61 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4540),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6496),
                             IsActived = true,
                             IsDeleted = false,
                             NickName = "超管测试",
                             Remarks = "种子数据",
                             Sex = "男",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4555),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6532),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4560),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6538),
                             IsActived = true,
                             IsDeleted = false,
                             NickName = "管理员测试",
                             Remarks = "种子数据",
                             Sex = "女",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4561),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6539),
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4563),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6542),
                             IsActived = true,
                             IsDeleted = false,
                             NickName = "用户测试",
                             Remarks = "种子数据",
                             Sex = "男",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4564),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6543),
                             UserId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4566),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6545),
                             IsActived = true,
                             IsDeleted = false,
                             NickName = "用户测试",
                             Remarks = "种子数据",
                             Sex = "女",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4567),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6546),
                             UserId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4570),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6547),
                             IsActived = true,
                             IsDeleted = false,
                             NickName = "用户测试",
                             Remarks = "种子数据",
                             Sex = "男",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 279, DateTimeKind.Local).AddTicks(4571),
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 127, DateTimeKind.Local).AddTicks(6549),
                             UserId = 5
                         });
                 });
@@ -869,7 +869,7 @@ namespace Article.CMS.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 276, DateTimeKind.Local).AddTicks(3197),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 121, DateTimeKind.Local).AddTicks(683),
                             IsActived = true,
                             IsDeleted = false,
                             MKey = "没有答案",
@@ -878,12 +878,12 @@ namespace Article.CMS.Api.Migrations
                             Remarks = "种子数据",
                             UName = "admin",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(7220)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(3619)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8051),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4427),
                             IsActived = true,
                             IsDeleted = false,
                             MKey = "没有答案",
@@ -892,12 +892,12 @@ namespace Article.CMS.Api.Migrations
                             Remarks = "种子数据",
                             UName = "user",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8057)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4434)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8061),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4520),
                             IsActived = true,
                             IsDeleted = false,
                             MKey = "没有答案",
@@ -906,12 +906,12 @@ namespace Article.CMS.Api.Migrations
                             Remarks = "种子数据",
                             UName = "active",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8062)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4521)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8064),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4526),
                             IsActived = true,
                             IsDeleted = false,
                             MKey = "没有答案",
@@ -920,12 +920,12 @@ namespace Article.CMS.Api.Migrations
                             Remarks = "种子数据",
                             UName = "god",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8065)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4527)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8067),
+                            CreatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4529),
                             IsActived = true,
                             IsDeleted = false,
                             MKey = "没有答案",
@@ -934,7 +934,7 @@ namespace Article.CMS.Api.Migrations
                             Remarks = "种子数据",
                             UName = "wooz",
                             Upassword = "113",
-                            UpdatedTime = new DateTime(2021, 8, 5, 10, 31, 52, 277, DateTimeKind.Local).AddTicks(8068)
+                            UpdatedTime = new DateTime(2021, 8, 5, 12, 44, 38, 122, DateTimeKind.Local).AddTicks(4530)
                         });
                 });
 

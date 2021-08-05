@@ -35,11 +35,13 @@ namespace Article.CMS.Api.Controllers
         {
             var title=ArticleandText.ATitle;
             var text=ArticleandText.AText;
+            var aIntro=ArticleandText.AIntro;
 
             var s=new Articles
             {
                 UserId=ArticleandText.UserId,
                 ATitle=title,
+                AIntro=aIntro
             };
 
             _ArticlesRepository.Insert(s);
@@ -67,7 +69,7 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-            var html=_Context.ArticleTexts.Where(x=>x.Id==12).SingleOrDefault().AText;
+            var html=_Context.ArticleTexts.Where(x=>x.Id==6).SingleOrDefault().AText;
             var temp = HttpUtility.HtmlDecode(html);
             return DataStatus.DataSuccess(1000, temp, "测试");
         }

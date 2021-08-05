@@ -21,8 +21,6 @@ namespace Article.CMS.Api.Params
         public string AIntro { get; set; }
         //文章内容
         public string AText { get; set; }
-        //文章内容图片
-        public string ATImage { get; set; }
         //创建时间
         public DateTime CreatedTime { get; set; }
         //阅读量

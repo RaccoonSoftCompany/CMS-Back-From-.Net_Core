@@ -34,14 +34,14 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-            var articles =_Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
             {
                 Id = pet.Id,
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ATitleImage="这里是标题图片路径",
-                AIntro=pet.AIntro,
+                ATitleImage = "这里是标题图片路径",
+                AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
@@ -51,35 +51,34 @@ namespace Article.CMS.Api.Controllers
         }
 
 
-        // [HttpGet]
-        // [Route("ArticleTexts/{aId}")]
-        // /// <summary>
-        // /// 获取数据请求
-        // /// </summary>
-        // /// <returns></returns>
-        // public dynamic Get(int aId)
-        // {
+        [HttpGet]
+        [Route("ArticleTexts/{aId}")]
+        /// <summary>
+        /// 获取数据请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Get(int aId)
+        {
 
-        //     var articles = _ArticlesRepository.Table.ToList();//获取文章表            
+            //获取文章表    
+            var articles = _ArticlesRepository.Table.Where(x => x.Id == aId).ToList();
+            var Articleview = articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            {
+                Id = pet.Id,
+                UserId = per.UserId,
+                NickName = per.NickName,
+                ATitle = pet.ATitle,
+                ATitleImage = "这里是标题图片路径",
+                AIntro = pet.AIntro,
+                AText = _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().AText,
+                CreatedTime = pet.CreatedTime,
+                AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
+                ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
+                APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
+            });
 
-        //     var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleViewParams
-        //     {
-        //         Id = per.Id,
-        //         UserId = per.UserId,
-        //         NickName = _Context.UserInfos.Where(x => x.UserId == per.UserId).SingleOrDefault().NickName,
-        //         ATitle = per.ATitle,
-        //         AText = pet.AText,
-        //         isATimage = pet.isATimage,
-        //         CreatedTime = pet.CreatedTime,
-        //         UpdatedTime = pet.UpdatedTime > per.UpdatedTime ? pet.UpdatedTime : per.UpdatedTime,
-        //         AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == per.Id).Count(),
-        //         ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == per.Id).Count(),
-        //         APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == per.Id).Count()
-
-        //     });
-
-        //     return DataStatus.DataSuccess(1000, ArticleParams, "获取文章模块成功");
-        // }
+            return DataStatus.DataSuccess(1000, Articleview, "获取文章模块成功");
+        }
     }
 }
 
