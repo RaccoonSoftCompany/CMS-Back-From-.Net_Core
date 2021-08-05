@@ -7,6 +7,7 @@ using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
 using Article.CMS.Api.Database;
+using System;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -33,7 +34,19 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-            var articles = _ArticlesRepository.Table.ToList();//获取文章表            
+            var articles =_Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            {
+                Id = pet.Id,
+                UserId = per.UserId,
+                NickName = per.NickName,
+                ATitle = pet.ATitle,
+                ATitleImage="这里是标题图片路径",
+                AIntro=pet.AIntro,
+                CreatedTime = pet.CreatedTime,
+                AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
+                ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
+                APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
+            });
             return DataStatus.DataSuccess(1000, articles, "获取文章成功");
         }
 
