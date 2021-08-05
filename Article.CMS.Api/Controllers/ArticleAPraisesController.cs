@@ -27,7 +27,7 @@ namespace Article.CMS.Api.Controllers
             _ArticleAPraisesRepository = ArticleAPraisesRepository;
         }
 
-        [HttpGet]
+        [HttpGet("{uId}/{aId}")]
         /// <summary>
         /// 是否点赞
         /// </summary>
