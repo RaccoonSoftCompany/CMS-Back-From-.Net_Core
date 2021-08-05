@@ -13,6 +13,9 @@ GET http://localhost:5000/Articles/TheFirstReadCount HTTP/1.1
 ### 10天点赞排行
 GET http://localhost:5000/Articles/TheTenPraiseCount HTTP/1.1
 
+### 10天评论排行
+GET http://localhost:5000/Articles/TheTenTalkCount HTTP/1.1
+
 ### 前端文章实体获取
 GET http://localhost:5000/Articles/ArticleTexts/1 HTTP/1.1
 

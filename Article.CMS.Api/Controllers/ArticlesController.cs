@@ -48,7 +48,7 @@ namespace Article.CMS.Api.Controllers
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
                 APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
             });
-            return DataStatus.DataSuccess(1000, articles.OrderByDescending(x=>x.CreatedTime), "获取文章成功");
+            return DataStatus.DataSuccess(1000, articles.OrderByDescending(x => x.CreatedTime), "获取文章成功");
         }
 
 
@@ -101,9 +101,9 @@ namespace Article.CMS.Api.Controllers
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
                 APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
-            }).OrderByDescending(x=>x.AReadCount).ToList();
+            }).OrderByDescending(x => x.AReadCount).ToList();
 
-            var TheFirstArticles=articles.Where(x=>(DateTime.Now-x.CreatedTime).TotalDays<=2);
+            var TheFirstArticles = articles.Where(x => (DateTime.Now - x.CreatedTime).TotalDays <= 2);
             return DataStatus.DataSuccess(1000, TheFirstArticles, "获取48小时评论文章成功");
         }
 
@@ -127,10 +127,36 @@ namespace Article.CMS.Api.Controllers
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
                 APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
-            }).OrderByDescending(x=>x.APraiseCount).ToList();
+            }).OrderByDescending(x => x.APraiseCount).ToList();
 
-            var TheFirstArticles=articles.Where(x=>(DateTime.Now-x.CreatedTime).TotalDays<=10);
+            var TheFirstArticles = articles.Where(x => (DateTime.Now - x.CreatedTime).TotalDays <= 10);
             return DataStatus.DataSuccess(1000, TheFirstArticles, "获取10天点赞文章成功");
+        }
+
+        [HttpGet]
+        [Route("TheTenTalkCount")]
+        /// <summary>
+        /// 获取48小时数据请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic TheTenTalkCount()
+        {
+            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            {
+                Id = pet.Id,
+                UserId = per.UserId,
+                NickName = per.NickName,
+                ATitle = pet.ATitle,
+                ATitleImage = "这里是标题图片路径",
+                AIntro = pet.AIntro,
+                CreatedTime = pet.CreatedTime,
+                AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
+                ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
+                APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
+            }).OrderByDescending(x => x.ATalkCount).ToList();
+
+            var TheFirstArticles = articles.Where(x => (DateTime.Now - x.CreatedTime).TotalDays <= 10);
+            return DataStatus.DataSuccess(1000, TheFirstArticles, "获取10天评论文章成功");
         }
     }
 }
