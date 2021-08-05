@@ -9,6 +9,8 @@ namespace Article.CMS.Api.Entity
     {
         //评论id
         public int TalkId { get; set; }
+        //用户id
+        public int UserId { get; set; }
         //用户昵称
         public string UNickName { get; set; }
         //评论内容

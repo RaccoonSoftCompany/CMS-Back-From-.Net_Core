@@ -44,6 +44,7 @@ namespace Article.CMS.Api.Controllers
             var Talks = dbTalks.Join(_Context.UserInfos, Pet => Pet.UserId, per => per.UserId, (pet, per) => new Talkuser
             {
                 TalkId = pet.Id,
+                UserId=per.UserId,
                 UNickName = per.NickName,
                 TalkText = pet.ATText
             });
@@ -75,9 +76,16 @@ namespace Article.CMS.Api.Controllers
                 ArticleId = articleId,
                 ATText = ATText
             };
-
             _articleTalkRepository.Insert(articleTalk);
-            return DataStatus.DataSuccess(1000, articleTalk, "评论添加成功！");
+            var Talkuser= new Talkuser
+            {
+                TalkId = articleTalk.Id,
+                UserId=userId,
+                UNickName = _Context.UserInfos.Where(x=>x.UserId==userId).SingleOrDefault().NickName,
+                TalkText = ATText
+            };
+
+            return DataStatus.DataSuccess(1000, Talkuser, "评论添加成功！");
         }
 
         [HttpDelete]
