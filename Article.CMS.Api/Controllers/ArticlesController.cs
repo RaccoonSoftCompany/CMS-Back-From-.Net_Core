@@ -26,7 +26,6 @@ namespace Article.CMS.Api.Controllers
         {
             _ArticlesRepository = ArticlesRepository;
         }
-
         [HttpGet]
         /// <summary>
         /// 获取数据请求
@@ -34,27 +33,40 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-
             var articles = _ArticlesRepository.Table.ToList();//获取文章表            
-
-            var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleViewParams
-            {
-                Id = per.Id,
-                UserId = per.UserId,
-                NickName=_Context.UserInfos.Where(x=>x.UserId==per.UserId).SingleOrDefault().NickName,
-                ATitle = per.ATitle,
-                AText = pet.AText,
-                isATimage = pet.isATimage,
-                CreatedTime = pet.CreatedTime,
-                UpdatedTime = pet.UpdatedTime > per.UpdatedTime ? pet.UpdatedTime : per.UpdatedTime,
-                AReadCount=_Context.ArticleReads.Where(x=>x.ArticleId==per.Id).Count(),
-                ATalkCount=_Context.ArticleTalks.Where(x=>x.ArticleId==per.Id).Count(),
-                APraiseCount=_Context.ArticleAPraises.Where(x=>x.ArticleId==per.Id).Count()
-                
-            });
-
-            return DataStatus.DataSuccess(1000, ArticleParams, "获取文章模块成功");
+            return DataStatus.DataSuccess(1000, articles, "获取文章成功");
         }
+
+
+        // [HttpGet]
+        // [Route("ArticleTexts/{aId}")]
+        // /// <summary>
+        // /// 获取数据请求
+        // /// </summary>
+        // /// <returns></returns>
+        // public dynamic Get(int aId)
+        // {
+
+        //     var articles = _ArticlesRepository.Table.ToList();//获取文章表            
+
+        //     var ArticleParams = _Context.ArticleTexts.Join(_Context.Articles, pet => pet.ArticleId, per => per.Id, (pet, per) => new ArticleViewParams
+        //     {
+        //         Id = per.Id,
+        //         UserId = per.UserId,
+        //         NickName = _Context.UserInfos.Where(x => x.UserId == per.UserId).SingleOrDefault().NickName,
+        //         ATitle = per.ATitle,
+        //         AText = pet.AText,
+        //         isATimage = pet.isATimage,
+        //         CreatedTime = pet.CreatedTime,
+        //         UpdatedTime = pet.UpdatedTime > per.UpdatedTime ? pet.UpdatedTime : per.UpdatedTime,
+        //         AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == per.Id).Count(),
+        //         ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == per.Id).Count(),
+        //         APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == per.Id).Count()
+
+        //     });
+
+        //     return DataStatus.DataSuccess(1000, ArticleParams, "获取文章模块成功");
+        // }
     }
 }
 

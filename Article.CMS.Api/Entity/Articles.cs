@@ -13,6 +13,9 @@ namespace Article.CMS.Api.Entity
         //文章标题
         public string ATitle { get; set; }
 
+        //文章简介
+        public string AIntro { get; set; }
+        
         //文章标题图片
         public string ATitleImage { get; set; }
 

@@ -17,6 +17,8 @@ namespace Article.CMS.Api.Params
         public string ATitle { get; set; }
         //文章标题图片
         public string ATitleImage { get; set; }
+        //文章简介
+        public string AIntro { get; set; }
         //文章内容
         public string AText { get; set; }
         //是否有图片
@@ -24,7 +26,7 @@ namespace Article.CMS.Api.Params
         //文章内容图片
         public string ATImage { get; set; }
         //文章内容图片显示顺序（这是为了防止数据库插入时出现先后不一的情况）
-        public int ATImageRank { get; set; }        
+        public int ATImageRank { get; set; }
         //创建时间
         public DateTime CreatedTime { get; set; }
         //更新时间
@@ -32,9 +34,10 @@ namespace Article.CMS.Api.Params
         //阅读量
         public int AReadCount { get; set; }
         //评论量
-        public int ATalkCount{get;set;}
+        public int ATalkCount { get; set; }
         //点赞量
         public int APraiseCount { get; set; }
         //备注
-        public string Remarks { get; set; }    }    
+        public string Remarks { get; set; }
+    }
 }
