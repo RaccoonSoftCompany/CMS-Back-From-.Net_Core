@@ -27,6 +27,24 @@ namespace Article.CMS.Api.Controllers
             _ArticleAPraisesRepository = ArticleAPraisesRepository;
         }
 
+        [HttpGet]
+        /// <summary>
+        /// 是否点赞
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Get(int uId, int aId)
+        {
+            var isdbPraise = _ArticleAPraisesRepository.Table.Where(x => x.UserId == uId && x.ArticleId == aId).SingleOrDefault();
+
+            if (isdbPraise != null)
+            {
+                return DataStatus.DataSuccess(6666, new { isPraise = true }, "已经点啦");
+            }
+            return DataStatus.DataSuccess(1000, new { isPraise = false }, "未点赞");
+
+        }
+
+
         [HttpPost]
         [Route("addPraises")]
         /// <summary>
@@ -56,23 +74,6 @@ namespace Article.CMS.Api.Controllers
 
             _ArticleAPraisesRepository.Insert(ArticleAPraise);
             return DataStatus.DataSuccess(1000, ArticleAPraise, "点赞成功！");
-        }
-
-        [HttpDelete]
-        [Route("deletePraises/{atid}/{uid}")]
-        /// <summary>
-        /// 删除文章点赞
-        /// </summary>
-        /// <param name="id">当前用户id</param>
-        /// <returns></returns>
-        public dynamic deletePraises(int atid,int uid)
-        {
-
-            var Praiseid=_ArticleAPraisesRepository.Table.Where(x=>x.UserId==uid && x.ArticleId==atid).SingleOrDefault().Id;
-
-            _ArticleAPraisesRepository.Delete(Praiseid);
-
-            return DataStatus.DataSuccess(1000, new { atid = atid, uid=uid}, "取消点赞成功！");
         }
 
     }
