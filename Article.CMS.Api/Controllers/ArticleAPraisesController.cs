@@ -43,7 +43,8 @@ namespace Article.CMS.Api.Controllers
 
             if (isdbPraise != null)
             {
-                return DataStatus.DataError(6666, "已点赞！");
+                _ArticleAPraisesRepository.Delete(isdbPraise.Id);
+                return DataStatus.DataError(6666, "已取消点赞！");
 
             }
 
@@ -60,7 +61,7 @@ namespace Article.CMS.Api.Controllers
         [HttpDelete]
         [Route("deletePraises/{atid}/{uid}")]
         /// <summary>
-        /// 删除文章评论
+        /// 删除文章点赞
         /// </summary>
         /// <param name="id">当前用户id</param>
         /// <returns></returns>

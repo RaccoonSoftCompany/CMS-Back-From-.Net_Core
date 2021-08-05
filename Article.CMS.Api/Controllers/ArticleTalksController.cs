@@ -16,9 +16,9 @@ namespace Article.CMS.Api.Controllers
     public class ArticleTalksController : ControllerBase
     {
         /// <summary>
-        /// 创建用户存储仓库
+        /// 创建文章评论存储仓库
         /// </summary>
-        /// <typeparam name="Users">用户实体</typeparam>
+        /// <typeparam name="Users">评论实体</typeparam>
         /// <returns></returns>
         private IRepository<ArticleTalks> _articleTalkRepository;
 

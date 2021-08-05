@@ -15,7 +15,7 @@ namespace Article.CMS.Api.Controllers
     public class ArticleReadsController : ControllerBase
     {
         /// <summary>
-        /// 创建文章点赞存储仓库
+        /// 创建文章访问存储仓库
         /// </summary>
         /// <typeparam name="Articles">文章实体</typeparam>
         /// <returns></returns>
