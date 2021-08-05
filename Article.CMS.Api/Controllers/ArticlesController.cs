@@ -7,7 +7,7 @@ using Article.CMS.Api.Utils;
 using System.Linq;
 using Article.CMS.Api.Params;
 using Article.CMS.Api.Database;
-using System;
+using System.Web;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -70,7 +70,7 @@ namespace Article.CMS.Api.Controllers
                 ATitle = pet.ATitle,
                 ATitleImage = "这里是标题图片路径",
                 AIntro = pet.AIntro,
-                AText = _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().AText,
+                AText = HttpUtility.HtmlDecode(_Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().AText),
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),

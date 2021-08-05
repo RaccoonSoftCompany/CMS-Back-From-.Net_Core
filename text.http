@@ -44,8 +44,8 @@ POST http://localhost:5000/ArticleReads/addRead HTTP/1.1
 Content-Type: application/json
 
 {
-   "UserId" : "3",
-   "ArticleId" : "5"
+   "UserId" : "1",
+   "ArticleId" : "1"
 }
 
 

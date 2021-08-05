@@ -45,7 +45,7 @@ namespace Article.CMS.Api.Controllers
             {
                 isdbRead.count+=1;
                  _ArticleReadsRepository.Update(isdbRead);
-            return DataStatus.DataSuccess(1000, isdbRead, "已经访问！");
+            return DataStatus.DataSuccess(1001, isdbRead, "已经访问！");
             }
 
             var ArticleRead = new ArticleReads
