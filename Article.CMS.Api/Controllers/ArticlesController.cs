@@ -8,6 +8,7 @@ using System.Linq;
 using Article.CMS.Api.Params;
 using Article.CMS.Api.Database;
 using System.Web;
+using System;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -80,29 +81,31 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, Articleview, "获取文章模块成功");
         }
 
-    //     [HttpGet]
-    //     [Route("")]
-    //     /// <summary>
-    //     /// 获取数据请求
-    //     /// </summary>
-    //     /// <returns></returns>
-    //     public dynamic Get()
-    //     {
-    //         var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
-    //         {
-    //             Id = pet.Id,
-    //             UserId = per.UserId,
-    //             NickName = per.NickName,
-    //             ATitle = pet.ATitle,
-    //             ATitleImage = "这里是标题图片路径",
-    //             AIntro = pet.AIntro,
-    //             CreatedTime = pet.CreatedTime,
-    //             AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
-    //             ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
-    //             APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
-    //         });
-    //         return DataStatus.DataSuccess(1000, articles, "获取文章成功");
-    //     }
+        [HttpGet]
+        [Route("TheFirstReadCount")]
+        /// <summary>
+        /// 获取48小时数据请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic TheFirstReadCount()
+        {
+            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            {
+                Id = pet.Id,
+                UserId = per.UserId,
+                NickName = per.NickName,
+                ATitle = pet.ATitle,
+                ATitleImage = "这里是标题图片路径",
+                AIntro = pet.AIntro,
+                CreatedTime = pet.CreatedTime,
+                AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
+                ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
+                APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
+            }).OrderByDescending(x=>x.AReadCount).ToList();
+
+            var TheFirstArticles=articles.Where(x=>(DateTime.Now-x.CreatedTime).TotalDays<=2);
+            return DataStatus.DataSuccess(1000, TheFirstArticles, "获取文章成功");
+        }
 
     }
 }
