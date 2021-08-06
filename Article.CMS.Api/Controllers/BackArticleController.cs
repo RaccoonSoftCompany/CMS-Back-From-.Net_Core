@@ -65,12 +65,14 @@ namespace Article.CMS.Api.Controllers
         public dynamic GetAReadUser(int id)
         {
             var aReads = _Context.ArticleReads.Where(x => x.ArticleId == id).ToList();
-            var AReadUser =aReads.Join(_Context.UserInfos,pet=>pet.UserId,per=>per.UserId,(Pet,per)=>new{
-                NickName=per.NickName,
-                Count=Pet.count,
-                CreatedTime=Pet.CreatedTime
+            var AReadUser = aReads.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (Pet, per) => new
+            {
+                Id = Pet.Id,
+                NickName = per.NickName,
+                Count = Pet.count,
+                CreatedTime = Pet.CreatedTime
             });
-            return DataStatus.DataSuccess(1000,AReadUser , "获取阅读用户成功");
+            return DataStatus.DataSuccess(1000, AReadUser, "获取阅读用户成功");
         }
 
         [HttpGet]
@@ -83,11 +85,13 @@ namespace Article.CMS.Api.Controllers
         public dynamic GetAPraiseUser(int id)
         {
             var aReads = _Context.ArticleAPraises.Where(x => x.ArticleId == id).ToList();
-            var aPraiseUser =aReads.Join(_Context.UserInfos,pet=>pet.UserId,per=>per.UserId,(Pet,per)=>new{
-                NickName=per.NickName,
-                CreatedTime=Pet.CreatedTime,
+            var aPraiseUser = aReads.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (Pet, per) => new
+            {
+                id = Pet.Id,
+                NickName = per.NickName,
+                CreatedTime = Pet.CreatedTime,
             });
-            return DataStatus.DataSuccess(1000,aPraiseUser , "获取点赞用户成功");
+            return DataStatus.DataSuccess(1000, aPraiseUser, "获取点赞用户成功");
         }
 
         [HttpGet]
@@ -100,12 +104,14 @@ namespace Article.CMS.Api.Controllers
         public dynamic GetATalkUser(int id)
         {
             var aReads = _Context.ArticleTalks.Where(x => x.ArticleId == id).ToList();
-            var aTalkUser =aReads.Join(_Context.UserInfos,pet=>pet.UserId,per=>per.UserId,(Pet,per)=>new{
-                NickName=per.NickName,
-                ATText=Pet.ATText,
-                CreatedTime=Pet.CreatedTime
+            var aTalkUser = aReads.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (Pet, per) => new
+            {
+                id = Pet.Id,
+                NickName = per.NickName,
+                ATText = Pet.ATText,
+                CreatedTime = Pet.CreatedTime
             });
-            return DataStatus.DataSuccess(1000,aTalkUser , "获取评论用户成功");
+            return DataStatus.DataSuccess(1000, aTalkUser, "获取评论用户成功");
         }
 
 
