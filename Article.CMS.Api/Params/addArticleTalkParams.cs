@@ -3,9 +3,9 @@ using System.Collections.Generic;
 namespace Article.CMS.Api.Entity
 {
     /// <summary>
-    /// 前端文章评论实体
+    /// 前端文章评论添加实体
     /// </summary>
-    public class ArticleTalkParams
+    public class addArticleTalkParams
     {
         //用户id
         public int UserId { get; set; }

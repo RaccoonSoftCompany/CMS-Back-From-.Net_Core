@@ -15,6 +15,6 @@ namespace Article.CMS.Api.Params
         public string Sex { get; set; }
 
         //用户头像
-        public int MyPropertyId { get; set; }
+        public string UImageURL { get; set; }
     }
 }

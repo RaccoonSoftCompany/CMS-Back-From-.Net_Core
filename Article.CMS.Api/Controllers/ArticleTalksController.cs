@@ -59,7 +59,7 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="newUser">传入前端数据实体</param>
         /// <returns></returns>
-        public dynamic addTalk(ArticleTalkParams newArticleTalks)
+        public dynamic addTalk(addArticleTalkParams newArticleTalks)
         {
             var userId = newArticleTalks.UserId;
             var articleId = newArticleTalks.ArticleId;

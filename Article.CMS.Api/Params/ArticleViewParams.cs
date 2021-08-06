@@ -11,6 +11,8 @@ namespace Article.CMS.Api.Params
         public int Id { get; set; }
         //用户id
         public int UserId { get; set; }
+        //用户头像
+        public string UImageURL { get; set; }
         //用户昵称
         public string NickName { get; set; }
         //文章标题
