@@ -29,7 +29,7 @@ namespace Article.CMS.Api.Controllers
 
         [HttpGet("{uId}/{aId}")]
         /// <summary>
-        /// 是否点赞
+        /// 判断是否点赞
         /// </summary>
         /// <returns></returns>
         public dynamic Get(int uId, int aId)
@@ -48,7 +48,7 @@ namespace Article.CMS.Api.Controllers
         [HttpPost]
         [Route("addPraises")]
         /// <summary>
-        /// 添加文章点赞数据
+        /// 取消点赞以及点赞
         /// </summary>
         /// <param name="addPraises">传入前端数据实体</param>
         /// <returns></returns>
