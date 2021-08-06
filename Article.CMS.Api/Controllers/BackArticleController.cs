@@ -29,50 +29,55 @@ namespace Article.CMS.Api.Controllers
             _ArticlesRepository = ArticlesRepository;
         }
 
+        /// <summary>
+        /// 插入文章
+        /// </summary>
+        /// <param name="ArticleandText"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("addArticle")]
         public dynamic addArticle(addArticleandTextParams ArticleandText)
         {
-            var title = ArticleandText.ATitle;
+            var isUser = _Context.Users.Where(x => x.Id == ArticleandText.UserId).SingleOrDefault();
+            if (isUser == null)
+            {
+                return DataStatus.DataError(1114, "该用户不存在无法执行修改密码操作！");
+            }
+
+            var aTitle = ArticleandText.ATitle;
+            var uImageURL = ArticleandText.UImageURL;
             var aIntro = ArticleandText.AIntro;
-            var text = ArticleandText.AText;
+            var aText = ArticleandText.AText;
+
+            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(uImageURL) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
+            {
+                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
+            }
 
             var Article = new Articles
             {
-                UserId = ArticleandText.UserId,
-                ATitle = title,
+                UserId = isUser.Id,
+                ATitle = aTitle,
+                ATitleImageUrl=uImageURL,
                 AIntro = aIntro
             };
 
             _ArticlesRepository.Insert(Article);
 
-            var aid = Article.Id;
+            var AId = Article.Id;
 
             var ATtext = new ArticleTexts
             {
-                ArticleId = aid,
-                AText = HttpUtility.HtmlEncode(text)
+                ArticleId = AId,
+                AText = HttpUtility.HtmlEncode(aText)
             };
 
             _Context.ArticleTexts.Add(ATtext);
             _Context.SaveChanges();
 
-
             return DataStatus.DataSuccess(1000, ATtext, "插入文章成功");
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         // [HttpGet]
         // /// <summary>
