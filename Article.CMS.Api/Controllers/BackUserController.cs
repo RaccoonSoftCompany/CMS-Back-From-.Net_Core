@@ -43,7 +43,7 @@ namespace Article.CMS.Api.Controllers
         }
 
         /// <summary>
-        /// 登录
+        /// 管理员登录
         /// </summary>
         /// <param name="loginData"></param>
         /// <returns></returns>
@@ -94,6 +94,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = per.MatterId,
                 MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
                 MKey = per.MKey,
+                UImageURL=pet.ImageURL,
                 NickName = pet.NickName,
                 Sex = pet.Sex,
                 IsActived = per.IsActived,
@@ -261,6 +262,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = newMatterId,
                 MName = _Context.Matters.Where(x => x.Id == newMatterId).SingleOrDefault().MName,
                 MKey = newMKey,
+                UImageURL="UploadFiles/DefaultImg.png",
                 NickName = newNickName,
                 Sex = newSex,
                 IsActived = user.IsActived,
@@ -310,6 +312,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = per.MatterId,
                 MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
                 MKey = per.MKey,
+                UImageURL=pet.ImageURL,
                 NickName = pet.NickName,
                 Sex = pet.Sex,
                 IsActived = per.IsActived,
@@ -322,36 +325,36 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
         }
 
-        /// <summary>
-        /// 创建token验证
-        /// </summary>
-        /// <param name="newUser"></param>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [HttpPost, Route("token")]
-        public dynamic GetToken(UsersParams newUser)
-        {
-            var username = newUser.UName.Trim();
-            var password = newUser.Upassword.Trim();
+        // /// <summary>
+        // /// 创建token验证
+        // /// </summary>
+        // /// <param name="newUser"></param>
+        // /// <returns></returns>
+        // [AllowAnonymous]
+        // [HttpPost, Route("token")]
+        // public dynamic GetToken(UsersParams newUser)
+        // {
+        //     var username = newUser.UName.Trim();
+        //     var password = newUser.Upassword.Trim();
 
-            var user =
-                _usersRepository
-                    .Table
-                    .Where(x =>
-                        x.UName == username && x.Upassword == password)
-                    .FirstOrDefault();
+        //     var user =
+        //         _usersRepository
+        //             .Table
+        //             .Where(x =>
+        //                 x.UName == username && x.Upassword == password)
+        //             .FirstOrDefault();
 
-            if (user == null)
-            {
-                return DataStatus.DataError(1117, "账号或密码不正确！");
-            }
+        //     if (user == null)
+        //     {
+        //         return DataStatus.DataError(1117, "账号或密码不正确！");
+        //     }
 
-            var token =
-                TokenHelper.GenerateToekn(_tokenParameter, user.UName);
-            var refreshToken = "112358";
+        //     var token =
+        //         TokenHelper.GenerateToekn(_tokenParameter, user.UName);
+        //     var refreshToken = "112358";
 
-            return DataStatus.DataSuccess(1000, new { Token = token, refreshToken = refreshToken }, "登录成功！");
-        }
+        //     return DataStatus.DataSuccess(1000, new { Token = token, refreshToken = refreshToken }, "登录成功！");
+        // }
 
         /// <summary>
         /// 刷新token验证

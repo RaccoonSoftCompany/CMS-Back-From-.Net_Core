@@ -28,7 +28,14 @@ namespace Article.CMS.Api.Controllers
             _configuration = configuration;
             _fileInfoRepository = fileInfoRepository;
         }
+        
 
+        /// <summary>
+        /// 头像上传
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("userimage/{userId}")]
         public string userimage(int userId, IFormCollection model)
@@ -74,7 +81,7 @@ namespace Article.CMS.Api.Controllers
 
 
         /// <summary>
-        /// 文件上传接口
+        /// 文章图片上传
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -136,17 +143,17 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, isArticle, "插入文章成功！");
         }
 
-        [HttpGet]
-        [Route("getimgs")]
-        /// <summary>
-        /// 获取所有图片请求
-        /// </summary>
-        /// <returns></returns>
-        public dynamic Get()
-        {
-            var matters = _fileInfoRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
-        }
+        // [HttpGet]
+        // [Route("getimgs")]
+        // /// <summary>
+        // /// 获取所有图片请求
+        // /// </summary>
+        // /// <returns></returns>
+        // public dynamic Get()
+        // {
+        //     var matters = _fileInfoRepository.Table.ToList();
+        //     return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
+        // }
 
     }
 }
