@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Article.CMS.Api.Params;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 //using Article.CMS.Api.Repository;
 
 namespace Article.CMS.Api
@@ -42,7 +44,7 @@ namespace Article.CMS.Api
             // 注入 IRepository接口及其实现类
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddControllers();
-        
+
             //审计日志
             // services.AddControllers(options=>
             // {
@@ -80,10 +82,24 @@ namespace Article.CMS.Api
 
             app.UseRouting();
 
+            #region 静态资源中间件 http://localhost:5000/uploadfiles/……
+            // string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"UploadFiles");
+            // if (!Directory.Exists(filepath))
+            //     Directory.CreateDirectory(filepath);
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"UploadFiles/images")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/UploadFiles/images")
+            }
+            );
+
+            #endregion
+
             //注册token的中间件
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseCors("Any");
 
             app.UseEndpoints(endpoints =>

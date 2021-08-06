@@ -10,7 +10,9 @@ using Article.CMS.Api.Repository;
 using Microsoft.Net.Http.Headers;
 using Article.CMS.Api.Entity;
 using System.Linq;
-
+/// <summary>
+/// 文件上传
+/// </summary>
 namespace Article.CMS.Api.Controllers
 {
     // [Authorize]
@@ -28,12 +30,12 @@ namespace Article.CMS.Api.Controllers
         }
 
         /// <summary>
-        /// 多文件上传接口
+        /// 文件上传接口
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost, Route("uploadfiles")]
-        public string UploadFiles(IFormCollection model)
+        [HttpPost("{userId}")]
+        public string UploadFile(int userId, IFormCollection model)
         {
             // 获得当前应用所在的完整路径（绝对地址）
             var filePath = Directory.GetCurrentDirectory();
@@ -50,7 +52,6 @@ namespace Article.CMS.Api.Controllers
             }
 
             var resultPath = new List<string>();
-            // var uploadfiles = new List<ImagesUrl>();
             foreach (IFormFile file in model.Files)
             {
                 if (file.Length > 0)
@@ -68,17 +69,16 @@ namespace Article.CMS.Api.Controllers
                     {
                         OriginName = fileName,
                         CurrentName = rndName,
-                        ATImageUrl = tempPath
+                        ATImageUrl = tempPath,
+                        UserId = userId
                     };
 
-                    // uploadfiles.Add(tmpFile);
+                    _fileInfoRepository.Insert(tmpFile);
 
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
                 }
             }
-
-
 
             var res = new
             {
@@ -89,5 +89,18 @@ namespace Article.CMS.Api.Controllers
 
             return JsonHelper.Serialize(res);
         }
+
+        [HttpGet]
+        [Route("getimage")]
+        /// <summary>
+        /// 获取所有问题请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Get()
+        {
+            var matters = _fileInfoRepository.Table.ToList();
+            return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
+        }
+
     }
 }
