@@ -214,9 +214,14 @@ GET http://localhost:5000/BackUser/likeNickName/管 HTTP/1.1
 ### 后台文章获取
 GET http://localhost:5000/BackArticle HTTP/1.1
 
+### 用户点赞详情（文章Id)
+GET http://localhost:5000/BackArticle/APraiseUser/1 HTTP/1.1
 
+### 用户访问详情（文章Id)
+GET http://localhost:5000/BackArticle/AReadUser/1 HTTP/1.1
 
-
+### 用户评论详情（文章Id)
+GET http://localhost:5000/BackArticle/ATalkUser/1 HTTP/1.1
 
 
 
