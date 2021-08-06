@@ -45,6 +45,7 @@ namespace Article.CMS.Api.Controllers
             {
                 TalkId = pet.Id,
                 UserId=per.UserId,
+                UImageURL=per.ImageURL,
                 UNickName = per.NickName,
                 TalkText = pet.ATText
             });
@@ -77,11 +78,13 @@ namespace Article.CMS.Api.Controllers
                 ATText = ATText
             };
             _articleTalkRepository.Insert(articleTalk);
+            var inUser=_Context.UserInfos.Where(x=>x.UserId==userId).SingleOrDefault();
             var Talkuser= new Talkuser
             {
                 TalkId = articleTalk.Id,
                 UserId=userId,
-                UNickName = _Context.UserInfos.Where(x=>x.UserId==userId).SingleOrDefault().NickName,
+                UImageURL=inUser.ImageURL,
+                UNickName = inUser.NickName,
                 TalkText = ATText
             };
 
