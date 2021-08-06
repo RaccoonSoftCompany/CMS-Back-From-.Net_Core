@@ -129,6 +129,7 @@ namespace Article.CMS.Api.Database
                     UserId = 1,
                     NickName = "超管测试",
                     Sex = "男",
+                    ImageURL = "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -141,6 +142,7 @@ namespace Article.CMS.Api.Database
                     UserId = 2,
                     NickName = "管理员测试",
                     Sex = "女",
+                    ImageURL = "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -153,6 +155,8 @@ namespace Article.CMS.Api.Database
                     UserId = 3,
                     NickName = "用户测试",
                     Sex = "男",
+                    ImageURL = "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp",
+
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -165,6 +169,8 @@ namespace Article.CMS.Api.Database
                     UserId = 4,
                     NickName = "用户测试",
                     Sex = "女",
+                    ImageURL = "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp",
+
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -177,6 +183,7 @@ namespace Article.CMS.Api.Database
                     UserId = 5,
                     NickName = "用户测试",
                     Sex = "男",
+                    ImageURL = "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -299,7 +306,7 @@ namespace Article.CMS.Api.Database
                     Id = 1,
                     UserId = 1,
                     ATitle = "震惊！一男子从天桥上面路过",
-                    AIntro="这里是简介1",
+                    AIntro = "这里是简介1",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -311,7 +318,7 @@ namespace Article.CMS.Api.Database
                     Id = 2,
                     UserId = 1,
                     ATitle = "震惊！东京奥运会竟然出现这种裁判",
-                    AIntro="这里是简介2",
+                    AIntro = "这里是简介2",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -322,7 +329,7 @@ namespace Article.CMS.Api.Database
                     Id = 3,
                     UserId = 1,
                     ATitle = "震惊！日本选手竟然是这样的人",
-                    AIntro="这里是简介3",
+                    AIntro = "这里是简介3",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -333,7 +340,7 @@ namespace Article.CMS.Api.Database
                     Id = 4,
                     UserId = 1,
                     ATitle = "震惊！台风进入真的靠近福建了",
-                    AIntro="这里是简介4",
+                    AIntro = "这里是简介4",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -344,7 +351,7 @@ namespace Article.CMS.Api.Database
                     Id = 5,
                     UserId = 1,
                     ATitle = "歌单",
-                    AIntro="这里是简介5",
+                    AIntro = "这里是简介5",
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -407,7 +414,7 @@ namespace Article.CMS.Api.Database
                     Remarks = "种子数据"
                 }
             );
-            
+
             /// <summary>
             /// 文章评论的种子数据
             /// </summary>
@@ -415,7 +422,8 @@ namespace Article.CMS.Api.Database
             /// <typeparam name="ArticleTalks"></typeparam>
             /// <returns></returns>
             modelBuilder.Entity<ArticleTalks>().HasData(
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 1,
                     UserId = 3,
                     ArticleId = 2,
@@ -426,7 +434,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 2,
                     UserId = 3,
                     ArticleId = 1,
@@ -437,7 +446,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 3,
                     UserId = 2,
                     ArticleId = 1,
@@ -448,7 +458,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 4,
                     UserId = 1,
                     ArticleId = 2,
@@ -459,7 +470,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 5,
                     UserId = 4,
                     ArticleId = 3,
@@ -470,7 +482,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 6,
                     UserId = 3,
                     ArticleId = 3,
@@ -481,7 +494,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 7,
                     UserId = 5,
                     ArticleId = 4,
@@ -492,7 +506,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 8,
                     UserId = 1,
                     ArticleId = 4,
@@ -503,7 +518,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 9,
                     UserId = 4,
                     ArticleId = 5,
@@ -514,7 +530,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 10,
                     UserId = 5,
                     ArticleId = 5,
@@ -525,7 +542,8 @@ namespace Article.CMS.Api.Database
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
                 },
-                new ArticleTalks() {
+                new ArticleTalks()
+                {
                     Id = 11,
                     UserId = 2,
                     ArticleId = 5,
@@ -535,7 +553,7 @@ namespace Article.CMS.Api.Database
                     CreatedTime = DateTime.Now,
                     UpdatedTime = DateTime.Now,
                     Remarks = "种子数据"
-                }                
+                }
             );
 
             base.OnModelCreating(modelBuilder);

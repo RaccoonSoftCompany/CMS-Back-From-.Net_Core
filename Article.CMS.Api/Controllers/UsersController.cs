@@ -63,7 +63,8 @@ namespace Article.CMS.Api.Controllers
             
             var userInfos=_Context.UserInfos.Where(x=>x.UserId==user.Id).SingleOrDefault();
             var nickName=userInfos==null?user.UName:userInfos.NickName;
-            return DataStatus.DataSuccess(1000, new {ID=user.Id,UName=user.UName,NickName=nickName}, "登录成功！");
+            var uImageUrl=userInfos==null?"UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp":userInfos.ImageURL;
+            return DataStatus.DataSuccess(1000, new {ID=user.Id,UName=user.UName,NickName=nickName,UImageUrl=uImageUrl}, "登录成功！");
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 GET http://localhost:5000/BackArticle/addArticle HTTP/1.1
 
 ### 获取所有图片
-GET http://localhost:5000/UploadFile/getimage HTTP/1.1
+GET http://localhost:5000/UploadFile/getimgs HTTP/1.1
 
 
 ### 前端文章获取

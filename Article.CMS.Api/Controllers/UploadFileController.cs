@@ -10,9 +10,7 @@ using Article.CMS.Api.Repository;
 using Microsoft.Net.Http.Headers;
 using Article.CMS.Api.Entity;
 using System.Linq;
-/// <summary>
-/// 文件上传
-/// </summary>
+
 namespace Article.CMS.Api.Controllers
 {
     // [Authorize]
@@ -29,12 +27,60 @@ namespace Article.CMS.Api.Controllers
             _fileInfoRepository = fileInfoRepository;
         }
 
+        [HttpPost]
+        [Route("userimage")]
+        public string userimage(IFormCollection model)
+        {
+            // 获得当前应用所在的完整路径（绝对地址）
+            var filePath = Directory.GetCurrentDirectory();
+
+            // 通过配置文件获得存放文件的相对路径头像
+            string path = _configuration["UpUserimage"];
+
+            // 最终存放文件的完整路径
+            var preFullPath = Path.Combine(filePath, path);
+            // 如果路径不存在，则创建
+            if (!Directory.Exists(preFullPath))
+            {
+                Directory.CreateDirectory(preFullPath);
+            }
+
+            var resultPath = new List<string>();
+            foreach (IFormFile file in model.Files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = file.FileName;
+                    var extName = fileName.Substring(fileName.LastIndexOf("."));//extName包含了“.”
+                    var rndName = Guid.NewGuid().ToString("N") + extName;
+                    var tempPath = Path.Combine(path, rndName).Replace("\\", "/");
+                    using (var stream = new FileStream(Path.Combine(filePath, tempPath), FileMode.CreateNew))//Path.Combine(_env.WebRootPath, fileName)
+                    {
+                        file.CopyTo(stream);
+                    }
+                    // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
+                    resultPath.Add(tempPath.Replace("\\", "/"));
+                }
+            }
+
+            var res = new
+            {
+                Code = 1000,
+                Data = resultPath,
+                Msg = "上传成功"
+            };
+
+            return JsonHelper.Serialize(res);
+        }
+
+
+
         /// <summary>
         /// 文件上传接口
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("{userId}")]
+        [HttpPost("Aimg/{userId}")]
         public string UploadFile(int userId, IFormCollection model)
         {
             // 获得当前应用所在的完整路径（绝对地址）
@@ -91,9 +137,9 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpGet]
-        [Route("getimage")]
+        [Route("getimgs")]
         /// <summary>
-        /// 获取所有问题请求
+        /// 获取所有图片请求
         /// </summary>
         /// <returns></returns>
         public dynamic Get()
