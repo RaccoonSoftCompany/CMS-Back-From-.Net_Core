@@ -55,16 +55,20 @@ namespace Article.CMS.Api.Controllers
 
             var users = _usersRepository.Table.ToList();
 
-            var user=users.Where(x=>x.UName.Equals(username) && x.Upassword.Equals(password)).SingleOrDefault();
+            var user = users.Where(x => x.UName.Equals(username) && x.Upassword.Equals(password)).SingleOrDefault();
 
-            if(user==null){
+            if (user == null)
+            {
                 return DataStatus.DataError(1117, "账号或密码不正确！");
             }
+
+            var token = TokenHelper.GenerateToekn(_tokenParameter, user.UName);
+            var refreshToken = "112358";
             
-            var userInfos=_Context.UserInfos.Where(x=>x.UserId==user.Id).SingleOrDefault();
-            var nickName=userInfos==null?user.UName:userInfos.NickName;
-            var uImageUrl=userInfos==null?"UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp":userInfos.ImageURL;
-            return DataStatus.DataSuccess(1000, new {ID=user.Id,UName=user.UName,NickName=nickName,UImageUrl=uImageUrl}, "登录成功！");
+            var userInfos = _Context.UserInfos.Where(x => x.UserId == user.Id).SingleOrDefault();
+            var nickName = userInfos == null ? user.UName : userInfos.NickName;
+            var uImageUrl = userInfos == null ? "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp" : userInfos.ImageURL;
+            return DataStatus.DataSuccess(1000, new { ID = user.Id, UName = user.UName, NickName = nickName, UImageUrl = uImageUrl, Token = token, refreshToken = refreshToken }, "登录成功！");
         }
 
         /// <summary>
@@ -117,16 +121,16 @@ namespace Article.CMS.Api.Controllers
 
             //注册用户成功后，直接创建该用户信息
             var Isuser = _usersRepository.Table.Where(x => x.UName.Equals(uName)).SingleOrDefault();
-            var UserInfo=new UserInfos
+            var UserInfo = new UserInfos
             {
-                UserId=Isuser.Id,
-                NickName="newU-" + Isuser.Id,
-                Sex=null,
-                IsActived=true,
-                IsDeleted=false,
-                CreatedTime=DateTime.Now,
-                UpdatedTime=DateTime.Now,
-                Remarks=null
+                UserId = Isuser.Id,
+                NickName = "newU-" + Isuser.Id,
+                Sex = null,
+                IsActived = true,
+                IsDeleted = false,
+                CreatedTime = DateTime.Now,
+                UpdatedTime = DateTime.Now,
+                Remarks = null
             };
             _Context.UserInfos.Add(UserInfo);
             _Context.SaveChanges();
@@ -283,7 +287,7 @@ namespace Article.CMS.Api.Controllers
                 Msg = "用户登录成功^_^"
             };
         }
-        
+
         /// <summary>
         /// 刷新token验证
         /// </summary>
