@@ -67,24 +67,22 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1118, "该用户权限不足！");
             }
 
-             var token =
-                TokenHelper.GenerateToekn(_tokenParameter, user.UName);
+            var token =
+               TokenHelper.GenerateToekn(_tokenParameter, user.UName);
             var refreshToken = "112358";
 
-            return DataStatus.DataSuccess(1000, new{UId=user.Id,UName=user.UName,Token = token, refreshToken = refreshToken}, "登录成功！");
+            return DataStatus.DataSuccess(1000, new { UId = user.Id, UName = user.UName, Token = token, refreshToken = refreshToken }, "登录成功！");
         }
 
         [HttpGet]
         /// <summary>
-        /// 获取数据请求
+        /// 获取所有用户数据请求
         /// </summary>
         /// <returns></returns>
         public dynamic Get()
         {
-            //获取用户表
-            var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
-            var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
+            var UserInfoViewParams = _Context.UserInfos.Join(_usersRepository.Table, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
             {
                 Id = per.Id,
                 UName = per.UName,
@@ -94,7 +92,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = per.MatterId,
                 MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
                 MKey = per.MKey,
-                UImageURL=pet.ImageURL,
+                UImageURL = pet.ImageURL,
                 NickName = pet.NickName,
                 Sex = pet.Sex,
                 IsActived = per.IsActived,
@@ -117,6 +115,11 @@ namespace Article.CMS.Api.Controllers
         [Route("ChangeuserInfo/{id}")]
         public dynamic ChangeuserInfo(int id, UserInfoViewParams upUserAndInfo)
         {
+            var user = _usersRepository.GetId(id);
+            if (user == null)
+            {
+                return DataStatus.DataError(1114, "该用户不存在！");
+            }
             var upUName = upUserAndInfo.UName.Trim();
             var upUPassword = upUserAndInfo.Upassword.Trim();
             var upPowerId = upUserAndInfo.PowerId;
@@ -124,31 +127,25 @@ namespace Article.CMS.Api.Controllers
             var upMKey = upUserAndInfo.MKey.Trim();
             var upRemarks = upUserAndInfo.Remarks == null ? null : upUserAndInfo.Remarks.Trim();
 
-            var dbuserInfo = _Context.UserInfos.Where(x => x.UserId == id).SingleOrDefault();
-            var dbnickName = dbuserInfo.NickName;
-            var dbsex = dbuserInfo.Sex;
-
-            var upNickName = upUserAndInfo.NickName == null ? dbnickName : upUserAndInfo.NickName.Trim();
-            var upSex = upUserAndInfo.Sex == null ? dbsex : upUserAndInfo.Sex.Trim();
-
             if (string.IsNullOrEmpty(upUName) || string.IsNullOrEmpty(upUPassword) || upPowerId == 0 || upMatterId == 0 || string.IsNullOrEmpty(upMKey))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
+            var dbuserInfo = _Context.UserInfos.Where(x => x.UserId == id).SingleOrDefault();
+            var dbnickName = dbuserInfo.NickName;
+            var dbsex = dbuserInfo.Sex;
+            var dbuImageURL=dbuserInfo.ImageURL;
+
+            var upNickName = upUserAndInfo.NickName == null ? dbnickName : upUserAndInfo.NickName.Trim();
+            var upSex = upUserAndInfo.Sex == null ? dbsex : upUserAndInfo.Sex.Trim();
+            var upImageURL=upUserAndInfo.UImageURL==null?dbuImageURL:upUserAndInfo.UImageURL;
 
             if (upSex != null && !(upSex == "男" | upSex == "女"))
             {
                 return DataStatus.DataError(1222, "用户性别不正确请检查！");
             }
 
-            var user = _usersRepository.GetId(id);
-            if (user == null)
-            {
-                return DataStatus.DataError(1114, "该用户不存在！");
-            }
-
-            var users = _usersRepository.Table.ToList();
-            var dbUname = users.Where(x => x.UName.Equals(upUName) && x.Id != id).ToList();//获取用户名
+            var dbUname = _usersRepository.Table.Where(x => x.UName.Equals(upUName) && x.Id != id).ToList();//获取用户名是否重复
             if (dbUname.Count != 0)
             {
                 return DataStatus.DataError(1112, "用户名已存在请更改！");
@@ -163,6 +160,7 @@ namespace Article.CMS.Api.Controllers
 
             dbuserInfo.NickName = upNickName;
             dbuserInfo.Sex = upSex;
+            dbuserInfo.ImageURL=upImageURL;
             dbuserInfo.UpdatedTime = DateTime.Now;
             dbuserInfo.Remarks = user.Remarks;
             _Context.SaveChanges();
@@ -179,6 +177,7 @@ namespace Article.CMS.Api.Controllers
                 MKey = upMKey,
                 NickName = upNickName,
                 Sex = upSex,
+                UImageURL=upImageURL,
                 IsActived = user.IsActived,
                 IsDeleted = user.IsDeleted,
                 CreatedTime = user.CreatedTime,
@@ -243,6 +242,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = user.Id,
                 NickName = "newU-" + user.Id,
                 Sex = newSex,
+                ImageURL="UploadFiles/DefaultImg.png",
                 IsActived = true,
                 IsDeleted = false,
                 CreatedTime = DateTime.Now,
@@ -262,7 +262,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = newMatterId,
                 MName = _Context.Matters.Where(x => x.Id == newMatterId).SingleOrDefault().MName,
                 MKey = newMKey,
-                UImageURL="UploadFiles/DefaultImg.png",
+                UImageURL = "UploadFiles/DefaultImg.png",
                 NickName = newNickName,
                 Sex = newSex,
                 IsActived = user.IsActived,
@@ -312,7 +312,7 @@ namespace Article.CMS.Api.Controllers
                 MatterId = per.MatterId,
                 MName = _Context.Matters.Where(x => x.Id == per.MatterId).SingleOrDefault().MName,
                 MKey = per.MKey,
-                UImageURL=pet.ImageURL,
+                UImageURL = pet.ImageURL,
                 NickName = pet.NickName,
                 Sex = pet.Sex,
                 IsActived = per.IsActived,
@@ -324,38 +324,7 @@ namespace Article.CMS.Api.Controllers
 
             return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
         }
-
-        // /// <summary>
-        // /// 创建token验证
-        // /// </summary>
-        // /// <param name="newUser"></param>
-        // /// <returns></returns>
-        // [AllowAnonymous]
-        // [HttpPost, Route("token")]
-        // public dynamic GetToken(UsersParams newUser)
-        // {
-        //     var username = newUser.UName.Trim();
-        //     var password = newUser.Upassword.Trim();
-
-        //     var user =
-        //         _usersRepository
-        //             .Table
-        //             .Where(x =>
-        //                 x.UName == username && x.Upassword == password)
-        //             .FirstOrDefault();
-
-        //     if (user == null)
-        //     {
-        //         return DataStatus.DataError(1117, "账号或密码不正确！");
-        //     }
-
-        //     var token =
-        //         TokenHelper.GenerateToekn(_tokenParameter, user.UName);
-        //     var refreshToken = "112358";
-
-        //     return DataStatus.DataSuccess(1000, new { Token = token, refreshToken = refreshToken }, "登录成功！");
-        // }
-
+        
         /// <summary>
         /// 刷新token验证
         /// </summary>
