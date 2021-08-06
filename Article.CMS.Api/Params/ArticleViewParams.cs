@@ -18,7 +18,7 @@ namespace Article.CMS.Api.Params
         //文章标题
         public string ATitle { get; set; }
         //文章标题图片
-        public int ImageId { get; set; }
+        public string AImageUrl { get; set; }
         //文章简介
         public string AIntro { get; set; }
         //文章内容

@@ -1,8 +1,4 @@
-### 转码测试
-GET http://localhost:5000/BackArticle/addArticle HTTP/1.1
 
-### 获取所有图片
-GET http://localhost:5000/UploadFile/getimgs HTTP/1.1
 
 
 ### 前端文章获取
@@ -214,6 +210,9 @@ DELETE http://localhost:5000/BackUser/deleteuserInfo/7 HTTP/1.1
 
 ### 模糊查询用户昵称
 GET http://localhost:5000/BackUser/likeNickName/管 HTTP/1.1
+
+### 后台文章获取
+GET http://localhost:5000/BackArticle HTTP/1.1
 
 
 

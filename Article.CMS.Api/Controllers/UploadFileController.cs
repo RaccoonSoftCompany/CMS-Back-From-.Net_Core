@@ -85,7 +85,8 @@ namespace Article.CMS.Api.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("Aimg/{aId}}")]
+        [HttpPost]
+        [Route("Aimg/{aId}")]
         public string UploadFile(int aId, IFormCollection model)
         {
             var articleId = aId;
