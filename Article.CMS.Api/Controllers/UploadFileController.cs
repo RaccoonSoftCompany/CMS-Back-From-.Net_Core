@@ -10,6 +10,7 @@ using Article.CMS.Api.Repository;
 using Microsoft.Net.Http.Headers;
 using Article.CMS.Api.Entity;
 using System.Linq;
+using Article.CMS.Api.Database;
 
 namespace Article.CMS.Api.Controllers
 {
@@ -20,6 +21,7 @@ namespace Article.CMS.Api.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IRepository<ImagesUrl> _fileInfoRepository;
+        ArticleCmsdb _Context = new ArticleCmsdb();
 
         public UploadFileController(IConfiguration configuration, IRepository<ImagesUrl> fileInfoRepository)
         {
@@ -28,8 +30,8 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
-        [Route("userimage")]
-        public string userimage(IFormCollection model)
+        [Route("userimage/{userId}")]
+        public string userimage(int userId, IFormCollection model)
         {
             // 获得当前应用所在的完整路径（绝对地址）
             var filePath = Directory.GetCurrentDirectory();
@@ -44,6 +46,7 @@ namespace Article.CMS.Api.Controllers
             {
                 Directory.CreateDirectory(preFullPath);
             }
+            var userInfo = _Context.UserInfos.Where(x => x.UserId == userId).SingleOrDefault();
 
             var resultPath = new List<string>();
             foreach (IFormFile file in model.Files)
@@ -60,17 +63,12 @@ namespace Article.CMS.Api.Controllers
                     }
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
+                    userInfo.ImageURL = tempPath;
+                    _Context.SaveChanges();
                 }
             }
 
-            var res = new
-            {
-                Code = 1000,
-                Data = resultPath,
-                Msg = "上传成功"
-            };
-
-            return JsonHelper.Serialize(res);
+            return DataStatus.DataSuccess(1000, userInfo.ImageURL, "插入头像成功！");
         }
 
 
