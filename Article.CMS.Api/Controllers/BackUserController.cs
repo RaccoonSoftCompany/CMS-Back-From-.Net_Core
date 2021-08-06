@@ -67,7 +67,11 @@ namespace Article.CMS.Api.Controllers
                 return DataStatus.DataError(1118, "该用户权限不足！");
             }
 
-            return DataStatus.DataSuccess(1000, user, "登录成功！");
+             var token =
+                TokenHelper.GenerateToekn(_tokenParameter, user.UName);
+            var refreshToken = "112358";
+
+            return DataStatus.DataSuccess(1000, new{UId=user.Id,UName=user.UName,Token = token, refreshToken = refreshToken}, "登录成功！");
         }
 
         [HttpGet]
