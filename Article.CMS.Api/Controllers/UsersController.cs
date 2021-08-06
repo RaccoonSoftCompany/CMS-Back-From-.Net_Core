@@ -64,10 +64,10 @@ namespace Article.CMS.Api.Controllers
 
             var token = TokenHelper.GenerateToekn(_tokenParameter, user.UName);
             var refreshToken = "112358";
-            
+
             var userInfos = _Context.UserInfos.Where(x => x.UserId == user.Id).SingleOrDefault();
             var nickName = userInfos == null ? user.UName : userInfos.NickName;
-            var uImageUrl = userInfos == null ? "UploadFiles/userimage/dfc27506d3d74f97855780616047c200.webp" : userInfos.ImageURL;
+            var uImageUrl = userInfos == null ? null : userInfos.ImageURL;
             return DataStatus.DataSuccess(1000, new { ID = user.Id, UName = user.UName, NickName = nickName, UImageUrl = uImageUrl, Token = token, refreshToken = refreshToken }, "登录成功！");
         }
 
@@ -250,42 +250,6 @@ namespace Article.CMS.Api.Controllers
             _usersRepository.Update(user);
 
             return DataStatus.DataSuccess(1000, user, "密码修改成功！");
-        }
-
-        /// <summary>
-        /// 创建token验证
-        /// </summary>
-        /// <param name="newUser"></param>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [HttpPost, Route("token")]
-        public dynamic GetToken(UsersParams newUser)
-        {
-            var username = newUser.UName.Trim();
-            var password = newUser.Upassword.Trim();
-
-            var user =
-                _usersRepository
-                    .Table
-                    .Where(x =>
-                        x.UName == username && x.Upassword == password)
-                    .FirstOrDefault();
-
-            if (user == null)
-            {
-                return DataStatus.DataError(1117, "账号或密码不正确！");
-            }
-
-            var token =
-                TokenHelper.GenerateToekn(_tokenParameter, user.UName);
-            var refreshToken = "112358";
-
-            return new
-            {
-                Code = 1000,
-                Data = new { Token = token, refreshToken = refreshToken },
-                Msg = "用户登录成功^_^"
-            };
         }
 
         /// <summary>
