@@ -82,7 +82,7 @@ namespace Article.CMS.Api.Controllers
         public dynamic Get()
         {
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
-            var UserInfoViewParams = _Context.UserInfos.Join(_usersRepository.Table, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
+            var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
             {
                 Id = per.Id,
                 UName = per.UName,
@@ -324,7 +324,7 @@ namespace Article.CMS.Api.Controllers
 
             return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
         }
-        
+
         /// <summary>
         /// 刷新token验证
         /// </summary>
