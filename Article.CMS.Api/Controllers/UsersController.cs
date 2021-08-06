@@ -126,6 +126,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = Isuser.Id,
                 NickName = "newU-" + Isuser.Id,
                 Sex = null,
+                ImageURL="UploadFiles/DefaultImg.png",
                 IsActived = true,
                 IsDeleted = false,
                 CreatedTime = DateTime.Now,
