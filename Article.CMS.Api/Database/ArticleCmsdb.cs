@@ -20,7 +20,7 @@ namespace Article.CMS.Api.Database
         public DbSet<UserInfos> UserInfos { get; set; } //要生成的用户信息数据表
         public DbSet<Articles> Articles { get; set; } //要生成的文章数据表
         public DbSet<ArticleTexts> ArticleTexts { get; set; } //要生成的文章内容数据表
-        public DbSet<ArticleTextImages> ArticleTextImages { get; set; } //要生成的文章内容图片数据表
+        public DbSet<ImagesUrl> ImagesUrl { get; set; } //要生成的文章内容图片数据表
         public DbSet<ArticleTalks> ArticleTalks { get; set; } //要生成的文章评论数据表
         public DbSet<ArticleReads> ArticleReads { get; set; } //要生成的文章访问数据表
         public DbSet<ArticleAPraises> ArticleAPraises { get; set; } //要生成的文章点赞数据表
@@ -359,7 +359,6 @@ namespace Article.CMS.Api.Database
                     Id = 1,
                     ArticleId = 1,
                     AText = "测试数据",
-                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -371,7 +370,6 @@ namespace Article.CMS.Api.Database
                     Id = 2,
                     ArticleId = 2,
                     AText = "测试数据",
-                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -382,7 +380,6 @@ namespace Article.CMS.Api.Database
                     Id = 3,
                     ArticleId = 3,
                     AText = "测试数据",
-                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -393,7 +390,6 @@ namespace Article.CMS.Api.Database
                     Id = 4,
                     ArticleId = 4,
                     AText = "测试数据",
-                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,
@@ -404,7 +400,6 @@ namespace Article.CMS.Api.Database
                     Id = 5,
                     ArticleId = 5,
                     AText = "测试数据",
-                    isATimage = false,
                     IsActived = true,
                     IsDeleted = false,
                     CreatedTime = DateTime.Now,

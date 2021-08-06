@@ -6,6 +6,8 @@ namespace Article.CMS.Api.Params
     /// </summary>
     public class UserInfoViewParams
     {
+        //用户头像
+        public int UImageId {get;set;}
         //用户id
         public int Id { get; set; }
         //用户名

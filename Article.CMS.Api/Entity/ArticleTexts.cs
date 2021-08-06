@@ -14,11 +14,5 @@ namespace Article.CMS.Api.Entity
         //文章内容
         public string AText { get; set; }
 
-        //是否有图片
-        public bool isATimage { get; set; }
-
-        public virtual IEnumerable<ArticleTextImages> ArticleTextImages { get; set; }
-
-
     }
 }

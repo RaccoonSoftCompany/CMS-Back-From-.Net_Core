@@ -1,5 +1,5 @@
 ### 转码测试
-GET http://localhost:5000/BackArticle/aaddArticle HTTP/1.1
+GET http://localhost:5000/BackArticle/addArticle HTTP/1.1
 
 
 

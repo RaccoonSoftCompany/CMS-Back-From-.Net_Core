@@ -30,50 +30,60 @@ namespace Article.CMS.Api.Controllers
         }
 
         [HttpPost]
-        [Route("aaddArticle")]
-        public dynamic aaddArticle(addArticleandTextParams ArticleandText)
+        [Route("addArticle")]
+        public dynamic addArticle(addArticleandTextParams ArticleandText)
         {
-            var title=ArticleandText.ATitle;
-            var text=ArticleandText.AText;
-            var aIntro=ArticleandText.AIntro;
+            var title = ArticleandText.ATitle;
+            var aIntro = ArticleandText.AIntro;
+            var text = ArticleandText.AText;
 
-            var s=new Articles
+            var Article = new Articles
             {
-                UserId=ArticleandText.UserId,
-                ATitle=title,
-                AIntro=aIntro
+                UserId = ArticleandText.UserId,
+                ATitle = title,
+                AIntro = aIntro
             };
 
-            _ArticlesRepository.Insert(s);
+            _ArticlesRepository.Insert(Article);
 
-            var aid=s.Id;
+            var aid = Article.Id;
 
-            var stext=new ArticleTexts
+            var ATtext = new ArticleTexts
             {
-                ArticleId=aid,
-                AText=HttpUtility.HtmlEncode(text)
+                ArticleId = aid,
+                AText = HttpUtility.HtmlEncode(text)
             };
 
-            _Context.ArticleTexts.Add(stext);
+            _Context.ArticleTexts.Add(ATtext);
             _Context.SaveChanges();
 
-        
-            return DataStatus.DataSuccess(1000, stext, "测试");
+
+            return DataStatus.DataSuccess(1000, ATtext, "插入文章成功");
 
         }
 
-        [HttpGet]
-        /// <summary>
-        /// 获取数据请求
-        /// </summary>
-        /// <returns></returns>
-        public dynamic Get()
-        {
-            var html=_Context.ArticleTexts.Where(x=>x.Id==6).SingleOrDefault().AText;
-            var temp = HttpUtility.HtmlDecode(html);
-            return DataStatus.DataSuccess(1000, temp, "测试");
-        }
 
 
+
+
+
+
+
+
+
+
+
+
+        // [HttpGet]
+        // /// <summary>
+        // /// 获取数据请求
+        // /// </summary>
+        // /// <returns></returns>
+        // public dynamic Get()
+        // {
+        //     var html = _Context.ArticleTexts.Where(x => x.Id == 6).SingleOrDefault().AText;
+        //     var temp = HttpUtility.HtmlDecode(html);
+        //     return DataStatus.DataSuccess(1000, temp, "测试");
+        // }
     }
 }
