@@ -36,17 +36,16 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get()
         {
-                        var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            
+            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
             {
                 Id = pet.Id,
-                UserId = per.UserId,
                 NickName = per.NickName,
                 UImageURL=per.ImageURL,
                 ATitle = pet.ATitle,
-                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
-                AText=HttpUtility.HtmlDecode(_Context.ArticleTexts.Where(x=>x.ArticleId==pet.Id).SingleOrDefault().AText),
                 CreatedTime = pet.CreatedTime,
+                UpdatedTime=_Context.ArticleTexts.Where(x=>x.ArticleId==pet.Id).SingleOrDefault().UpdatedTime>pet.UpdatedTime?_Context.ArticleTexts.Where(x=>x.ArticleId==pet.Id).SingleOrDefault().UpdatedTime:pet.UpdatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
                 APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count(),
