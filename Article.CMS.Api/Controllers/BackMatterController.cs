@@ -129,10 +129,18 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likeMname/{mName}")]
-        public dynamic likeMname(string mName)
+        public dynamic likeMname(string mName, [FromQuery] PagerParams pager)
         {
+            var pageIndex = pager.PageIndex;
+            var pageSize = pager.PageSize;
             var dbLikeMName = _mattersRepository.Table.Where(x => x.MName.Contains(mName)).ToList();
-            return DataStatus.DataSuccess(1000, dbLikeMName, "查询成功！");
+            var likeName = dbLikeMName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return JsonHelper.Serialize(new
+            {
+                Code = 1000,
+                Data = new { Data = likeName, Pager = new { pageIndex, pageSize, rowsTotal = dbLikeMName.Count() } },
+                Msg = "获取用户列表成功^_^"
+            });
 
         }
     }

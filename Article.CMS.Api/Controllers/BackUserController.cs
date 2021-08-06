@@ -75,8 +75,11 @@ namespace Article.CMS.Api.Controllers
         /// 获取数据请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get()
+        public dynamic Get([FromQuery] PagerParams pager)
         {
+            var pageIndex = pager.PageIndex;
+            var pageSize = pager.PageSize;
+            // var searchText = string.IsNullOrEmpty(pager.SearchText)? "" : pager.SearchText.Trim();
             //获取用户表
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
@@ -99,7 +102,19 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取用户模块成功");
+            // if(!string.IsNullOrEmpty(keyword))
+            // {
+            //     UserInfoViewParams=UserInfoViewParams.UName.Count(keyword);
+            // }
+
+            var User = UserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            return JsonHelper.Serialize(new
+            {
+                Code = 1000,
+                Data = new { Data = User, Pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() } },
+                Msg = "获取用户列表成功^_^"
+            });
         }
 
         /// <summary>
@@ -292,8 +307,10 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likeNickName/{NickName}")]
-        public dynamic likeNickName(string nickName)
+        public dynamic likeNickName(string nickName, [FromQuery] PagerParams pager)
         {
+            var pageIndex = pager.PageIndex;
+            var pageSize = pager.PageSize;
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
@@ -315,7 +332,18 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
+            if (!string.IsNullOrEmpty(nickName))
+            {
+                UserInfoViewParams = UserInfoViewParams.Where(x => x.NickName.Contains(nickName));
+            }
+            var User = UserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return JsonHelper.Serialize(new
+            {
+                Code = 1000,
+                Data = new { Data = User, Pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() } },
+                Msg = "获取用户列表成功^_^"
+            });
         }
 
         /// <summary>
