@@ -102,8 +102,8 @@ namespace Article.CMS.Api
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "UploadFiles/")),
-                RequestPath = "/UploadFiles/"
+                    Path.Combine(Directory.GetCurrentDirectory(), "UploadFiles")),
+                RequestPath = "/UploadFiles"
             });
 
             //注册token的中间件
