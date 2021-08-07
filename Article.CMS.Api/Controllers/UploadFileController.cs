@@ -28,7 +28,6 @@ namespace Article.CMS.Api.Controllers
             _configuration = configuration;
             _fileInfoRepository = fileInfoRepository;
         }
-        
 
         /// <summary>
         /// 头像上传
@@ -78,16 +77,14 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, userInfo.ImageURL, "插入头像成功！");
         }
 
-
-
         /// <summary>
-        /// 文章图片上传
+        /// 文章标题图片上传
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Aimg/{aId}")]
-        public string UploadFile(int aId, IFormCollection model)
+        [Route("TitleImage/{aId}")]
+        public string TitleImage(int aId, IFormCollection model)
         {
             var articleId = aId;
             var isArticle = _Context.Articles.Where(x => x.Id == articleId).SingleOrDefault();
@@ -100,7 +97,7 @@ namespace Article.CMS.Api.Controllers
             var filePath = Directory.GetCurrentDirectory();
 
             // 通过配置文件获得存放文件的相对路径
-            string path = _configuration["UploadFilesPath"];
+            string path = _configuration["UpTitleImage"];
 
             // 最终存放文件的完整路径
             var preFullPath = Path.Combine(filePath, path);
@@ -141,7 +138,76 @@ namespace Article.CMS.Api.Controllers
             _Context.Articles.Update(isArticle);
             _Context.SaveChanges();
 
-            return DataStatus.DataSuccess(1000, resultPath, "插入文章成功！");
+            return DataStatus.DataSuccess(1000, resultPath, "插入文章标题图片成功！");
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// 文章图片上传
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost("{uId}")]
+        public string UploadFile(int uId, IFormCollection model)
+        {
+            var userId = uId;
+            var isUsers = _Context.Articles.Where(x => x.Id == userId).SingleOrDefault();
+
+            if (isUsers == null)
+            {
+                return DataStatus.DataError(1221, "该用户不存在！");
+            }
+
+            // 获得当前应用所在的完整路径（绝对地址）
+            var filePath = Directory.GetCurrentDirectory();
+
+            // 通过配置文件获得存放文件的相对路径
+            string path = _configuration["UploadFilesPath"];
+
+            // 最终存放文件的完整路径
+            var preFullPath = Path.Combine(filePath, path);
+            // 如果路径不存在，则创建
+            if (!Directory.Exists(preFullPath))
+            {
+                Directory.CreateDirectory(preFullPath);
+            }
+
+            var resultPath = new List<string>();
+
+            foreach (IFormFile file in model.Files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = file.FileName;
+                    var extName = fileName.Substring(fileName.LastIndexOf("."));//extName包含了“.”
+                    var rndName = Guid.NewGuid().ToString("N") + extName;
+                    var tempPath = Path.Combine(path, rndName).Replace("\\", "/");
+                    using (var stream = new FileStream(Path.Combine(filePath, tempPath), FileMode.CreateNew))//Path.Combine(_env.WebRootPath, fileName)
+                    {
+                        file.CopyTo(stream);
+                    }
+                    var tmpFile = new ImagesUrl
+                    {
+                        OriginName = fileName,
+                        CurrentName = rndName,
+                        ATImageUrl = tempPath,
+                        UserId = userId
+                    };
+
+                    _fileInfoRepository.Insert(tmpFile);
+                    // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
+                    resultPath.Add(tempPath.Replace("\\", "/"));
+                    // isArticle.ATitleImageUrl = tempPath;//插入路径
+                }
+            }
+            // _Context.Articles.Update(isArticle);
+            // _Context.SaveChanges();
+
+            return DataStatus.DataSuccess(1000, resultPath, "插入图片成功！");
         }
 
         // [HttpGet]
