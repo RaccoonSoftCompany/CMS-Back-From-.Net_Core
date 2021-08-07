@@ -55,7 +55,13 @@ namespace Article.CMS.Api.Controllers
 
             var article = articles.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
-            return DataStatus.DataSuccess(1000, article.OrderByDescending(x => x.CreatedTime), "获取文章成功");
+            
+            return JsonHelper.Serialize(new
+            {
+                Code = 1000,
+                Data = new { Data = article.OrderByDescending(x => x.CreatedTime), Pager = new { pageIndex, pageSize, rowsTotal = articles.Count() } },
+                Msg = "获取用户列表成功^_^"
+            });
         }
 
         [HttpGet]
@@ -201,11 +207,10 @@ namespace Article.CMS.Api.Controllers
             }
 
             var aTitle = ArticleandText.ATitle;
-            var uImageURL = ArticleandText.UImageURL;
             var aIntro = ArticleandText.AIntro;
             var aText = ArticleandText.AText;
 
-            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(uImageURL) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
+            if (string.IsNullOrEmpty(aTitle)  || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
@@ -214,7 +219,6 @@ namespace Article.CMS.Api.Controllers
             {
                 UserId = isUser.Id,
                 ATitle = aTitle,
-                ATitleImageUrl = uImageURL,
                 AIntro = aIntro
             };
 
