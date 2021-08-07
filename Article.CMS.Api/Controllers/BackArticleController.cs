@@ -114,7 +114,50 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, aTalkUser, "获取评论用户成功");
         }
 
+        /// <summary>
+        /// 删除阅读人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteReadUser/{id}")]
+        public dynamic deleteReadUser(int id)
+        {
+            var ARid = _Context.ArticleReads.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleReads.Remove(ARid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
 
+        /// <summary>
+        /// 删除评论人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteTalkUser/{id}")]
+        public dynamic deleteTalkUser(int id)
+        {
+            var ATid = _Context.ArticleTalks.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleTalks.Remove(ATid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
+
+        /// <summary>
+        /// 删除点赞人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteAPraiseUser/{id}")]
+        public dynamic deleteAPraiseUser(int id)
+        {
+            var APid = _Context.ArticleAPraises.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleAPraises.Remove(APid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
 
         /// <summary>
         /// 插入文章
