@@ -201,11 +201,10 @@ namespace Article.CMS.Api.Controllers
             }
 
             var aTitle = ArticleandText.ATitle;
-            var uImageURL = ArticleandText.UImageURL;
             var aIntro = ArticleandText.AIntro;
             var aText = ArticleandText.AText;
 
-            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(uImageURL) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
+            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
@@ -214,7 +213,7 @@ namespace Article.CMS.Api.Controllers
             {
                 UserId = isUser.Id,
                 ATitle = aTitle,
-                ATitleImageUrl = uImageURL,
+                ATitleImageUrl = "UploadFiles/Article.jpg",
                 AIntro = aIntro
             };
 
