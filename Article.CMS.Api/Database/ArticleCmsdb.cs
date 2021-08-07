@@ -28,7 +28,8 @@ namespace Article.CMS.Api.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)  //重写这个方法并且连上我们的数据库
         {
-            options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
+            // options.UseSqlServer(@"server=.;database=ArticleCms;uid=sa;pwd=123456");
+            options.UseNpgsql(@"host=8.129.118.192;database=ArticleCms;uid=postgres;pwd=%Sfy010102.%");
         }
 
         /// <summary>
