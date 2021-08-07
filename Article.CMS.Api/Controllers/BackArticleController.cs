@@ -160,6 +160,29 @@ namespace Article.CMS.Api.Controllers
         }
 
         /// <summary>
+        /// 删除文章所有信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteArticle/{id}")]
+        public dynamic deleteArticle(int id)
+        {
+            var AR = _Context.ArticleReads.Where(x => x.ArticleId == id);//阅读
+            _Context.ArticleReads.RemoveRange(AR);
+            var AT = _Context.ArticleTalks.Where(x => x.ArticleId == id);//评论
+            _Context.ArticleTalks.RemoveRange(AT);
+            var AP = _Context.ArticleAPraises.Where(x => x.ArticleId == id);//点赞
+            _Context.ArticleAPraises.RemoveRange(AP);
+            var ATT = _Context.ArticleTexts.Where(x => x.ArticleId == id);//点赞
+            _Context.ArticleTexts.RemoveRange(ATT);
+            _Context.SaveChanges();
+            _ArticlesRepository.Delete(id);
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
+
+
+        /// <summary>
         /// 插入文章
         /// </summary>
         /// <param name="ArticleandText"></param>

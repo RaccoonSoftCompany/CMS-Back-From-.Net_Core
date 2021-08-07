@@ -232,6 +232,8 @@ DELETE http://localhost:5000/BackArticle/deleteTalkUser/2 HTTP/1.1
 ### 删除用户评论详情（评论Id)
 DELETE http://localhost:5000/BackArticle/deleteAPraiseUser/2 HTTP/1.1
 
+### 删除文章以及关联信息
+DELETE http://localhost:5000/BackArticle/deleteArticle/2 HTTP/1.1
 
 
 
