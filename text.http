@@ -246,7 +246,8 @@ Content-Type: application/json
    "AText":"77777777777775555555555555555"
 }
 
-
+### 
+GET http://cmsapi.ssffyy.com:8090/BackArticle HTTP/1.1
 
 
 
