@@ -81,14 +81,11 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Get([FromQuery] PagerParams pager)
         {
-<<<<<<< HEAD
             var pageIndex = pager.PageIndex;
             var pageSize = pager.PageSize;
             // var searchText = string.IsNullOrEmpty(pager.SearchText)? "" : pager.SearchText.Trim();
             //获取用户表
             var articles = _usersRepository.Table.ToList();
-=======
->>>>>>> b5ad806d89d54aa6d7b35097c60652f40e5ada7f
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
             {
