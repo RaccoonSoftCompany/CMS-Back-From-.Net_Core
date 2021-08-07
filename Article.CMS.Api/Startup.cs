@@ -82,29 +82,30 @@ namespace Article.CMS.Api
             }
 
             app.UseRouting();
+            app.UseStaticFiles(); // For the wwwroot folder
 
-            // #region 静态资源中间件 http://localhost:5000/uploadfiles/……
-            // // string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"UploadFiles");
-            // // if (!Directory.Exists(filepath))
-            // //     Directory.CreateDirectory(filepath);
+
+            #region 静态资源中间件 http://localhost:5000/uploadfiles/……
+            string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"UploadFiles");
+            if (!Directory.Exists(filepath))
+                Directory.CreateDirectory(filepath);
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"UploadFiles")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/UploadFiles")
+            }
+            );
+
+            #endregion
+
+
             // app.UseStaticFiles(new StaticFileOptions
             // {
             //     FileProvider = new PhysicalFileProvider(
             //         Path.Combine(Directory.GetCurrentDirectory(), @"UploadFiles")),
-            //     RequestPath = new Microsoft.AspNetCore.Http.PathString("/UploadFiles")
-            // }
-            // );
-
-            // #endregion
-
-            app.UseStaticFiles(); // For the wwwroot folder
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "UploadFiles")),
-                RequestPath = "/UploadFiles"
-            });
+            //     RequestPath = "/UploadFiles"
+            // });
 
             //注册token的中间件
             app.UseAuthentication();
