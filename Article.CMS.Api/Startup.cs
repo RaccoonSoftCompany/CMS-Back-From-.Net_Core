@@ -39,6 +39,7 @@ namespace Article.CMS.Api
 
             // 注入数据库上下文
             services.AddDbContext<ArticleCmsdb>(o => o.UseSqlServer());
+            // services.AddDbContext<ArticleCmsdb>(o => o.UseNpgsql(Configuration.GetConnectionString("PostgreSQL")));
             services.AddCors(m => m.AddPolicy("Any", a => a.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
 
             // 注入 IRepository接口及其实现类
