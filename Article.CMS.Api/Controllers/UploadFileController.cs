@@ -141,7 +141,7 @@ namespace Article.CMS.Api.Controllers
             _Context.Articles.Update(isArticle);
             _Context.SaveChanges();
 
-            return DataStatus.DataSuccess(1000, isArticle, "插入文章成功！");
+            return DataStatus.DataSuccess(1000, resultPath, "插入文章成功！");
         }
 
         // [HttpGet]

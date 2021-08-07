@@ -114,6 +114,72 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, aTalkUser, "获取评论用户成功");
         }
 
+        /// <summary>
+        /// 删除阅读人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteReadUser/{id}")]
+        public dynamic deleteReadUser(int id)
+        {
+            var ARid = _Context.ArticleReads.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleReads.Remove(ARid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
+
+        /// <summary>
+        /// 删除评论人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteTalkUser/{id}")]
+        public dynamic deleteTalkUser(int id)
+        {
+            var ATid = _Context.ArticleTalks.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleTalks.Remove(ATid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
+
+        /// <summary>
+        /// 删除点赞人员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteAPraiseUser/{id}")]
+        public dynamic deleteAPraiseUser(int id)
+        {
+            var APid = _Context.ArticleAPraises.Where(x => x.Id == id).SingleOrDefault();
+            _Context.ArticleAPraises.Remove(APid);
+            _Context.SaveChanges();
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
+
+        /// <summary>
+        /// 删除文章所有信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteArticle/{id}")]
+        public dynamic deleteArticle(int id)
+        {
+            var AR = _Context.ArticleReads.Where(x => x.ArticleId == id);//阅读
+            _Context.ArticleReads.RemoveRange(AR);
+            var AT = _Context.ArticleTalks.Where(x => x.ArticleId == id);//评论
+            _Context.ArticleTalks.RemoveRange(AT);
+            var AP = _Context.ArticleAPraises.Where(x => x.ArticleId == id);//点赞
+            _Context.ArticleAPraises.RemoveRange(AP);
+            var ATT = _Context.ArticleTexts.Where(x => x.ArticleId == id);//点赞
+            _Context.ArticleTexts.RemoveRange(ATT);
+            _Context.SaveChanges();
+            _ArticlesRepository.Delete(id);
+            return DataStatus.DataSuccess(1000, new { id = id }, "删除成功！");
+        }
 
 
         /// <summary>
