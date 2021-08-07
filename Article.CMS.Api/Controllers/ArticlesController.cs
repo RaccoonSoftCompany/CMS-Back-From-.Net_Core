@@ -41,14 +41,14 @@ namespace Article.CMS.Api.Controllers
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ImageId = 1,
+                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
                 ATalkCount = _Context.ArticleTalks.Where(x => x.ArticleId == pet.Id).Count(),
                 APraiseCount = _Context.ArticleAPraises.Where(x => x.ArticleId == pet.Id).Count()
             });
-            return DataStatus.DataSuccess(1000, articles.OrderByDescending(x => x.CreatedTime), "获取文章成功");
+            return DataStatus.DataSuccess(1000, articles.OrderByDescending(x => x.CreatedTime), "获取文章列表成功");
         }
 
 
@@ -69,7 +69,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ImageId = 1,
+                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 AText = HttpUtility.HtmlDecode(_Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().AText),
                 CreatedTime = pet.CreatedTime,
@@ -95,7 +95,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ImageId = 1,
+                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
@@ -121,7 +121,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ImageId = 1,
+                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),
@@ -147,7 +147,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = per.UserId,
                 NickName = per.NickName,
                 ATitle = pet.ATitle,
-                ImageId = 1,
+                AImageUrl=pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 AReadCount = _Context.ArticleReads.Where(x => x.ArticleId == pet.Id).Count(),

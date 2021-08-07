@@ -11,18 +11,22 @@ namespace Article.CMS.Api.Params
         public int Id { get; set; }
         //用户id
         public int UserId { get; set; }
+        //用户头像
+        public string UImageURL { get; set; }
         //用户昵称
         public string NickName { get; set; }
         //文章标题
         public string ATitle { get; set; }
         //文章标题图片
-        public int ImageId { get; set; }
+        public string AImageUrl { get; set; }
         //文章简介
         public string AIntro { get; set; }
         //文章内容
         public string AText { get; set; }
         //创建时间
         public DateTime CreatedTime { get; set; }
+        //更新时间
+        public DateTime UpdatedTime { get; set; }
         //阅读量
         public int AReadCount { get; set; }
         //评论量

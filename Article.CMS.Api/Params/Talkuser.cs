@@ -11,6 +11,8 @@ namespace Article.CMS.Api.Entity
         public int TalkId { get; set; }
         //用户id
         public int UserId { get; set; }
+        //用户头像
+        public string UImageURL { get; set; }
         //用户昵称
         public string UNickName { get; set; }
         //评论内容

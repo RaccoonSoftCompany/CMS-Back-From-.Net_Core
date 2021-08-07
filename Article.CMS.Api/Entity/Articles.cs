@@ -17,7 +17,7 @@ namespace Article.CMS.Api.Entity
         public string AIntro { get; set; }
         
         //文章标题图片
-        public string ATitleImage { get; set; }
+        public string ATitleImageUrl { get; set; }
 
         public virtual IEnumerable<ArticleTexts> ArticleTexts { get; set; }
         public virtual IEnumerable<ArticleReads> ArticleReads { get; set; }

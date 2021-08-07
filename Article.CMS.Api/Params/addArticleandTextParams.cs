@@ -9,6 +9,8 @@ namespace Article.CMS.Api.Entity
         public int UserId { get; set; }
         //文章标题
         public string ATitle { get; set; }
+        //用户头像
+        public string UImageURL { get; set; }
         //文章简介
         public string AIntro { get; set; }
         //文章内容

@@ -28,7 +28,14 @@ namespace Article.CMS.Api.Controllers
             _configuration = configuration;
             _fileInfoRepository = fileInfoRepository;
         }
+        
 
+        /// <summary>
+        /// 头像上传
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("userimage/{userId}")]
         public string userimage(int userId, IFormCollection model)
@@ -74,13 +81,21 @@ namespace Article.CMS.Api.Controllers
 
 
         /// <summary>
-        /// 文件上传接口
+        /// 文章图片上传
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("Aimg/{userId}")]
-        public string UploadFile(int userId, IFormCollection model)
+        [HttpPost]
+        [Route("Aimg/{aId}")]
+        public string UploadFile(int aId, IFormCollection model)
         {
+            var articleId = aId;
+            var isArticle = _Context.Articles.Where(x => x.Id == articleId).SingleOrDefault();
+
+            if (isArticle == null)
+            {
+                return DataStatus.DataError(1221, "该文章不存在！");
+            }
             // 获得当前应用所在的完整路径（绝对地址）
             var filePath = Directory.GetCurrentDirectory();
 
@@ -96,6 +111,7 @@ namespace Article.CMS.Api.Controllers
             }
 
             var resultPath = new List<string>();
+
             foreach (IFormFile file in model.Files)
             {
                 if (file.Length > 0)
@@ -108,43 +124,37 @@ namespace Article.CMS.Api.Controllers
                     {
                         file.CopyTo(stream);
                     }
+                    // var tmpFile = new ImagesUrl
+                    // {
+                    //     OriginName = fileName,
+                    //     CurrentName = rndName,
+                    //     ATImageUrl = tempPath,
+                    //     UserId = userId
+                    // };
 
-                    var tmpFile = new ImagesUrl
-                    {
-                        OriginName = fileName,
-                        CurrentName = rndName,
-                        ATImageUrl = tempPath,
-                        UserId = userId
-                    };
-
-                    _fileInfoRepository.Insert(tmpFile);
-
+                    // _fileInfoRepository.Insert(tmpFile);
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
+                    isArticle.ATitleImageUrl = tempPath;//插入路径
                 }
             }
+            _Context.Articles.Update(isArticle);
+            _Context.SaveChanges();
 
-            var res = new
-            {
-                Code = 1000,
-                Data = resultPath,
-                Msg = "上传成功"
-            };
-
-            return JsonHelper.Serialize(res);
+            return DataStatus.DataSuccess(1000, isArticle, "插入文章成功！");
         }
 
-        [HttpGet]
-        [Route("getimgs")]
-        /// <summary>
-        /// 获取所有图片请求
-        /// </summary>
-        /// <returns></returns>
-        public dynamic Get()
-        {
-            var matters = _fileInfoRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
-        }
+        // [HttpGet]
+        // [Route("getimgs")]
+        // /// <summary>
+        // /// 获取所有图片请求
+        // /// </summary>
+        // /// <returns></returns>
+        // public dynamic Get()
+        // {
+        //     var matters = _fileInfoRepository.Table.ToList();
+        //     return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
+        // }
 
     }
 }
