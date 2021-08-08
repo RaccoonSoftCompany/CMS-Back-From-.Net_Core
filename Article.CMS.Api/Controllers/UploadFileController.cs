@@ -155,7 +155,7 @@ namespace Article.CMS.Api.Controllers
         public string UploadFile(int uId, IFormCollection model)
         {
             var userId = uId;
-            var isUsers = _Context.Articles.Where(x => x.Id == userId).SingleOrDefault();
+            var isUsers = _Context.Users.Where(x => x.Id == userId).SingleOrDefault();
 
             if (isUsers == null)
             {
