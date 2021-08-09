@@ -247,7 +247,7 @@ Content-Type: application/json
 }
 
 ### 
-POST http://cmsapi.ssffyy.com:8090/BackArticleUploadFile/userimage/1 HTTP/1.1
+GET http://cmsapi.ssffyy.com:8090/BackUser HTTP/1.1
 
 
 

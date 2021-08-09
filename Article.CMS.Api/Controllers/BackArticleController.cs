@@ -38,12 +38,13 @@ namespace Article.CMS.Api.Controllers
         {
             var pageIndex = pager.PageIndex;
             var pageSize = pager.PageSize;
-            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            var articles = _Context.Articles.Skip((pageIndex - 1) * pageSize).Take(pageSize).Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
             {
                 Id = pet.Id,
                 NickName = per.NickName,
                 UImageURL = per.ImageURL,
                 ATitle = pet.ATitle,
+                AImageUrl=pet.AImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 UpdatedTime = _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime > pet.UpdatedTime ? _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime : pet.UpdatedTime,
@@ -53,15 +54,10 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            var article = articles.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            // var article = articles;
 
             
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = article.OrderByDescending(x => x.CreatedTime), Pager = new { pageIndex, pageSize, rowsTotal = articles.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
+            return DataStatus.DataSuccess(1000, new { Data = articles.OrderByDescending(x => x.CreatedTime), Pager = new { pageIndex, pageSize, rowsTotal = articles.Count() } }, "获取文章列表成功");
         }
 
         [HttpGet]
