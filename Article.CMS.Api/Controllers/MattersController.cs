@@ -31,17 +31,8 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
        public dynamic Get([FromQuery] PagerParams pager)
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
-            var matters = _mattersRepository.Table;
-            var matter = matters.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = matter, Pager = new { pageIndex, pageSize, rowsTotal = matters.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
-        }
+            var matters = _mattersRepository.Table.ToList();
+            return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");        }
 
     }
 }

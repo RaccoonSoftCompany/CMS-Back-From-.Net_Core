@@ -36,18 +36,10 @@ namespace Article.CMS.Api.Controllers
         /// 获取所有权限请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get([FromQuery] PagerParams pager)
+        public dynamic Get()
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
-            var powers = _PowersRepository.Table;
-            var power = powers.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = power, Pager = new { pageIndex, pageSize, rowsTotal = powers.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
+            var powers = _PowersRepository.Table.ToList();
+            return DataStatus.DataSuccess(1000, powers, "获取密保问题成功！");
         }
 
         /// <summary>
@@ -157,21 +149,10 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likePower/{pName}")]
-        public dynamic likePower(string pName, [FromQuery] PagerParams pager)
+        public dynamic likePower(string pName)
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
-            
             var dbLikepName = _PowersRepository.Table.Where(x => x.PName.Contains(pName)).ToList();
-
-            var likeName = dbLikepName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = likeName, Pager = new { pageIndex, pageSize, rowsTotal = dbLikepName.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
+            return DataStatus.DataSuccess(1000, dbLikepName, "查询成功！");
 
         }
     }

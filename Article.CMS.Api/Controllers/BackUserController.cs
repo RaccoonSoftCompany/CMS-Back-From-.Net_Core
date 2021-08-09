@@ -79,13 +79,8 @@ namespace Article.CMS.Api.Controllers
         /// 获取所有用户数据请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get([FromQuery] PagerParams pager)
+        public dynamic Get()
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
-            // var searchText = string.IsNullOrEmpty(pager.SearchText)? "" : pager.SearchText.Trim();
-            //获取用户表
-            var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
             {
@@ -107,19 +102,7 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            // if(!string.IsNullOrEmpty(keyword))
-            // {
-            //     UserInfoViewParams=UserInfoViewParams.UName.Count(keyword);
-            // }
-
-            var User = UserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = User, Pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
+            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取用户模块成功");
         }
 
         /// <summary>
@@ -151,11 +134,11 @@ namespace Article.CMS.Api.Controllers
             var dbuserInfo = _Context.UserInfos.Where(x => x.UserId == id).SingleOrDefault();
             var dbnickName = dbuserInfo.NickName;
             var dbsex = dbuserInfo.Sex;
-            var dbuImageURL=dbuserInfo.ImageURL;
+            var dbuImageURL = dbuserInfo.ImageURL;
 
             var upNickName = upUserAndInfo.NickName == null ? dbnickName : upUserAndInfo.NickName.Trim();
             var upSex = upUserAndInfo.Sex == null ? dbsex : upUserAndInfo.Sex.Trim();
-            var upImageURL=upUserAndInfo.UImageURL==null?dbuImageURL:upUserAndInfo.UImageURL;
+            var upImageURL = upUserAndInfo.UImageURL == null ? dbuImageURL : upUserAndInfo.UImageURL;
 
             if (upSex != null && !(upSex == "男" | upSex == "女"))
             {
@@ -177,7 +160,7 @@ namespace Article.CMS.Api.Controllers
 
             dbuserInfo.NickName = upNickName;
             dbuserInfo.Sex = upSex;
-            dbuserInfo.ImageURL=upImageURL;
+            dbuserInfo.ImageURL = upImageURL;
             dbuserInfo.UpdatedTime = DateTime.Now;
             dbuserInfo.Remarks = user.Remarks;
             _Context.SaveChanges();
@@ -194,7 +177,7 @@ namespace Article.CMS.Api.Controllers
                 MKey = upMKey,
                 NickName = upNickName,
                 Sex = upSex,
-                UImageURL=upImageURL,
+                UImageURL = upImageURL,
                 IsActived = user.IsActived,
                 IsDeleted = user.IsDeleted,
                 CreatedTime = user.CreatedTime,
@@ -259,7 +242,7 @@ namespace Article.CMS.Api.Controllers
                 UserId = user.Id,
                 NickName = "newU-" + user.Id,
                 Sex = newSex,
-                ImageURL="UploadFiles/DefaultImg.png",
+                ImageURL = "UploadFiles/DefaultImg.png",
                 IsActived = true,
                 IsDeleted = false,
                 CreatedTime = DateTime.Now,
@@ -315,10 +298,8 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likeNickName/{NickName}")]
-        public dynamic likeNickName(string nickName, [FromQuery] PagerParams pager)
+        public dynamic likeNickName(string nickName)
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
@@ -341,18 +322,7 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            if (!string.IsNullOrEmpty(nickName))
-            {
-                UserInfoViewParams = UserInfoViewParams.Where(x => x.NickName.Contains(nickName));
-            }
-            var User = UserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-
-            return JsonHelper.Serialize(new
-            {
-                Code = 1000,
-                Data = new { Data = User, Pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() } },
-                Msg = "获取用户列表成功^_^"
-            });
+            return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
         }
 
         /// <summary>

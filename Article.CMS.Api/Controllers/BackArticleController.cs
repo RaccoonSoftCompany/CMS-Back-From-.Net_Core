@@ -34,10 +34,9 @@ namespace Article.CMS.Api.Controllers
         /// 获取数据请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get([FromQuery] PagerParams pager)
+        public dynamic Get()
         {
-            var pageIndex = pager.PageIndex;
-            var pageSize = pager.PageSize;
+
             var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
             {
                 Id = pet.Id,
@@ -54,10 +53,7 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            var article = articles.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
-            
-            return DataStatus.DataSuccess(1000, new { Data = articles.OrderByDescending(x => x.CreatedTime), Pager = new { pageIndex, pageSize, rowsTotal = articles.Count() } }, "获取文章列表成功");
+            return DataStatus.DataSuccess(1000, articles.OrderByDescending(x => x.CreatedTime), "获取文章成功");
         }
 
         [HttpGet]
