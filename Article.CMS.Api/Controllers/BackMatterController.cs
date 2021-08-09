@@ -50,7 +50,7 @@ namespace Article.CMS.Api.Controllers
                 pager = new { pageIndex, pageSize, rowsTotal = matters.Count() }
             };
 
-            return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");
+            return DataStatus.DataSuccess(1000, data, "获取密保问题成功！");
         }
 
         /// <summary>
