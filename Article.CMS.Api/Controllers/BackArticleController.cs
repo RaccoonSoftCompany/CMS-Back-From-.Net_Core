@@ -44,7 +44,7 @@ namespace Article.CMS.Api.Controllers
                 NickName = per.NickName,
                 UImageURL = per.ImageURL,
                 ATitle = pet.ATitle,
-                AImageUrl=pet.AImageUrl,
+                AImageUrl="http://localhost:5000"+pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 UpdatedTime = _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime > pet.UpdatedTime ? _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime : pet.UpdatedTime,
