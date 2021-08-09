@@ -299,7 +299,7 @@ namespace Article.CMS.Api.Controllers
 
             }
 
-            return DataStatus.DataSuccess(1000, new {}, "插入文章成功");
+            return DataStatus.DataSuccess(1000, new {}, "更新文章成功");
 
         }
 
