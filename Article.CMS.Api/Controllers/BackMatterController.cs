@@ -1,4 +1,4 @@
-    using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 using Article.CMS.Api.Repository;
@@ -29,6 +29,28 @@ namespace Article.CMS.Api.Controllers
         public BackMatterController(IConfiguration configuration, IRepository<Matters> mattersRepository)
         {
             _mattersRepository = mattersRepository;
+        }
+
+        [HttpGet]
+        /// <summary>
+        /// 获取所有问题请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Get([FromQuery] PagerParams query)
+        {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
+            var matters = _mattersRepository.Table.ToList();
+            var pgmatters = matters.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            var data = new
+            {
+                data = pgmatters,
+                pager = new { pageIndex, pageSize, rowsTotal = matters.Count() }
+            };
+
+            return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");
         }
 
         /// <summary>
@@ -90,14 +112,14 @@ namespace Article.CMS.Api.Controllers
             }
 
             var matters = _mattersRepository.Table.ToList();
-            var dbmattet = matters.Where(x => x.MName.Equals(mName) && x.Id!=id).SingleOrDefault();
+            var dbmattet = matters.Where(x => x.MName.Equals(mName) && x.Id != id).SingleOrDefault();
             if (dbmattet != null)
             {
                 return DataStatus.DataError(1331, "请勿使用相同问题！");
             }
 
             matter.MName = mName;
-            matter.Remarks=remarks;
+            matter.Remarks = remarks;
             _mattersRepository.Update(matter);
 
             return DataStatus.DataSuccess(1000, matter, "修改成功");
@@ -129,10 +151,25 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likeMname/{mName}")]
-        public dynamic likeMname(string mName)
+        public dynamic likeMname([FromQuery] PagerParams query, string mName)
         {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
             var dbLikeMName = _mattersRepository.Table.Where(x => x.MName.Contains(mName)).ToList();
-            return DataStatus.DataSuccess(1000, dbLikeMName, "查询成功！");
+
+            var pgdbLikeMName = dbLikeMName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            var data = new
+            {
+                data = pgdbLikeMName,
+                pager = new { pageIndex, pageSize, rowsTotal = dbLikeMName.Count() }
+            };
+
+
+            return DataStatus.DataSuccess(1000, data, "查询成功！");
+
+
 
         }
     }

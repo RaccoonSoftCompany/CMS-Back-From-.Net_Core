@@ -29,7 +29,7 @@ namespace Article.CMS.Api.Controllers
         /// 获取所有问题请求
         /// </summary>
         /// <returns></returns>
-       public dynamic Get([FromQuery] PagerParams pager)
+       public dynamic Get()
         {
             var matters = _mattersRepository.Table.ToList();
             return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");        

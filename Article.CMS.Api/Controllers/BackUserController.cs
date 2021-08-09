@@ -79,8 +79,11 @@ namespace Article.CMS.Api.Controllers
         /// 获取所有用户数据请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get()
+        public dynamic Get([FromQuery] PagerParams query)
         {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
             {
@@ -102,7 +105,18 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            return DataStatus.DataSuccess(1000, UserInfoViewParams, "获取用户模块成功");
+            var dbUserInfoViewParams=UserInfoViewParams.OrderBy(x => x.Id);
+            var pgUserInfoViewParams = dbUserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            var data = new
+            {
+                data = pgUserInfoViewParams,
+                pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() }
+            };
+
+
+
+            return DataStatus.DataSuccess(1000, data, "获取用户模块成功");
         }
 
         /// <summary>
@@ -298,8 +312,11 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likeNickName/{NickName}")]
-        public dynamic likeNickName(string nickName)
+        public dynamic likeNickName(string nickName, [FromQuery] PagerParams query)
         {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
             var articles = _usersRepository.Table.ToList();
             //把用户表和用户信息表链接拿出所需值赋给UserInfoViewParams实体
             var UserInfoViewParams = _Context.UserInfos.Join(_Context.Users, Pet => Pet.UserId, per => per.Id, (pet, per) => new UserInfoViewParams
@@ -322,7 +339,16 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            return DataStatus.DataSuccess(1000, UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList(), "查询成功！");
+            var dbUserInfoViewParams=UserInfoViewParams.Where(x => x.NickName.Contains(nickName)).ToList();
+            var pgUserInfoViewParams=dbUserInfoViewParams.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var data = new
+            {
+                data = pgUserInfoViewParams,
+                pager = new { pageIndex, pageSize, rowsTotal = UserInfoViewParams.Count() }
+            };
+
+
+            return DataStatus.DataSuccess(1000, data, "查询成功！");
         }
 
         /// <summary>

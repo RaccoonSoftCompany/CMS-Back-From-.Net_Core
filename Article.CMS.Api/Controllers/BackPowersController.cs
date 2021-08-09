@@ -42,12 +42,13 @@ namespace Article.CMS.Api.Controllers
             var pageSize = query.PageSize;//每页条数
 
             var powers = _PowersRepository.Table.ToList();
-            var pgPowers=powers.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var pgPowers = powers.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
-            var data=new{
-                data=pgPowers,
-                pager=new {pageIndex,pageSize,rowsTotal = powers.Count()}
-            }
+            var data = new
+            {
+                data = pgPowers,
+                pager = new { pageIndex, pageSize, rowsTotal = powers.Count() }
+            };
 
             return DataStatus.DataSuccess(1000, data, "获取密保问题成功！");
         }
@@ -159,10 +160,22 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("likePower/{pName}")]
-        public dynamic likePower(string pName)
+        public dynamic likePower([FromQuery] PagerParams query, string pName)
         {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
             var dbLikepName = _PowersRepository.Table.Where(x => x.PName.Contains(pName)).ToList();
-            return DataStatus.DataSuccess(1000, dbLikepName, "查询成功！");
+            var pgdbLikepName = dbLikepName.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            var data = new
+            {
+                data = pgdbLikepName,
+                pager = new { pageIndex, pageSize, rowsTotal = dbLikepName.Count() }
+            };
+
+
+            return DataStatus.DataSuccess(1000, data, "查询成功！");
 
         }
     }
