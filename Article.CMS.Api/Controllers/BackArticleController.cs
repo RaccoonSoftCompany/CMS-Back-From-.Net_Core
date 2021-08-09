@@ -45,7 +45,7 @@ namespace Article.CMS.Api.Controllers
                 NickName = per.NickName,
                 UImageURL = per.ImageURL,
                 ATitle = pet.ATitle,
-                AImageUrl=pet.ATitleImageUrl,
+                AImageUrl = pet.ATitleImageUrl,
                 AIntro = pet.AIntro,
                 CreatedTime = pet.CreatedTime,
                 UpdatedTime = _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime > pet.UpdatedTime ? _Context.ArticleTexts.Where(x => x.ArticleId == pet.Id).SingleOrDefault().UpdatedTime : pet.UpdatedTime,
@@ -63,7 +63,7 @@ namespace Article.CMS.Api.Controllers
                 pager = new { pageIndex, pageSize, rowsTotal = articles.Count() }
             };
 
-            
+
 
             return DataStatus.DataSuccess(1000, data, "获取文章成功");
         }
@@ -207,14 +207,14 @@ namespace Article.CMS.Api.Controllers
             var isUser = _Context.Users.Where(x => x.Id == ArticleandText.UserId).SingleOrDefault();
             if (isUser == null)
             {
-                return DataStatus.DataError(1114, "该用户不存在无法执行修改密码操作！");
+                return DataStatus.DataError(1114, "该用户不存在无法执行操作！");
             }
 
             var aTitle = ArticleandText.ATitle;
             var aIntro = ArticleandText.AIntro;
             var aText = ArticleandText.AText;
 
-            if (string.IsNullOrEmpty(aTitle)  || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
+            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
             {
                 return DataStatus.DataError(1111, "请检查必填项目是否填写！");
             }
@@ -240,6 +240,66 @@ namespace Article.CMS.Api.Controllers
             _Context.SaveChanges();
 
             return DataStatus.DataSuccess(1000, ATtext, "插入文章成功");
+
+        }
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="ArticleandText"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("upArticle/{aId}/{uId}")]
+        public dynamic upArticle(int aId, int uId, addArticleandTextParams ArticleandText)
+        {
+            var isUser = _Context.Users.Where(x => x.Id == ArticleandText.UserId).SingleOrDefault();
+            if (isUser == null)
+            {
+                return DataStatus.DataError(1114, "该用户不存在无法执行操作！");
+            }
+
+            var isArticle = _ArticlesRepository.Table.Where(x => x.Id == aId).SingleOrDefault();
+            if (isArticle == null)
+            {
+                return DataStatus.DataError(1114, "该文章不存在无法执行操作！");
+            }
+
+            var aTitle = ArticleandText.ATitle;
+            var aIntro = ArticleandText.AIntro;
+            var aText = ArticleandText.AText;
+
+            if (string.IsNullOrEmpty(aTitle) || string.IsNullOrEmpty(aIntro) || string.IsNullOrEmpty(aText))
+            {
+                return DataStatus.DataError(1111, "请检查必填项目是否填写！");
+            }
+
+            isArticle.ATitle = aTitle;
+            isArticle.AIntro = aIntro;
+
+            _ArticlesRepository.Update(isArticle);
+
+            var isArticleText = _Context.ArticleTexts.Where(x => x.ArticleId == aId).SingleOrDefault();
+
+            if (isArticleText == null)
+            {
+                var aTtext = new ArticleTexts
+                {
+                    ArticleId = aId,
+                    AText = HttpUtility.HtmlEncode(aText)
+                };
+
+                _Context.ArticleTexts.Add(aTtext);
+                _Context.SaveChanges();
+            }
+            else
+            {
+                isArticleText.AText = aText;
+                _Context.ArticleTexts.Update(isArticleText);
+                _Context.SaveChanges();
+
+            }
+
+            return DataStatus.DataSuccess(1000, new {}, "插入文章成功");
 
         }
 
