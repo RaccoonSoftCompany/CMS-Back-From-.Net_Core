@@ -38,7 +38,7 @@ namespace Article.CMS.Api.Controllers
         {
             var pageIndex = pager.PageIndex;
             var pageSize = pager.PageSize;
-            var articles = _Context.Articles.Skip((pageIndex - 1) * pageSize).Take(pageSize).Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
+            var articles = _Context.Articles.Join(_Context.UserInfos, pet => pet.UserId, per => per.UserId, (pet, per) => new ArticleViewParams
             {
                 Id = pet.Id,
                 NickName = per.NickName,
@@ -54,7 +54,7 @@ namespace Article.CMS.Api.Controllers
                 Remarks = pet.Remarks
             });
 
-            // var article = articles;
+            var article = articles.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             
             return DataStatus.DataSuccess(1000, new { Data = articles.OrderByDescending(x => x.CreatedTime), Pager = new { pageIndex, pageSize, rowsTotal = articles.Count() } }, "获取文章列表成功");
