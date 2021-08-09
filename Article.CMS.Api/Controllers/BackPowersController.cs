@@ -36,10 +36,20 @@ namespace Article.CMS.Api.Controllers
         /// 获取所有权限请求
         /// </summary>
         /// <returns></returns>
-        public dynamic Get()
+        public dynamic Get([FromQuery] PagerParams query)
         {
+            var pageIndex = query.PageIndex;//当前页码
+            var pageSize = query.PageSize;//每页条数
+
             var powers = _PowersRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, powers, "获取密保问题成功！");
+            var pgPowers=powers.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            var data=new{
+                data=pgPowers,
+                pager=new {pageIndex,pageSize,rowsTotal = powers.Count()}
+            }
+
+            return DataStatus.DataSuccess(1000, data, "获取密保问题成功！");
         }
 
         /// <summary>

@@ -32,7 +32,8 @@ namespace Article.CMS.Api.Controllers
        public dynamic Get([FromQuery] PagerParams pager)
         {
             var matters = _mattersRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");        }
+            return DataStatus.DataSuccess(1000, matters, "获取密保问题成功！");        
+        }
 
     }
 }
