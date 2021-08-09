@@ -121,15 +121,6 @@ namespace Article.CMS.Api.Controllers
                     {
                         file.CopyTo(stream);
                     }
-                    // var tmpFile = new ImagesUrl
-                    // {
-                    //     OriginName = fileName,
-                    //     CurrentName = rndName,
-                    //     ATImageUrl = tempPath,
-                    //     UserId = userId
-                    // };
-
-                    // _fileInfoRepository.Insert(tmpFile);
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
                     isArticle.ATitleImageUrl = tempPath;//插入路径
@@ -140,11 +131,6 @@ namespace Article.CMS.Api.Controllers
 
             return DataStatus.DataSuccess(1000, resultPath, "插入文章标题图片成功！");
         }
-
-
-
-
-
 
         /// <summary>
         /// 文章图片上传
@@ -201,26 +187,11 @@ namespace Article.CMS.Api.Controllers
                     _fileInfoRepository.Insert(tmpFile);
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
-                    // isArticle.ATitleImageUrl = tempPath;//插入路径
                 }
             }
-            // _Context.Articles.Update(isArticle);
-            // _Context.SaveChanges();
 
             return DataStatus.DataSuccess(1000, resultPath, "插入图片成功！");
         }
-
-        // [HttpGet]
-        // [Route("getimgs")]
-        // /// <summary>
-        // /// 获取所有图片请求
-        // /// </summary>
-        // /// <returns></returns>
-        // public dynamic Get()
-        // {
-        //     var matters = _fileInfoRepository.Table.ToList();
-        //     return DataStatus.DataSuccess(1000, matters, "获取图片成功！");
-        // }
 
     }
 }
