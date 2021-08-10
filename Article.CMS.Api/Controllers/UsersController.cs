@@ -23,8 +23,17 @@ namespace Article.CMS.Api.Controllers
         /// <typeparam name="Users">用户实体</typeparam>
         /// <returns></returns>
         private IRepository<Users> _usersRepository;
+
+        /// <summary>
+        /// 所以数据库
+        /// </summary>
         private IConfiguration _configuration;
+
+        /// <summary>
+        /// token实体
+        /// </summary>
         private TokenParameter _tokenParameter;
+
         /// <summary>
         /// 所有数据库
         /// </summary>
@@ -44,8 +53,8 @@ namespace Article.CMS.Api.Controllers
         /// <summary>
         /// 登录
         /// </summary>
-        /// <param name="loginData"></param>
-        /// <returns></returns>
+        /// <param name="loginData">前端返回的登录信息</param>
+        /// <returns>是否成功</returns>
         [HttpPost]
         [Route("login")]
         public dynamic Login(UsersParams loginData)
@@ -74,8 +83,8 @@ namespace Article.CMS.Api.Controllers
         /// <summary>
         /// 注册用户
         /// </summary>
-        /// <param name="newUser">传入前端数据实体</param>
-        /// <returns></returns>
+        /// <param name="newUser">前端新用户数据</param>
+        /// <returns>是否成功</returns>
         [HttpPost]
         [Route("register")]
         public dynamic Register(UsersParams newUser)

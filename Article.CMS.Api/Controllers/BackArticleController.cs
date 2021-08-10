@@ -59,12 +59,10 @@ namespace Article.CMS.Api.Controllers
 
             var data = new
             {
-                data = pgarticles,
+                data = pgarticles.OrderByDescending(x => x.CreatedTime),
                 pager = new { pageIndex, pageSize, rowsTotal = articles.Count() }
             };
-
-
-
+            
             return DataStatus.DataSuccess(1000, data, "获取文章成功");
         }
 

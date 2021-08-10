@@ -12,7 +12,7 @@ namespace Article.CMS.Api.Params
         public PagerParams()
         {
             _pageSize = 1;
-            _pageSize = 10;
+            _pageSize = 5;
         }
         // 页码（当前第几页）
         public int PageIndex
@@ -36,9 +36,9 @@ namespace Article.CMS.Api.Params
         {
             get
             {
-                if (_pageSize < 10)
+                if (_pageSize < 5)
                 {
-                    _pageSize = 10;
+                    _pageSize = 5;
                 }
                 return _pageSize;
             }
