@@ -1,4 +1,4 @@
-namespace Article.CMS.Api.Entity
+namespace Article.CMS.Api.Params
 {
     /// <summary>
     /// 前端文章实体

@@ -23,6 +23,9 @@ namespace Article.CMS.Api.Database
         public DbSet<ImagesUrl> ImagesUrl { get; set; } //要生成的文章内容图片数据表
         public DbSet<ArticleTalks> ArticleTalks { get; set; } //要生成的文章评论数据表
         public DbSet<ArticleReads> ArticleReads { get; set; } //要生成的文章访问数据表
+        public DbSet<WebSide> WebSide { get; set; } //要生成的站点数据表
+        public DbSet<SlideShow> SlideShow { get; set; } //要生成的轮播图数据表
+        public DbSet<QRCode> QRCode { get; set; } //要生成的二维码数据表
         public DbSet<ArticleAPraises> ArticleAPraises { get; set; } //要生成的文章点赞数据表
         public DbSet<AuditInfo> AuditInfo { get; set; } //要生成的审计日志数据表
 

@@ -193,5 +193,128 @@ namespace Article.CMS.Api.Controllers
             return DataStatus.DataSuccess(1000, resultPath, "插入图片成功！");
         }
 
+        /// <summary>
+        /// 站点轮播图上传
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpSlideSide/{wId}")]
+        public string UpSlideSide(int wId, IFormCollection model)
+        {
+            var webId = wId;
+            var isweb = _Context.WebSide.Where(x => x.Id == webId).SingleOrDefault();
+
+            if (isweb == null)
+            {
+                return DataStatus.DataError(1221, "该站点不存在！");
+            }
+
+            // 获得当前应用所在的完整路径（绝对地址）
+            var filePath = Directory.GetCurrentDirectory();
+
+            // 通过配置文件获得存放文件的相对路径
+            string path = _configuration["UpSlideSide"];
+
+            // 最终存放文件的完整路径
+            var preFullPath = Path.Combine(filePath, path);
+            // 如果路径不存在，则创建
+            if (!Directory.Exists(preFullPath))
+            {
+                Directory.CreateDirectory(preFullPath);
+            }
+
+            var resultPath = new List<string>();
+
+            foreach (IFormFile file in model.Files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = file.FileName;
+                    var extName = fileName.Substring(fileName.LastIndexOf("."));//extName包含了“.”
+                    var rndName = Guid.NewGuid().ToString("N") + extName;
+                    var tempPath = Path.Combine(path, rndName).Replace("\\", "/");
+                    using (var stream = new FileStream(Path.Combine(filePath, tempPath), FileMode.CreateNew))//Path.Combine(_env.WebRootPath, fileName)
+                    {
+                        file.CopyTo(stream);
+                    }
+                    var addSlideShow = new SlideShow
+                    {
+                        WebSideId = webId,
+                        SlideSideUrl = tempPath
+                    };
+
+                    _Context.SlideShow.Add(addSlideShow);
+                    _Context.SaveChanges();
+                    // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
+                    resultPath.Add(tempPath.Replace("\\", "/"));
+                }
+            }
+
+            return DataStatus.DataSuccess(1000, resultPath, "插入图片成功！");
+        }
+
+        // /// <summary>
+        // /// 站点二维码上传
+        // /// </summary>
+        // /// <param name="model"></param>
+        // /// <returns></returns>
+        [HttpPost("{wId}")]
+        [Route("UpQRCode/{wId}")]
+        public string UpQRCode(int wId, IFormCollection model)
+        {
+            var webId = wId;
+            var isweb = _Context.WebSide.Where(x => x.Id == webId).SingleOrDefault();
+
+            if (isweb == null)
+            {
+                return DataStatus.DataError(1221, "该站点不存在！");
+            }
+
+            // 获得当前应用所在的完整路径（绝对地址）
+            var filePath = Directory.GetCurrentDirectory();
+
+            // 通过配置文件获得存放文件的相对路径
+            string path = _configuration["UpQRCode"];
+
+            // 最终存放文件的完整路径
+            var preFullPath = Path.Combine(filePath, path);
+            // 如果路径不存在，则创建
+            if (!Directory.Exists(preFullPath))
+            {
+                Directory.CreateDirectory(preFullPath);
+            }
+
+            var resultPath = new List<string>();
+
+            foreach (IFormFile file in model.Files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = file.FileName;
+                    var extName = fileName.Substring(fileName.LastIndexOf("."));//extName包含了“.”
+                    var rndName = Guid.NewGuid().ToString("N") + extName;
+                    var tempPath = Path.Combine(path, rndName).Replace("\\", "/");
+                    using (var stream = new FileStream(Path.Combine(filePath, tempPath), FileMode.CreateNew))//Path.Combine(_env.WebRootPath, fileName)
+                    {
+                        file.CopyTo(stream);
+                    }
+                    var addSlideShow = new SlideShow
+                    {
+                        WebSideId = webId,
+                        SlideSideUrl = tempPath
+                    };
+
+                    _Context.SlideShow.Add(addSlideShow);
+                    _Context.SaveChanges();
+                    // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
+                    resultPath.Add(tempPath.Replace("\\", "/"));
+                }
+            }
+
+            return DataStatus.DataSuccess(1000, resultPath, "插入图片成功！");
+        }
+
+
     }
 }

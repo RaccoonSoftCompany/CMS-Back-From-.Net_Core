@@ -58,6 +58,5 @@ namespace Article.CMS.Api.Controllers
             _ArticleReadsRepository.Insert(ArticleRead);
             return DataStatus.DataSuccess(1000, ArticleRead, "访问+1！");
         }
-
     }
 }

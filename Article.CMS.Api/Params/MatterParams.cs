@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Article.CMS.Api.Entity
+namespace Article.CMS.Api.Params
 {
     /// <summary>
     /// 前端问题实体
