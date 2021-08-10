@@ -84,7 +84,6 @@ namespace Article.CMS.Api
             app.UseRouting();
             app.UseStaticFiles(); // For the wwwroot folder
 
-
             #region 静态资源中间件 http://localhost:5000/uploadfiles/……
             string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"UploadFiles");
             if (!Directory.Exists(filepath))
