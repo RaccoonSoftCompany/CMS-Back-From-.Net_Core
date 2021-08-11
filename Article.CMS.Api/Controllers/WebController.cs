@@ -143,6 +143,20 @@ namespace Article.CMS.Api.Controllers
 
         }
 
+        [HttpGet]
+        [Route("GetTrueWeb")]
+        /// <summary>
+        /// 获取所有启用站点信息请求
+        /// </summary>
+        /// <returns></returns>
+        public dynamic GetTrue()
+        {
+            var WebSide = _WebSideRepository.Table.Where(x=>x.IsActived==true).SingleOrDefault();
+            return DataStatus.DataSuccess(1000, WebSide, "站点信息获取成功！");
+        }
+
+
+
 
     }
 }
