@@ -39,7 +39,7 @@ namespace Article.CMS.Api.Controllers
         public dynamic Get()
         {
             var WebSide = _WebSideRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, WebSide.OrderBy(x=>x.Id), "站点信息获取成功！");
+            return DataStatus.DataSuccess(1000, WebSide.OrderBy(x => x.Id), "站点信息获取成功！");
         }
 
         /// <summary>
@@ -136,9 +136,13 @@ namespace Article.CMS.Api.Controllers
                 isWeb.IsActived = isActived;
                 _WebSideRepository.Update(isWeb);
                 var WebSide = _WebSideRepository.Table.ToList();
-                return DataStatus.DataSuccess(1000, WebSide.OrderBy(x=>x.Id), "启用站点信息成功,已关闭原站点信息");
+                return DataStatus.DataSuccess(1000, WebSide.OrderBy(x => x.Id), "启用站点信息成功,已关闭原站点信息");
             }
-                return DataStatus.DataError(12221,"请启用其他站点信息即可禁用！");
+            var dbWebSide = _WebSideRepository.Table.ToList();
+            return DataStatus.DataSuccess(12221, dbWebSide.OrderBy(x => x.Id), "请启用其他站点信息即可禁用！");
+
         }
+
+
     }
 }
