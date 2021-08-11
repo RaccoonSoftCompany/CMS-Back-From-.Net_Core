@@ -13,6 +13,7 @@ namespace Article.CMS.Api.Params
         public string PSecurit { get; set; }
         //版权信息
         public string Copyright { get; set; }
-
+        //是否启用
+        public bool IsActived { get; set; }
     }
 }

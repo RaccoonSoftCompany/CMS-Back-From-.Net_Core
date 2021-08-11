@@ -12,6 +12,26 @@ Content-Type: application/json
    "Copyright":"132"
 }
 
+### 添加站点信息/UpWeb
+PUT http://localhost:5000/Web/UpWeb/5 HTTP/1.1
+Content-Type: application/json
+
+{
+   "WebName":"11",
+   "ICPCase":"11",
+   "PSecurit":"11",
+   "Copyright":"13112"
+}
+
+
+### 修改启用站点
+PUT http://localhost:5000/Web/IsWeb/2 HTTP/1.1
+Content-Type: application/json
+
+{
+   "IsActived":true
+}
+
 ### 前端文章获取
 GET http://localhost:5000/Articles HTTP/1.1
 
