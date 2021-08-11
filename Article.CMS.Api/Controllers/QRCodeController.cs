@@ -33,13 +33,26 @@ namespace Article.CMS.Api.Controllers
 
         [HttpGet("{id}")]
         /// <summary>
-        /// 获取所有站点信息请求
+        /// 获取站点二维码
         /// </summary>
         /// <returns></returns>
         public dynamic Get(int id)
         {
-            var QRImage = _QRCodeRepository.Table.Where(x=>x.WebSideId==id).ToList();
-            return DataStatus.DataSuccess(1000,QRImage , "站点信息获取成功！");
+            var QRImage = _QRCodeRepository.Table.Where(x => x.WebSideId == id).ToList();
+            return DataStatus.DataSuccess(1000, QRImage, "站点二维码获取成功！");
         }
+
+        [HttpDelete("{ImageName}")]
+        /// <summary>
+        /// 删除站点二维码
+        /// </summary>
+        /// <returns></returns>
+        public dynamic Delete(string ImageName)
+        {
+            var id=_QRCodeRepository.Table.Where(x=>x.QRUrl==ImageName).SingleOrDefault().Id;
+            _QRCodeRepository.Delete(id);
+            return DataStatus.DataSuccess(1000, new { Id=id }, "站点二维码删除成功！");
+        }
+
     }
 }
