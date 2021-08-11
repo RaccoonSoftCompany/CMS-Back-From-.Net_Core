@@ -13,3 +13,6 @@
 
 
 Article.CMS.Api
+
+发布
+dotnet publish -c Release
