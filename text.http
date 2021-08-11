@@ -1,6 +1,9 @@
 ### 获取站点信息
 GET http://localhost:5000/Web HTTP/1.1
 
+### 读取二维码
+GET http://localhost:5000/QRCode/1 HTTP/1.1
+
 ### 二维码图片插入
 POST http://localhost:5000/UploadFile/urlUpQRCode/站点id HTTP/1.1
 

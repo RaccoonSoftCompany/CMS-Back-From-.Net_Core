@@ -12,7 +12,7 @@ namespace Article.CMS.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class QRCoderoller : ControllerBase
+    public class QRCodeController : ControllerBase
     {
         /// <summary>
         /// 创建站点存储仓库
@@ -26,7 +26,7 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         ArticleCmsdb _Context = new ArticleCmsdb();
 
-        public QRCoderoller(IConfiguration configuration, IRepository<QRCode> QRCodeRepository)
+        public QRCodeController(IConfiguration configuration, IRepository<QRCode> QRCodeRepository)
         {
             _QRCodeRepository = QRCodeRepository;
         }
