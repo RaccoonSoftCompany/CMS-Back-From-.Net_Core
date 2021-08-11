@@ -6,30 +6,30 @@ POST http://localhost:5000/Web/AddWeb HTTP/1.1
 Content-Type: application/json
 
 {
-   "WebName":"132",
+   "WebName":"132faaaaaaaa",
    "ICPCase":"666",
    "PSecurit":"132",
    "Copyright":"132"
 }
 
 ### 修改站点信息
-PUT http://localhost:5000/Web/UpWeb/5 HTTP/1.1
+PUT http://localhost:5000/Web/UpWeb/26 HTTP/1.1
 Content-Type: application/json
 
 {
-   "WebName":"11",
-   "ICPCase":"11",
+   "WebName":"11444444444444tr",
+   "ICPCase":"1177",
    "PSecurit":"11",
    "Copyright":"13112"
 }
 
 
 ### 修改启用站点
-PUT http://localhost:5000/Web/IsWeb/2 HTTP/1.1
+PUT http://localhost:5000/Web/IsWeb/25 HTTP/1.1
 Content-Type: application/json
 
 {
-   "IsActived":true
+   "IsActived":false
 }
 
 ### 前端文章获取

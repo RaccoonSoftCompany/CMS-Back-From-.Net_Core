@@ -106,7 +106,6 @@ namespace Article.CMS.Api.Controllers
             dbWeb.ICPCase = iCPCase;
             dbWeb.PSecurit = pSecurit;
             dbWeb.Copyright = copyright;
-
             _WebSideRepository.Update(dbWeb);
 
             return DataStatus.DataSuccess(1000, dbWeb, "修改站点信息成功");
@@ -137,20 +136,9 @@ namespace Article.CMS.Api.Controllers
                 isWeb.IsActived = isActived;
                 _WebSideRepository.Update(isWeb);
                 var WebSide = _WebSideRepository.Table.ToList();
-                return DataStatus.DataSuccess(1000, WebSide, "启用站点信息成功");
+                return DataStatus.DataSuccess(1000, WebSide.OrderBy(x=>x.Id), "启用站点信息成功,已关闭原站点信息");
             }
-                // var IsWebTrue = _WebSideRepository.Table.Where(x => x.IsActived == true).ToList();
-                // if (IsWebTrue)
-                // {
-                    
-                // }
-                // _WebSideRepository.Update(IsOneWebTrue);
-                // isWeb.IsActived = isActived;
-                // _WebSideRepository.Update(isWeb);
-                // var WebSide = _WebSideRepository.Table.ToList();
-                return DataStatus.DataSuccess(1000,new {}, "启用站点信息成功");
-
-
+                return DataStatus.DataError(12221,"请启用其他站点信息即可禁用！");
         }
     }
 }
