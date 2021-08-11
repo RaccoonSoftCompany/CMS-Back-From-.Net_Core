@@ -299,13 +299,13 @@ namespace Article.CMS.Api.Controllers
                     {
                         file.CopyTo(stream);
                     }
-                    var addSlideShow = new SlideShow
+                    var addQRCode = new QRCode
                     {
                         WebSideId = webId,
-                        SlideSideUrl = tempPath
+                        QRUrl = tempPath
                     };
 
-                    _Context.SlideShow.Add(addSlideShow);
+                    _Context.QRCode.Add(addQRCode);
                     _Context.SaveChanges();
                     // 此处地址可能带有两个反斜杠，虽然也能用，比较奇怪，统一转换成斜杠，这样在任何平台都有一样的表现
                     resultPath.Add(tempPath.Replace("\\", "/"));
