@@ -39,7 +39,7 @@ namespace Article.CMS.Api.Controllers
         public dynamic Get()
         {
             var WebSide = _WebSideRepository.Table.ToList();
-            return DataStatus.DataSuccess(1000, WebSide, "站点信息获取成功！");
+            return DataStatus.DataSuccess(1000, WebSide.OrderBy(x=>x.Id), "站点信息获取成功！");
         }
 
         /// <summary>
@@ -139,8 +139,11 @@ namespace Article.CMS.Api.Controllers
                 var WebSide = _WebSideRepository.Table.ToList();
                 return DataStatus.DataSuccess(1000, WebSide, "启用站点信息成功");
             }
-                // var IsOneWebTrue = _WebSideRepository.Table.Where(x => x.IsActived == true).SingleOrDefault();
-                // IsOneWebTrue.IsActived = false;
+                // var IsWebTrue = _WebSideRepository.Table.Where(x => x.IsActived == true).ToList();
+                // if (IsWebTrue)
+                // {
+                    
+                // }
                 // _WebSideRepository.Update(IsOneWebTrue);
                 // isWeb.IsActived = isActived;
                 // _WebSideRepository.Update(isWeb);
