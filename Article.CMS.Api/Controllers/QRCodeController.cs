@@ -49,7 +49,7 @@ namespace Article.CMS.Api.Controllers
         /// <returns></returns>
         public dynamic Delete(string ImageName)
         {
-            var id=_QRCodeRepository.Table.Where(x=>x.QRUrl==ImageName).SingleOrDefault().Id;
+            var id=_QRCodeRepository.Table.Where(x=>x.QRUrl.Contains(ImageName)).SingleOrDefault().Id;
             _QRCodeRepository.Delete(id);
             return DataStatus.DataSuccess(1000, new { Id=id }, "站点二维码删除成功！");
         }
