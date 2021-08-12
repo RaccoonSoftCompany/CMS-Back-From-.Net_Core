@@ -254,7 +254,7 @@ namespace Article.CMS.Api.Controllers
         // /// </summary>
         // /// <param name="model"></param>
         // /// <returns></returns>
-        [HttpPost("{wId}")]
+        [HttpPost]
         [Route("UpQRCode/{wId}")]
         public string UpQRCode(int wId, IFormCollection model)
         {
