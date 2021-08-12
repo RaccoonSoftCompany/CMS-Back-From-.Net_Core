@@ -13,10 +13,10 @@ Content-Type: application/json
 DELETE http://localhost:5000/SlideSide/轮播图id HTTP/1.1
 
 ### 获取所有轮播图
-GET http://localhost:5000/SlideSide HTTP/1.1
+GET http://cmsapi.ssffyy.com:8090/SlideSide HTTP/1.1
 
 ### 获取启用的站点信息
-GET http://localhost:5000/Web/GetTrueWeb HTTP/1.1
+GET http://cmsapi.ssffyy.com:8090/Web/GetTrueWeb HTTP/1.1
 
 
 

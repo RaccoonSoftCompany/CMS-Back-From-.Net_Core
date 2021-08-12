@@ -199,17 +199,9 @@ namespace Article.CMS.Api.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("UpSlideSide/{wId}")]
-        public string UpSlideSide(int wId, IFormCollection model)
+        [Route("UpSlideSide")]
+        public string UpSlideSide(IFormCollection model)
         {
-            var webId = wId;
-            var isweb = _Context.WebSide.Where(x => x.Id == webId).SingleOrDefault();
-
-            if (isweb == null)
-            {
-                return DataStatus.DataError(1221, "该站点不存在！");
-            }
-
             // 获得当前应用所在的完整路径（绝对地址）
             var filePath = Directory.GetCurrentDirectory();
 
